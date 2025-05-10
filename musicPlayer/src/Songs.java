@@ -6,7 +6,7 @@ public class Songs {
     int Duration;
 
     public static String getSongName(String SongID){
-        //lay ten artist
+        //lay Title bai hat
 
         String test1 = SongID;
 
