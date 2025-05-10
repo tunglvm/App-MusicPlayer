@@ -13,8 +13,8 @@ class album {
 
     public static String getAlbumTitle(String ID) {
         // Placeholder logic to return the album title based on ID
-        String test = ID; // Replace this with actual logic to fetch the title
-        return test;
+        String test2 = ID; // Replace this with actual logic to fetch the title
+        return test2;
     }
 
 
