@@ -1,7 +1,7 @@
 class Album {
     String Title;
 
-    String ID;
+    String AlbumID;
 
     String Artist;
 
@@ -11,9 +11,9 @@ class Album {
 
     int Duration;
 
-    public static String getAlbumTitle(String ID) {
-        // Placeholder logic to return the album title based on ID
-        String test2 = ID; // Replace this with actual logic to fetch the title
+    public static String getAlbumTitle(String AlbumID) {
+        // Logic to fetch the album title using the ID
+        String test2 = AlbumID; 
         return test2;
     }
 
