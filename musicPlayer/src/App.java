@@ -10,7 +10,7 @@ public class App {
         System.out.println(test);
         String test1 = Songs.getSongName("Song's Name");
         System.out.println(test1);
-        String test2 = album.getAlbumTitle("Album's ID");
+        String test2 = Album.getAlbumTitle("Album's ID");
         System.out.println(test2);
 
     }
