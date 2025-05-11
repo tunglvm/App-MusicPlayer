@@ -12,7 +12,7 @@ class Album {
     int Duration;
 
     public static String getAlbumTitle(String AlbumID) {
-        // Logic to fetch the album title using the ID
+        
         String test2 = AlbumID; 
         return test2;
     }
