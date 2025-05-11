@@ -1,4 +1,4 @@
-class album {
+class Album {
     String Title;
 
     String ID;
