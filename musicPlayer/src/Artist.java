@@ -16,11 +16,8 @@ class Artist {
     }
 
     public static String getArtistName(String ArtistID){
-        //lay ten artist
-
-        String test = ArtistID;
-
-        return test;
+        String ID1 = ArtistID;
+        return ID1;
     }
 
 }
