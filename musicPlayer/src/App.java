@@ -20,7 +20,7 @@ public class App {
         Songs song = new Songs("Lullaby", "IU001s005", "IU", "K-Pop", 261);
         System.out.println(song);
 
-        Album album = new Album("Love Poem", "IU001", "IU", "Love poem", "KaKao Entertainment", 1500);
+        Album album = new Album("Love Poem", "IU001", "IU", "Lullaby", "KaKao Entertainment", 1500);
         System.out.println(album);
     }
 }
