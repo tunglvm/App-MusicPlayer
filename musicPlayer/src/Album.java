@@ -17,6 +17,15 @@ class Album {
         return test2;
     }
 
+    public Album(String Title, String AlbumID, String Artist, String Songs, String Copyright, int Duration) {
+        this.Title = Title;
+        this.AlbumID = AlbumID;
+        this.Artist = Artist;
+        this.Songs = Songs;
+        this.Copyright = Copyright;
+        this.Duration = Duration;
+    }
+
 
 }
 

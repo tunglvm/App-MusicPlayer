@@ -3,10 +3,12 @@ public class User {
     private int age;
     public String userId;
 
-    public User(String name, int age) {
+    public User(String name, int age, String userId) {
         this.name = name;
         this.age = age;
+        this.userId = userId;
     }
+
 
     public String getName() {
         return name;
