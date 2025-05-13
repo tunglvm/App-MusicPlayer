@@ -18,7 +18,5 @@ public class App {
         Artist artist = new Artist("IU", "IU16051993", "Korean", "16/05/1993", "Blueming", "Love poem");
         System.out.println(artist.Name);
 
-        //test get set Name
-
     }
 }
