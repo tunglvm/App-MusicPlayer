@@ -18,11 +18,13 @@ public class App {
         User user = new User("Tùng Lâm", 19, "23010874");
         System.out.println(user); 
 
-        Songs song = new Songs("Lullaby", "IU001s005", "IU", "K-Pop", 261);
+        Songs song = new Songs("Lullaby", "IU001s005", "IU", "", "K-Pop", 261);
         System.out.println(song);
 
         Album album = new Album("Love Poem", "IU001", "IU", "Love poem", "KaKao Entertainment", 1500);
         System.out.println(album);
 
+        Artist artist = new Artist("IU", "IU16051993", "Korean", "16/05/1993", "Blueming", "Love poem");
+        System.out.println(artist);
     }
 }
