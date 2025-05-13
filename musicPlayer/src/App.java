@@ -19,7 +19,7 @@ public class App {
         System.out.println(user); 
 
         Songs song = new Songs("Lullaby", "IU001s005", "IU", "", "K-Pop", 261);
-        System.out.println(song);
+        System.out.println(song.Title + "by" + song.Artist);
 
         Album album = new Album("Love Poem", "IU001", "IU", "Love poem", "KaKao Entertainment", 1500);
         System.out.println(album);
