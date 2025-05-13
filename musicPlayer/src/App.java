@@ -16,7 +16,7 @@ public class App {
 
         
         User user = new User("Tùng Lâm", 19, "23010874");
-        System.out.println(user); 
+        System.out.println(user.userId + "  "+ user.getName() ); 
 
         Songs song = new Songs("Lullaby", "IU001s005", "IU", "", "K-Pop", 261);
         System.out.println(song);
