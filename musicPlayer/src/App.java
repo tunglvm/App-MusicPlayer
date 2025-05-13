@@ -13,5 +13,8 @@ public class App {
         String test2 = Album.getAlbumTitle("Album's ID");
         System.out.println(test2);
 
+        Songs song = new Songs ("Lullaby", "IU001s005", "IU", "K-Pop", 261);
+        System.out.println(song);
+
     }
 }
