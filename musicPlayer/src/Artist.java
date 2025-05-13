@@ -14,6 +14,7 @@ class Artist {
         this.Songs= Songs;
         this.Album= Album;
     }
+    
     public static String getArtistName(String ArtistID){
         //lay ten artist
 
