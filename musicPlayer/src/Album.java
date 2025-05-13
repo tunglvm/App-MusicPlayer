@@ -1,18 +1,18 @@
 class Album {
-    String Title;
+    String albumTitle;
     String AlbumID;
     String Artist;
     String Songs;
     String Copyright;
-    int Duration;
+    int albumDuration;
 
     public Album(String Title, String AlbumID, String Artist, String Songs, String Copyright, int Duration) {
-        this.Title = Title;
+        this.albumTitle = Title;
         this.AlbumID = AlbumID;
         this.Artist = Artist;
         this.Songs = Songs;
         this.Copyright = Copyright;
-        this.Duration = Duration;
+        this.albumDuration = Duration;
     }
 
     public static String getAlbumTitle(String AlbumID) {
