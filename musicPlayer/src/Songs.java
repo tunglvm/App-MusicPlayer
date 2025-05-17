@@ -16,11 +16,8 @@ public class Songs {
 
     }
     
-
-    public static String getSongName(String Title){
-        String songsTitle = Title;
-
-        return songsTitle;
+    public String getSongName(String Title){
+        return this.songTitle;
     }
 
     

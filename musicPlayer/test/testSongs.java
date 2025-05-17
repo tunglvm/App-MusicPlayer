@@ -1,10 +1,10 @@
-package Group6_OOP_N02_term3_2025.musicPlayer.test;
+package musicPlayer.test;
 
 public class testSongs {
     public static void getSongName(){
         System.out.println("Song list: ");
-        
-    
+        System.out.println("1. Lullaby");
+        System.out.println("2. unlucky");
     }
     
 }

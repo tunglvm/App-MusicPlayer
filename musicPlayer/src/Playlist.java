@@ -13,17 +13,10 @@ public class Playlist {
         this.playlistDuration = playlistDuration;
     }
 
-    //phuong thuc play
-    /*
-     * 
-     * To do: input ? 
-     * output?
-     * implementation input-->output
-     */
 
-     public String play(String id){
-
-      return playlistName;
+    public String getPlaylistName(String playlistID){
+        String test = playlistID;
+        return test;
      }
 
 }

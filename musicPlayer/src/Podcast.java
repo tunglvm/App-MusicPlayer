@@ -12,8 +12,8 @@ public class Podcast {
         this.description = description;
         this.duration = duration;
     }
-
-    public String getPodcastTitle(){
-        return this.podcastTitle;
+    public String getPodcastTitle(String podcastID){
+        String test = podcastID;
+        return test;
     }
 }
