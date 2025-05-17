@@ -1,4 +1,4 @@
-class Album {
+public class Album {
     String albumTitle;
     String AlbumID;
     String Artist;
@@ -19,6 +19,8 @@ class Album {
         String test2 = AlbumID; 
         return test2;
     }
+
+
 
 }
 
