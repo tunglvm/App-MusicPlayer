@@ -24,5 +24,6 @@ public class App {
         Podcast podcast = new Podcast("Khi cuộc đời cho bạn quả quýt", "P001", "Thuần Podcast", "Chia sẻ những câu chuyện ý nghĩa về cuộc sống", "Podcast", 37);
         System.out.println("Podcast: " + podcast.podcastTitle + " by " + podcast.host + ", description: " + podcast.description + ", duration: " + podcast.duration + " minutes");
 
+
     }
 }
