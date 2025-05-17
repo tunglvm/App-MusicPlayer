@@ -9,7 +9,7 @@ import musicPlayer.unittest.testUser;
 
 public class App {
     public static void main(String[] args) throws Exception {
-testUser.display();
+    testUser.display();
 
         
         System.out.println("Music Player Test!");
