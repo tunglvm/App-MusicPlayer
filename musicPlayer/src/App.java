@@ -2,10 +2,7 @@
 
 public class App {
     public static void main(String[] args) throws Exception {
-testUser.display();
-
-        
-        System.out.println("Music Player Test!");
+        System.out.println("Music Player Test! \n");
         
         User user1 = new User("Tùng Lâm", 19, "23010874");
         System.out.println("User 1: " + user1.getUserID() + "  "+ user1.getName() + "\n"); 
