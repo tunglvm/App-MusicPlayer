@@ -17,12 +17,10 @@ public class Songs {
     }
     
 
-    public static String getSongName(String SongID){
-        //lay Title bai hat
+    public static String getSongName(String Title){
+        String songsTitle = Title;
 
-        String test1 = SongID;
-
-        return test1;
+        return songsTitle;
     }
 
     
