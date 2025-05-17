@@ -5,8 +5,13 @@
 //import User;
 //import Playlist;
 
+import musicPlayer.unittest.testUser;
+
 public class App {
     public static void main(String[] args) throws Exception {
+testUser.display();
+
+        
         System.out.println("Music Player Test!");
         
         User user1 = new User("Tùng Lâm", 19, "23010874");
@@ -23,7 +28,6 @@ public class App {
 
         Podcast podcast = new Podcast("When life give you a watermelon", "PCC001", "Lam lanh lung", "sharing about life", 900);
         System.out.println("Podcast: " + podcast.podcastTitle + " by " + podcast.host + ", description: " + podcast.description + ", duration: " + podcast.duration + " seconds");
-
 
     }
 }
