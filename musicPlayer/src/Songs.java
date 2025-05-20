@@ -14,10 +14,12 @@ public class Songs {
         this.Type = Type;
         this.songDuration = Duration;
     }
+    
 
-    public String getSongInfo(){
+    public static String getSongName(String Title){
+        String songsTitle = Title;
 
-        
+        return songsTitle;
     }
 }
 
