@@ -25,6 +25,9 @@ public class Album {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
+=======
 >>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
 =======
 >>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
