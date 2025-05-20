@@ -23,7 +23,7 @@ public class User {
     }
 
 public void displayUserInfo() {
-        System.out.println("Artist: " + name + " (ID: " + UserID + ")");
+        System.out.println("User: " + name + " (ID: " + UserID + ")");
         System.out.println("Age: " + age);
     
 }

@@ -28,9 +28,8 @@ public class App {
 
         IU.displayArtistInfo();
 
-        Album album1 = new Album("A Flower Bookmark", "IUEPAFB", IU, song1, "Korean Copyright", 1500);
-        album1.setAlbumInfo("A Flower Bookmark", IU, song1, "Korean Copyright", 1500);
-        album1.displayAlbumInfo();
+        
+
 
         User user1 = new User("Tùng Lâm", 19, "tunglvm001");
         user1.displayUserInfo();
@@ -38,7 +37,7 @@ public class App {
         Single single1 = new Single("Autumn morning", "IUAFB001", "IU", "K-pop", 218);
         single1.displaySingleInfo();
 
-        
+
         System.out.println(EP1.getEPInfo());
     }
 }

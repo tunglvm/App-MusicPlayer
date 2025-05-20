@@ -27,4 +27,7 @@ public void displayArtistInfo() {
   
     
 }
+    public String getName() {
+        return Name;
+    }
 }

@@ -1,38 +1,73 @@
+import java.util.ArrayList;
+
 public class Album {
-    String AlbumTitle;
-    String AlbumID;
-    Songs songs;
-    Artist Artist; 
-    String Copyright;
-    int albumDuration;
+    private String AlbumTitle;
+    private String AlbumID;
+    private Artist artist;
+    private ArrayList<Songs> songsList;
+    private String copyright;
+    private int albumDuration;
 
-    public Album(String Title, String AlbumID, Artist Artist,Songs songs , String Copyright, int Duration) {
-        this.AlbumID = AlbumID;
-     }
-
-    public void setAlbumInfo(String Title, Artist Artist,Songs songs , String Copyright, int Duration){
-        this.AlbumTitle = Title;
-        this.Artist = Artist;
-        this.songs = songs;
-        this.Copyright = Copyright;
-        this.albumDuration = Duration;
-
+    public Album(String albumTitle, String albumID, Artist artist, ArrayList<Songs> songsList, String copyright,
+            int albumDuration) {
+        this.AlbumTitle = albumTitle;
+        this.AlbumID = albumID;
+        this.artist = artist;
+        this.songsList = songsList;
+        this.copyright = copyright;
+        this.albumDuration = albumDuration;
     }
-    public String getAlbumInfo(){
-        return this.AlbumTitle + " : " + this.albumDuration + " seconds";
+
+    public void setAlbumInfo(String AlbumTitle, Artist artist, ArrayList<Songs> songsList, String copyright,
+            int albumDuration) {
+        this.AlbumTitle = AlbumTitle;
+        this.artist = artist;
+        this.songsList = songsList;
+        this.copyright = copyright;
+        this.albumDuration = albumDuration;
+    }
+
+    public String getAlbumTitle() {
+        return AlbumTitle;
+    }
+
+    public String getAlbumID() {
+        return AlbumID;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public ArrayList<Songs> getSongsList() {
+        return songsList;
+    }
+
+    public String getCopyright() {
+        return copyright;
+    }
+
+    public int getAlbumDuration() {
+        return albumDuration;
+    }
+
+    public String getAlbumInfo() {
+        return AlbumTitle + " (" + songsList.size() + " songs, " + albumDuration + " seconds)";
     }
 
     public void displayAlbumInfo() {
         System.out.println("Album Title: " + AlbumTitle);
         System.out.println("Album ID: " + AlbumID);
-        System.out.println("Artist: " + Artist.Name);
-        System.out.println("Song: " + songs.songTitle);
-        System.out.println("Copyright: " + Copyright);
+        System.out.println("Artist: " + (artist != null ? artist.getName() : "Unknown"));
+        System.out.println("Songs:");
+
+        int index = 1;
+        for (Songs s : songsList) {
+            System.out.println(index + ". " + s.getSongInfo());
+            index++;
+        }
+
+        System.out.println("Copyright: " + copyright);
         System.out.println("Duration: " + albumDuration + " seconds");
     }
-
 }
-
-
-
-

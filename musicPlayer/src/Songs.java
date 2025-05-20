@@ -16,7 +16,13 @@ public class Songs {
     }
 
     public String getSongInfo(){
-        return this.songTitle + " : " + this.songDuration + " seconds";
+        if (songTitle == null || songTitle.isEmpty()) {
+            return "Song title is missing!";
+        } else if (songDuration <= 0) {
+            return "Song duration is unknown!";
+        } else {
+            return songTitle + " : " + songDuration + " seconds";
+        }
     }
 }
 
