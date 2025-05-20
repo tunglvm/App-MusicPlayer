@@ -21,7 +21,10 @@ class Artist {
         this.Single = Single;
     }
 
-
-
-
+public void displayArtistInfo() {
+        System.out.println("Artist: " + Name + " (ID: " + ArtistID + ")");
+        System.out.println("Nationality: " + Nationality + " | Date of Birth: " + Dateofbirth);
+  
+    
+}
 }

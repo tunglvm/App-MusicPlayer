@@ -26,6 +26,8 @@ public class App {
         IU.setArtistInfo("Korean", "16-5-1993");
         IU.setAitistProduct(null, EP1, null);
 
+        IU.displayArtistInfo();
+
         System.out.println(EP1.getEPInfo());
     }
 }
