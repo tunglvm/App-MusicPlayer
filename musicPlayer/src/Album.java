@@ -18,15 +18,6 @@ public class Album {
         this.albumDuration = albumDuration;
     }
 
-    public void setAlbumInfo(String AlbumTitle, Artist artist, ArrayList<Songs> songsList, String copyright,
-            int albumDuration) {
-        this.AlbumTitle = AlbumTitle;
-        this.artist = artist;
-        this.songsList = songsList;
-        this.copyright = copyright;
-        this.albumDuration = albumDuration;
-    }
-
     public String getAlbumTitle() {
         return AlbumTitle;
     }

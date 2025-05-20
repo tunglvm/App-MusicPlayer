@@ -26,17 +26,13 @@ public class App {
         IU.setArtistInfo("Korean", "16-5-1993");
         IU.setAitistProduct(null, EP1, null);
 
-        IU.displayArtistInfo();
-
-        
-
-
+/* 
         User user1 = new User("Tùng Lâm", 19, "tunglvm001");
         user1.displayUserInfo();
 
         Single single1 = new Single("Autumn morning", "IUAFB001", "IU", "K-pop", 218);
         single1.displaySingleInfo();
-
+*/
 
         System.out.println(EP1.getEPInfo());
     }

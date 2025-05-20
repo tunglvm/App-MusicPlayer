@@ -20,13 +20,6 @@ class Artist {
         this.EP = EP;
         this.Single = Single;
     }
-
-public void displayArtistInfo() {
-        System.out.println("Artist: " + Name + " (ID: " + ArtistID + ")");
-        System.out.println("Nationality: " + Nationality + " \nDate of Birth: " + Dateofbirth);
-  
-    
-}
     public String getName() {
         return Name;
     }
