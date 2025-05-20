@@ -22,20 +22,6 @@ public class Album {
         String test2 = AlbumID; 
         return test2;
     }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
-=======
->>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
-=======
->>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
-=======
->>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
-=======
->>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
 }
 
 
