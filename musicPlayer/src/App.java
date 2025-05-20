@@ -28,6 +28,14 @@ public class App {
 
         IU.displayArtistInfo();
 
+        Album album1 = new Album("A Flower Bookmark", "IUEPAFB", IU, song1, "Korean Copyright", 1500);
+        album1.setAlbumInfo("A Flower Bookmark", IU, song1, "Korean Copyright", 1500);
+        album1.displayAlbumInfo();
+
+        User user1 = new User("Tùng Lâm", 19, "tunglvm001");
+        user1.displayUserInfo();
+
+
         System.out.println(EP1.getEPInfo());
     }
 }

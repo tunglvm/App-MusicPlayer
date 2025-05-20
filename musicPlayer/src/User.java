@@ -9,21 +9,24 @@ public class User {
         this.UserID = UserID;
     }
 
-    public String getName() {
-        return name;
+    public User(String UserID, String name){
+        this.UserID= UserID;
+        this.name= name;
     }
-    public int getAge() {
-        return age;
-    }
-    public String getUserID() {
-        return UserID;
+    public void setUserInfo(String name, int age){
+        this.name = name;
+        this.age = age;
     }
 
-
-    public void setName(String nameInput){
-        name = nameInput;
-
+    public String getUserInfo(){
+        return this.name + " : " + this.age;
     }
+
+public void displayUserInfo() {
+        System.out.println("Artist: " + name + " (ID: " + UserID + ")");
+        System.out.println("Age: " + age);
+    
+}
 
 
 }

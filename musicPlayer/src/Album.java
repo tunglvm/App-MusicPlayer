@@ -18,6 +18,18 @@ public class Album {
         this.albumDuration = Duration;
 
     }
+    public String getAlbumInfo(){
+        return this.AlbumTitle + " : " + this.albumDuration + " seconds";
+    }
+
+    public void displayAlbumInfo() {
+        System.out.println("Album Title: " + AlbumTitle);
+        System.out.println("Album ID: " + AlbumID);
+        System.out.println("Artist: " + Artist.Name);
+        System.out.println("Song: " + songs.songTitle);
+        System.out.println("Copyright: " + Copyright);
+        System.out.println("Duration: " + albumDuration + " seconds");
+    }
 
 }
 
