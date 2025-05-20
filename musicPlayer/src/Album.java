@@ -2,16 +2,15 @@ public class Album {
     String albumTitle;
     String AlbumID;
     Songs songs;
-    Artist Artist;
-    String Songs;
+    Artist Artist; 
     String Copyright;
     int albumDuration;
 
-    public Album(String Title, String AlbumID, Artist Artist, String Songs, String Copyright, int Duration) {
-        this.albumTitle = Title;
+    public Album(String albumTitle, String AlbumID, Artist Artist, Songs songs, String Copyright, int Duration) {
+        this.albumTitle = albumTitle;
         this.AlbumID = AlbumID;
         this.Artist = Artist;
-        this.Songs = Songs;
+        this.songs = songs;
         this.Copyright = Copyright;
         this.albumDuration = Duration;
     }
