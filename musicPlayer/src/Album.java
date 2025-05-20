@@ -6,27 +6,15 @@ public class Album {
     String Copyright;
     int albumDuration;
 
-    public Album(String albumTitle, String AlbumID, Artist Artist, Songs songs, String Copyright, int Duration) {
-        this.albumTitle = albumTitle;
+    public Album(String Title, String AlbumID, Artist Artist, String Songs, String Copyright, int Duration) {
+        this.albumTitle = Title;
         this.AlbumID = AlbumID;
         this.Artist = Artist;
-        this.songs = songs;
+        this.Songs = Songs;
         this.Copyright = Copyright;
         this.albumDuration = Duration;
     }
 
-
-    public static String getAlbumTitle(String AlbumID) {
-        String test2 = AlbumID; 
-        return test2;
-    }
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
->>>>>>> ac7aa028b582e0fce845d447b37dfcfb26789113
-=======
->>>>>>> ac7aa028b582e0fce845d447b37dfcfb26789113
 }
 
 

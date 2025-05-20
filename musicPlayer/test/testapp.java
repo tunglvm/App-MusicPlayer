@@ -1,4 +1,4 @@
-package Group6_OOP_N02_term3_2025.musicPlayer.test;
+package musicPlayer.test;
 
 public class testapp {
     public static void main(String[] args) {

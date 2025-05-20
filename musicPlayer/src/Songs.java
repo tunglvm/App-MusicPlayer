@@ -1,22 +1,22 @@
 public class Songs {
     String songTitle;
     String SongID;
-    String Artist;
-    String Featuring;
     String Type;
     int songDuration;
 
-    public Songs (String Title, String SongID, String Artist,String Featuring, String Type, int Duration){
-        this.songTitle = Title;
+    public Songs ( String SongID){
         this.SongID = SongID;
-        this.Artist = Artist;
-        this.Featuring = Featuring;
+
+    }
+    
+    public void setSongInfo(String songTitle, String Type, int Duration){
+        this.songTitle = songTitle;
         this.Type = Type;
         this.songDuration = Duration;
     }
-    
-    public String getSongName(String Title){
-        return this.songTitle;
+
+    public String getSongInfo(){
+        return this.songTitle + " : " + this.songDuration + " seconds";
     }
 }
 

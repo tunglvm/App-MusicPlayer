@@ -1,6 +1,7 @@
 public class Single {
     String singleTitle;
     String singleID;
+    Songs Song;
     String Artist;
     String Type;
     int singleDuration;
