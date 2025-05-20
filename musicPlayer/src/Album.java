@@ -1,5 +1,5 @@
 public class Album {
-    String albumTitle;
+    String AlbumTitle;
     String AlbumID;
     Songs songs;
     Artist Artist; 
@@ -7,12 +7,16 @@ public class Album {
     int albumDuration;
 
     public Album(String Title, String AlbumID, Artist Artist,Songs songs , String Copyright, int Duration) {
-        this.albumTitle = Title;
         this.AlbumID = AlbumID;
+     }
+
+    public void setAlbumInfo(String Title, Artist Artist,Songs songs , String Copyright, int Duration){
+        this.AlbumTitle = Title;
         this.Artist = Artist;
         this.songs = songs;
         this.Copyright = Copyright;
         this.albumDuration = Duration;
+
     }
 
 }
