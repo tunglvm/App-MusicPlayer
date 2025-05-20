@@ -15,13 +15,16 @@ public class Album {
         this.Copyright = Copyright;
         this.albumDuration = Duration;
     }
-<<<<<<< HEAD
-=======
+
 
     public static String getAlbumTitle(String AlbumID) {
         String test2 = AlbumID; 
         return test2;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac7aa028b582e0fce845d447b37dfcfb26789113
 }
 
 
