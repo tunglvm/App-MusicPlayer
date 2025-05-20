@@ -2,17 +2,23 @@ class Artist {
     String Name;
     Album Album;
     Single Single;
+    EP EP;
     String ArtistID;
     String Nationality;
     String Dateofbirth;
     
-    public Artist(String Name, String ArtistID, String Nationality, String Dateofbirth, String Songs, Album Album, Single Single){
-        this.Name= Name;
+    public Artist(String ArtistID, String Name){
         this.ArtistID= ArtistID;
+        this.Name= Name;
+    }
+    public void setArtistInfo(String Nationality, String Dateofbirth){
         this.Nationality = Nationality;
         this.Dateofbirth = Dateofbirth;
+    }
+    public void setAitistProduct(Album Album, EP EP, Single Single){
+        this.Album = Album;
+        this.EP = EP;
         this.Single = Single;
-        this.Album= Album;
     }
 
 
