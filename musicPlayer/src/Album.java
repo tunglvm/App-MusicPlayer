@@ -20,7 +20,13 @@ public class Album {
         String test2 = AlbumID; 
         return test2;
     }
+<<<<<<< HEAD
+=======
 
+<<<<<<< HEAD
+>>>>>>> ac7aa028b582e0fce845d447b37dfcfb26789113
+=======
+>>>>>>> ac7aa028b582e0fce845d447b37dfcfb26789113
 }
 
 
