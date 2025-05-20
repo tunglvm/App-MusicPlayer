@@ -23,7 +23,7 @@ class Artist {
 
 public void displayArtistInfo() {
         System.out.println("Artist: " + Name + " (ID: " + ArtistID + ")");
-        System.out.println("Nationality: " + Nationality + " | Date of Birth: " + Dateofbirth);
+        System.out.println("Nationality: " + Nationality + " \nDate of Birth: " + Dateofbirth);
   
     
 }
