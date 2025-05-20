@@ -64,8 +64,8 @@ String Album
 
 }
 
+![image](https://github.com/user-attachments/assets/ab0c18b4-c7b1-4907-88d4-b1ea96887b25)
 
-![image](https://github.com/user-attachments/assets/b8c9377e-d1e3-4d4c-80ab-52b1ea28cdae)
 
 
 
