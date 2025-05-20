@@ -23,6 +23,9 @@ public class Album {
         return test2;
     }
 
+<<<<<<< HEAD
+>>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
+=======
 >>>>>>> 5274d496b823ea4da5e30fa69b19eee4ec53ca82
 }
 
