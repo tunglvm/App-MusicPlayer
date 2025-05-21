@@ -1,10 +1,10 @@
-
 public class App {
     public static void main(String[] args) {
         App app = new App();
         app.run();
     }
-    public void run(){
+
+    public void run() {
         Songs song1 = new Songs("IUAFB001");
         Songs song2 = new Songs("IUAFB002");
         Songs song3 = new Songs("IUAFB003");
@@ -26,17 +26,22 @@ public class App {
         IU.setArtistInfo("Korean", "16-5-1993");
         IU.setAitistProduct(null, EP1, null);
 
-/* 
-        User user1 = new User("Tùng Lâm", 19, "tunglvm001");
+        User user1 = new User(
+                "Quốc Huy", 
+                19, 
+                "hi@001", 
+                "hi@gmail.com", 
+                "0123456789", 
+                "Hà Nội", 
+                "2024-05-21" 
+        );
         user1.displayUserInfo();
-
-        Single single1 = new Single("Autumn morning", "IUAFB001", "IU", "K-pop", 218);
-        single1.displaySingleInfo();
-*/
+        /*
+         * Single single1 = new Single("Autumn morning", "IUAFB001", "IU", "K-pop",
+         * 218);
+         * single1.displaySingleInfo();
+         */
 
         System.out.println(EP1.getEPInfo());
     }
 }
-
-
-
