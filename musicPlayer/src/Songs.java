@@ -1,30 +1,33 @@
 public class Songs {
-    String songTitle;
-    String SongID;
-    String Type;
-    int songDuration;
+    private String songID;
+    private String songTitle;
+    private String genre;
+    private int duration;
 
-    public Songs ( String SongID){
-        this.SongID = SongID;
-
+    public Songs(String songID) {
+        this.songID = songID;
     }
-    
-    public void setSongInfo(String songTitle, String Type, int Duration){
+
+    public void setSongInfo(String songTitle, String genre, int duration) {
         this.songTitle = songTitle;
-        this.Type = Type;
-        this.songDuration = Duration;
+        this.genre = genre;
+        this.duration = duration;
     }
 
-    public String getSongInfo(){
-        if (songTitle == null || songTitle.isEmpty()) {
-            return "Song title is missing!";
-        } else if (songDuration <= 0) {
-            return "Song duration is unknown!";
-        } else {
-            return songTitle + " : " + songDuration + " seconds";
-        }
+    // Getter & Setter cho SongsList
+    public String getSongID() {
+        return songID;
+    }
+
+    public String getSongTitle() {
+        return songTitle;
+    }
+
+    public void setSongTitle(String newTitle) {
+        this.songTitle = newTitle;
+    }
+
+    public String getSongInfo() {
+        return songTitle + " (" + genre + ", " + duration + "s)";
     }
 }
-
-
-

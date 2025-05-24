@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Album {
-    private String AlbumTitle;
-    private String AlbumID;
+    private String albumTitle;
+    private String albumID;
     private Artist artist;
     private ArrayList<Songs> songsList;
     private String copyright;
@@ -10,8 +10,8 @@ public class Album {
 
     public Album(String albumTitle, String albumID, Artist artist, ArrayList<Songs> songsList, String copyright,
             int albumDuration) {
-        this.AlbumTitle = albumTitle;
-        this.AlbumID = albumID;
+        this.albumTitle = albumTitle;
+        this.albumID = albumID;
         this.artist = artist;
         this.songsList = songsList;
         this.copyright = copyright;
@@ -19,11 +19,15 @@ public class Album {
     }
 
     public String getAlbumTitle() {
-        return AlbumTitle;
+        return albumTitle;
+    }
+
+    public void setAlbumTitle(String albumTitle) {
+        this.albumTitle = albumTitle;
     }
 
     public String getAlbumID() {
-        return AlbumID;
+        return albumID;
     }
 
     public Artist getArtist() {
@@ -43,12 +47,12 @@ public class Album {
     }
 
     public String getAlbumInfo() {
-        return AlbumTitle + " (" + songsList.size() + " songs, " + albumDuration + " seconds)";
+        return albumTitle + " (" + songsList.size() + " songs, " + albumDuration + " seconds)";
     }
 
     public void displayAlbumInfo() {
-        System.out.println("Album Title: " + AlbumTitle);
-        System.out.println("Album ID: " + AlbumID);
+        System.out.println("Album Title: " + albumTitle);
+        System.out.println("Album ID: " + albumID);
         System.out.println("Artist: " + (artist != null ? artist.getName() : "Unknown"));
         System.out.println("Songs:");
 

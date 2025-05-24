@@ -1,26 +1,43 @@
-class Artist {
-    String Name;
-    Album Album;
-    Single Single;
-    EP EP;
-    String ArtistID;
-    String Nationality;
-    String Dateofbirth;
-    
-    public Artist(String ArtistID, String Name){
-        this.ArtistID= ArtistID;
-        this.Name= Name;
+public class Artist {
+    private String name;
+    private Album album;
+    private Single single;
+    private EP ep;
+    private String artistID;
+    private String nationality;
+    private String dateOfBirth; // sửa lại cho đúng chuẩn
+
+    public Artist(String artistID, String name) {
+        this.artistID = artistID;
+        this.name = name;
     }
-    public void setArtistInfo(String Nationality, String Dateofbirth){
-        this.Nationality = Nationality;
-        this.Dateofbirth = Dateofbirth;
+
+    public void setArtistInfo(String nationality, String dateOfBirth) {
+        this.nationality = nationality;
+        this.dateOfBirth = dateOfBirth;
     }
-    public void setAitistProduct(Album Album, EP EP, Single Single){
-        this.Album = Album;
-        this.EP = EP;
-        this.Single = Single;
+
+    public void setArtistProduct(Album album, EP ep, Single single) {
+        this.album = album;
+        this.ep = ep;
+        this.single = single;
     }
+
+    // Getter & Setter cho ArtistList
+    public String getArtistID() {
+        return artistID;
+    }
+
     public String getName() {
-        return Name;
+        return name;
+    }
+
+    public void setName(String newName) {
+        this.name = newName;
+    }
+
+    // Thêm phương thức hiển thị nếu muốn
+    public void displayArtistInfo() {
+        System.out.println("Artist ID: " + artistID + ", Name: " + name);
     }
 }
