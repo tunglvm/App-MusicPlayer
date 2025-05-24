@@ -7,7 +7,7 @@ public class TestArtistList {
     public ArrayList<Artist> addList() {
         Artist a1 = new Artist("A001", "IU");
         Artist a2 = new Artist("A002", "Sơn Tùng");
-        Artist a3 = new Artist("A003", "Jack");
+        Artist a3 = new Artist("A003", "HIEUTHUHAI");
         al.add(a1);
         al.add(a2);
         al.add(a3);
