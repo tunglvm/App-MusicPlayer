@@ -64,6 +64,39 @@ String Album
 
 }
 
+Nội dung 01:
+
+# Ứng Dụng Nghe Nhạc
+
+## Mô Tả
+Ứng dụng nghe nhạc được xây dựng bằng Java Spring Boot, cho phép người dùng quản lý bài hát và playlist. Ứng dụng cung cấp các chức năng như thêm, sửa, xóa bài hát, cũng như gán bài hát vào playlist.
+
+## Yêu Cầu
+- Java 11 hoặc cao hơn
+- Spring Boot
+- Maven hoặc Gradle
+- Thư viện Thymeleaf (nếu sử dụng giao diện web)
+
+## Chức Năng Chính
+### 1. Quản Lý Bài Hát ([Đối tượng 01])
+- **Thêm Bài Hát**: Cho phép người dùng thêm bài hát mới vào hệ thống.
+- **Sửa Bài Hát**: Cung cấp chức năng sửa thông tin bài hát.
+- **Xóa Bài Hát**: Cho phép người dùng xóa bài hát khỏi hệ thống.
+- **Liệt Kê Bài Hát**: Hiển thị danh sách tất cả các bài hát và cho phép lọc theo thể loại.
+
+### 2. Quản Lý Playlist ([Đối tượng 02])
+- **Thêm Playlist**: Cho phép người dùng tạo playlist mới.
+- **Sửa Playlist**: Cung cấp chức năng sửa thông tin playlist.
+- **Xóa Playlist**: Cho phép người dùng xóa playlist khỏi hệ thống.
+
+### 3. Gán Bài Hát vào Playlist
+- Cho phép người dùng gán bài hát vào một playlist cụ thể.
+
+## Lưu Trữ Dữ Liệu
+- Dữ liệu bài hát và playlist được lưu trữ trong bộ nhớ sử dụng các Collection như `ArrayList`.
+- Dữ liệu cũng được lưu trữ xuống file nhị phân để đảm bảo tính bền vững.
+
+
 Nội dung 02:
 
 ![image](https://github.com/user-attachments/assets/ab0c18b4-c7b1-4907-88d4-b1ea96887b25)
