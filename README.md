@@ -64,8 +64,11 @@ String Album
 
 }
 
+Nội dung 02:
+
 ![image](https://github.com/user-attachments/assets/ab0c18b4-c7b1-4907-88d4-b1ea96887b25)
 
+Nội dung 03:
 
 ![Sơ đồ 1](https://github.com/user-attachments/assets/9a82e955-78e7-4e7b-a74f-56e460bc6144)
 
