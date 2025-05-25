@@ -64,5 +64,42 @@ public class App {
         // Xóa album
         manager.deleteAlbum("ALB001");
         manager.printAlbumList();
-    }
+
+        // === CRUD cho Playlist ===
+        System.out.println("\n=== Playlist CRUD ===");
+
+        // Tạo PlaylistManager
+        PlaylistManager playlistManager = new PlaylistManager();
+
+        // Tạo một số playlist
+        Playlist playlist1 = new Playlist("Chill IU", "PL001", 6, 1402); // tổng thời lượng bài hát
+        Playlist playlist2 = new Playlist("Rainy Vibes", "PL002", 2, 490);
+
+        // Thêm playlist
+        playlistManager.addPlaylist(playlist1);
+        playlistManager.addPlaylist(playlist2);
+
+        // In danh sách ban đầu
+        System.out.println("Danh sách playlist ban đầu:");
+        playlistManager.printPlaylists();
+
+        // Sửa tên playlist
+        playlistManager.editPlaylistName("PL001", "IU Chill Hits");
+
+        // Cập nhật số bài hát và thời lượng
+        playlistManager.updatePlaylistStats("PL001", 6, 1500);
+
+        // In sau khi chỉnh sửa
+        System.out.println("\nSau khi chỉnh sửa:");
+        playlistManager.printPlaylists();
+
+        // Xóa một playlist
+        playlistManager.deletePlaylist("PL002");
+
+        // In sau khi xóa
+        System.out.println("\nSau khi xoá playlist PL002:");
+        playlistManager.printPlaylists();
+
+            }
+            
 }

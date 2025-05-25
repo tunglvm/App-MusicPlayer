@@ -28,6 +28,10 @@ public class Songs {
     public void setSongTitle(String newTitle) {
         this.songTitle = newTitle;
     }
+    
+ public int getDuration() {
+        return duration;
+    }
 
     public String getSongInfo() {
         return songTitle + " (" + genre + ", " + duration + "s)";
