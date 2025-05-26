@@ -45,25 +45,62 @@ public class App {
         // In thông tin EP
         System.out.println(EP1.getEPInfo());
 
-        // CRUD cho Album
-        AlbumList manager = new AlbumList();
+        // === CRUD cho Album ===
+        System.out.println("\n=== Album CRUD ===");
+        AlbumList albumList = new AlbumList();
         ArrayList<Songs> albumSongs = new ArrayList<>();
         albumSongs.add(song1);
         albumSongs.add(song2);
-        // ... thêm các bài hát khác nếu muốn
 
         Album album1 = new Album("Album 1", "ALB001", IU, albumSongs, "Copyright 2024", 1200);
-        manager.addAlbum(album1); // Thêm album
+        albumList.addAlbum(album1);
+        Album album2 = new Album("Love Poem", "ALB002", IU, albumSongs, "Copyright 2025", 1300);
+        albumList.addAlbum(album2);
 
-        manager.printAlbumList(); // In danh sách album
+        // In danh sách album ban đầu
+        System.out.println("\nDanh sách album ban đầu:");
+        albumList.printAlbumList();
 
         // Sửa tiêu đề album
-        manager.editAlbum("New Title", "ALB001");
-        manager.printAlbumList();
+        albumList.editAlbum("Palette", "ALB001");
+
+        // In danh sách album sau khi sửa
+        System.out.println("\nDanh sách album sau khi sửa:");
+        albumList.printAlbumList();
 
         // Xóa album
-        manager.deleteAlbum("ALB001");
-        manager.printAlbumList();
+        albumList.deleteAlbum("ALB002");
+
+        // In danh sách album sau khi xóa
+        System.out.println("\nDanh sách album sau khi xóa:");
+        albumList.printAlbumList();
+
+        // === CRUD cho Artist ===
+        System.out.println("\n=== Artist CRUD ===");
+        // Tạo ArtistList và một số nghệ sĩ
+        ArtistList artistList = new ArtistList();
+        Artist artist1 = new Artist("A001", "IU");
+        Artist artist2 = new Artist("A002", "Sơn Tùng");
+        Artist artist3 = new Artist("A003", "Jack");
+
+        // Thêm nghệ sĩ
+        artistList.addArtist(artist1);
+        artistList.addArtist(artist2);
+        artistList.addArtist(artist3);
+
+        // In danh sách nghệ sĩ
+        System.out.println("\nDanh sách nghệ sĩ ban đầu:");
+        artistList.printArtistList();
+
+        // Sửa tên nghệ sĩ
+        artistList.editArtist("HIEUTHUHAI", "A003");
+        System.out.println("\nSau khi sửa tên nghệ sĩ:");
+        artistList.printArtistList();
+
+        // Xóa nghệ sĩ
+        artistList.deleteArtist("A003");
+        System.out.println("\nSau khi xoá nghệ sĩ A003:");
+        artistList.printArtistList();
 
         // === CRUD cho Playlist ===
         System.out.println("\n=== Playlist CRUD ===");
@@ -100,6 +137,6 @@ public class App {
         System.out.println("\nSau khi xoá playlist PL002:");
         playlistManager.printPlaylists();
 
-            }
-            
+    }
+
 }
