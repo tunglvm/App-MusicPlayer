@@ -1,5 +1,4 @@
-
-
+import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
@@ -137,8 +136,7 @@ public class App {
         // In sau khi xóa
         System.out.println("\nSau khi xoá playlist PL002:");
         playlistManager.printPlaylists();
-
-        */
+*/
     }
 
 }
