@@ -44,7 +44,7 @@ public class App {
 
         // In thông tin EP
         System.out.println(EP1.getEPInfo());
-/* 
+
         // === CRUD cho Album ===
         System.out.println("\n=== Album CRUD ===");
         AlbumList albumList = new AlbumList();
@@ -136,7 +136,7 @@ public class App {
         // In sau khi xóa
         System.out.println("\nSau khi xoá playlist PL002:");
         playlistManager.printPlaylists();
-*/
+
     }
 
 }
