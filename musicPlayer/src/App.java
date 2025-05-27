@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import musicPlayer.test.testAlbum;
+
 public class App {
     public static void main(String[] args) {
         App app = new App();
@@ -136,6 +138,12 @@ public class App {
         // In sau khi xóa
         System.out.println("\nSau khi xoá playlist PL002:");
         playlistManager.printPlaylists();
+
+        //test album
+        //testAlbum t = new testAlbum();
+
+       System.out.println("\n test Album:");
+        testAlbum.test();
 
     }
 

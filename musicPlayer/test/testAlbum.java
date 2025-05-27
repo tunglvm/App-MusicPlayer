@@ -1,7 +1,7 @@
 package musicPlayer.test;
 
 public class testAlbum {
-    public static void main(String[] args) {
+    public static void test() {
         System.out.println("Album list: ");
         System.out.println("1. Album A");
         System.out.println("2. Album B");
