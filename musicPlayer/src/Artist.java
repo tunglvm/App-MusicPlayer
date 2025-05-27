@@ -1,3 +1,4 @@
+
 public class Artist {
     private String name;
     private Album album;
@@ -5,7 +6,7 @@ public class Artist {
     private EP ep;
     private String artistID;
     private String nationality;
-    private String dateOfBirth; // sửa lại cho đúng chuẩn
+    private String dateOfBirth;
 
     public Artist(String artistID, String name) {
         this.artistID = artistID;
@@ -23,7 +24,6 @@ public class Artist {
         this.single = single;
     }
 
-    // Getter & Setter cho ArtistList
     public String getArtistID() {
         return artistID;
     }
@@ -36,7 +36,26 @@ public class Artist {
         this.name = newName;
     }
 
-    // Thêm phương thức hiển thị nếu muốn
+    public String getNationality() {
+        return nationality;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public EP getEp() {
+        return ep;
+    }
+
+    public Single getSingle() {
+        return single;
+    }
+
     public void displayArtistInfo() {
         System.out.println("Artist ID: " + artistID + ", Name: " + name);
     }

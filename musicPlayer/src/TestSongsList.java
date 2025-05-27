@@ -1,9 +1,5 @@
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
-
 
 public class TestSongsList {
     ArrayList<Songs> sl = new ArrayList<Songs>();
