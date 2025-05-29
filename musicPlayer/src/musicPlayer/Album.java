@@ -1,3 +1,5 @@
+package musicPlayer;
+
 import java.util.ArrayList;
 
 public class Album {
@@ -7,6 +9,8 @@ public class Album {
     private ArrayList<Songs> songsList;
     private String copyright;
     private int albumDuration;
+    private ArrayList<Album> albums;
+
 
     public Album(String albumTitle, String albumID, Artist artist, ArrayList<Songs> songsList, String copyright,
             int albumDuration) {

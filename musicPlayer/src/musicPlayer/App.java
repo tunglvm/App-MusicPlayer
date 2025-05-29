@@ -1,3 +1,5 @@
+package musicPlayer;
+
 import java.util.ArrayList;
 
 public class App {
@@ -7,31 +9,9 @@ public class App {
     }
 
     public void run() {
-        // Tạo các bài hát
-        Songs song1 = new Songs("IUAFB001");
-        Songs song2 = new Songs("IUAFB002");
-        Songs song3 = new Songs("IUAFB003");
-        Songs song4 = new Songs("IUAFB004");
-        Songs song5 = new Songs("IUAFB005");
-        Songs song6 = new Songs("IUAFB006");
+        EP EP1 = createSampleEP();
 
-        song1.setSongInfo("Autumn morning", "K-pop", 218);
-        song2.setSongInfo("Secret Garden", "K-pop", 224);
-        song3.setSongInfo("Sleepless rainy night", "K-pop", 266);
-        song4.setSongInfo("Last night story", "K-pop", 233);
-        song5.setSongInfo("By the stream", "K-pop", 337);
-        song6.setSongInfo("Everyday with you", "K-pop", 224);
-
-        // Tạo EP
-        EP EP1 = new EP("IUEPAFB");
-        EP1.setEPInfo("A Flower Bookmark", song1, song2, song3, song4, song5, song6);
-
-        // Tạo nghệ sĩ
-        Artist IU = new Artist("ATS001", "IU");
-        IU.setArtistInfo("Korean", "16-5-1993");
-        ArrayList<EP> epList = new ArrayList<>();
-        epList.add(EP1);
-        IU.setArtistProduct(null, epList, null);
+        Artist IU = createSampleArtist(EP1);
 
         // Tạo user
         User user1 = new User(
@@ -49,15 +29,7 @@ public class App {
 
         // === CRUD cho Album ===
         System.out.println("\n=== Album CRUD ===");
-        AlbumList albumList = new AlbumList();
-        ArrayList<Songs> albumSongs = new ArrayList<>();
-        albumSongs.add(song1);
-        albumSongs.add(song2);
-
-        Album album1 = new Album("Album 1", "ALB001", IU, albumSongs, "Copyright 2024", 1200);
-        albumList.addAlbum(album1);
-        Album album2 = new Album("Love Poem", "ALB002", IU, albumSongs, "Copyright 2025", 1300);
-        albumList.addAlbum(album2);
+        AlbumList albumList = createSampleAlbumList(IU, EP1.getSongs().get(0), EP1.getSongs().get(1));
 
         // In danh sách album ban đầu
         System.out.println("\nDanh sách album ban đầu:");
@@ -138,7 +110,47 @@ public class App {
         // In sau khi xóa
         System.out.println("\nSau khi xoá playlist PL002:");
         playlistManager.printPlaylists();
-
     }
 
+    public EP createSampleEP() {
+        Songs song1 = new Songs("IUAFB001");
+        Songs song2 = new Songs("IUAFB002");
+        Songs song3 = new Songs("IUAFB003");
+        Songs song4 = new Songs("IUAFB004");
+        Songs song5 = new Songs("IUAFB005");
+        Songs song6 = new Songs("IUAFB006");
+
+        song1.setSongInfo("Autumn morning", "K-pop", 218);
+        song2.setSongInfo("Secret Garden", "K-pop", 224);
+        song3.setSongInfo("Sleepless rainy night", "K-pop", 266);
+        song4.setSongInfo("Last night story", "K-pop", 233);
+        song5.setSongInfo("By the stream", "K-pop", 337);
+        song6.setSongInfo("Everyday with you", "K-pop", 224);
+
+        // Tạo EP
+        EP EP1 = new EP("IUEPAFB");
+        EP1.setEPInfo("A Flower Bookmark", song1, song2, song3, song4, song5, song6);
+        return EP1;
+    }
+
+    public Artist createSampleArtist(EP ep) {
+        Artist IU = new Artist("ATS001", "IU");
+        IU.setArtistInfo("Korean", "16-5-1993");
+        ArrayList<EP> epList = new ArrayList<>();
+        epList.add(ep);
+        IU.setArtistProduct(null, epList, null);
+        return IU;
+    }
+
+    public AlbumList createSampleAlbumList(Artist artist, Songs song1, Songs song2) {
+        AlbumList albumList = new AlbumList();
+        ArrayList<Songs> albumSongs = new ArrayList<>();
+        albumSongs.add(song1);
+        albumSongs.add(song2);
+        Album album1 = new Album("Album 1", "ALB001", artist, albumSongs, "Copyright 2024", 1200);
+        albumList.addAlbum(album1);
+        Album album2 = new Album("Love Poem", "ALB002", artist, albumSongs, "Copyright 2025", 1300);
+        albumList.addAlbum(album2);
+        return albumList;
+    }
 }

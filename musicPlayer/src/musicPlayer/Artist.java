@@ -1,4 +1,10 @@
+package musicPlayer;
+
 import java.util.ArrayList;
+
+import musicPlayer.EP;
+import musicPlayer.Single;
+import musicPlayer.Album;
 
 public class Artist {
     private String name;
@@ -66,7 +72,6 @@ public class Artist {
         return singles;
     }
 
-    
     public void setArtistProduct(ArrayList<Album> albums, ArrayList<EP> eps, ArrayList<Single> singles) {
         if (albums != null) {
             this.albums = albums;

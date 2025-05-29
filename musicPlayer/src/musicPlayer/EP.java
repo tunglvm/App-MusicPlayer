@@ -1,14 +1,15 @@
+package musicPlayer;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class EP {
     String EPID;
     String EPTitle;
-    List<Songs> songsList;
+    private ArrayList<Songs> songsList = new ArrayList<>();
 
     public EP(String EPID) {
         this.EPID = EPID;
-        this.songsList = new ArrayList<>();
     }
 
     // Đã có sẵn
@@ -40,5 +41,9 @@ public class EP {
             index++;
         }
         return str.toString();
+    }
+
+    public ArrayList<Songs> getSongs() {
+        return songsList;
     }
 }

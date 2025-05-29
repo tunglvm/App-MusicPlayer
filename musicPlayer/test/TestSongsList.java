@@ -1,6 +1,10 @@
+package musicPlayer.test;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import musicPlayer.Songs;
+import musicPlayer.SongsList;
 
 public class TestSongsList {
     ArrayList<Songs> sl = new ArrayList<Songs>();

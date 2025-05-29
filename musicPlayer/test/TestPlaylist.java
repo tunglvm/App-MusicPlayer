@@ -1,7 +1,7 @@
 package musicPlayer.test;
 
-import Playlist;
-import PlaylistManager;
+import musicPlayer.Playlist;
+import musicPlayer.PlaylistManager;
 
 public class TestPlaylist {
     public static void main(String[] args) {
