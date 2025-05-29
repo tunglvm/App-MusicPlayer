@@ -76,7 +76,7 @@ public class TestApp {
 
         // Update
         if (!users.isEmpty()) {
-            users.get(0).setName("User Đã Sửa");
+            users.get(0).setName("Huy Bịp");
             System.out.println("Đã sửa tên user đầu tiên thành: " + users.get(0).getName());
         }
 
@@ -133,9 +133,9 @@ public class TestApp {
 
         // Tạo danh sách user với n đối tượng
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Quốc Huy", 19, "hi@001", "hi@gmail.com", "0123456789", "Hà Nội", "2024-05-21"));
-        users.add(new User("Minh Tuấn", 20, "mt@002", "mt@gmail.com", "0987654321", "HCM", "2024-05-22"));
-        users.add(new User("Lan Anh", 21, "la@003", "la@gmail.com", "0111222333", "Đà Nẵng", "2024-05-23"));
+        users.add(new User("Quốc Huy", 19, "hi@001", "hi@gmail.com", "0123456789", "Tố Hữu", "2024-05-21"));
+        users.add(new User("Tùng Lâm", 19, "lvm@002", "lvm@gmail.com", "0987654321", "Hàng Bún", "2024-05-22"));
+        users.add(new User("Quỳnh Chi", 19, "chie@003", "chie@gmail.com", "0111222333", "Hà Nội", "2024-05-23"));
 
         // Gọi CRUD cho n đối tượng User
         crudUsers(users);
