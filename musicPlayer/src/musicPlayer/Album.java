@@ -9,8 +9,8 @@ public class Album {
     private ArrayList<Songs> songsList;
     private String copyright;
     private int albumDuration;
-    private ArrayList<Album> albums;
-
+    private ArrayList<Album> Albums;
+    private ArrayList<User> users; // Thêm danh sách user
 
     public Album(String albumTitle, String albumID, Artist artist, ArrayList<Songs> songsList, String copyright,
             int albumDuration) {
@@ -20,6 +20,43 @@ public class Album {
         this.songsList = (songsList != null) ? songsList : new ArrayList<>();
         this.copyright = copyright;
         this.albumDuration = albumDuration;
+        this.users = new ArrayList<>(); // Khởi tạo danh sách user
+    }
+
+    // CRUD cho User trong Album
+
+    // Create
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    // Read
+    public void printUserList() {
+        System.out.println("Danh sách user liên quan đến album:");
+        for (User u : users) {
+            u.displayUserInfo();
+        }
+    }
+
+    // Update
+    public boolean editUserName(String userID, String newName) {
+        for (User u : users) {
+            if (u.getUserID().equals(userID)) {
+                u.setName(newName);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Delete
+    public boolean deleteUser(String userID) {
+        return users.removeIf(u -> u.getUserID().equals(userID));
+    }
+
+    // Get all users
+    public ArrayList<User> getUsers() {
+        return users;
     }
 
     public String getAlbumTitle() {

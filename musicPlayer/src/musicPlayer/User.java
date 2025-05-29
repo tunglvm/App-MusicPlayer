@@ -1,8 +1,9 @@
 package musicPlayer;
+
 public class User {
+    private String userID;
     private String name;
     private int age;
-    private String userID;
     private String email;
     private String phoneNumber;
     private String address;
@@ -34,12 +35,19 @@ public class User {
                 + " : " + this.createdDate;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void displayUserInfo() {
-        System.out.println("User: " + name + " (ID: " + userID + ")");
-        System.out.println("Age: " + age);
-        System.out.println("Email: " + email);
-        System.out.println("Phone: " + phoneNumber);
-        System.out.println("Address: " + address);
-        System.out.println("Created Date: " + createdDate);
+        System.out.println("UserID: " + userID + ", Name: " + name);
     }
 }
