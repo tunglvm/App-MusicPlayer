@@ -1,3 +1,8 @@
+package musicPlayer.test;
+
+import Playlist;
+import PlaylistManager;
+
 public class TestPlaylist {
     public static void main(String[] args) {
         PlaylistManager manager = new PlaylistManager();

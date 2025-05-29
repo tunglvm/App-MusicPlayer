@@ -1,9 +1,10 @@
+import java.util.ArrayList;
 
 public class Artist {
     private String name;
-    private Album album;
-    private Single single;
-    private EP ep;
+    private ArrayList<Album> albums;
+    private ArrayList<Single> singles;
+    private ArrayList<EP> eps;
     private String artistID;
     private String nationality;
     private String dateOfBirth;
@@ -11,6 +12,9 @@ public class Artist {
     public Artist(String artistID, String name) {
         this.artistID = artistID;
         this.name = name;
+        this.albums = new ArrayList<>();
+        this.singles = new ArrayList<>();
+        this.eps = new ArrayList<>();
     }
 
     public void setArtistInfo(String nationality, String dateOfBirth) {
@@ -18,10 +22,16 @@ public class Artist {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setArtistProduct(Album album, EP ep, Single single) {
-        this.album = album;
-        this.ep = ep;
-        this.single = single;
+    public void addAlbum(Album album) {
+        this.albums.add(album);
+    }
+
+    public void addEP(EP ep) {
+        this.eps.add(ep);
+    }
+
+    public void addSingle(Single single) {
+        this.singles.add(single);
     }
 
     public String getArtistID() {
@@ -44,16 +54,29 @@ public class Artist {
         return dateOfBirth;
     }
 
-    public Album getAlbum() {
-        return album;
+    public ArrayList<Album> getAlbums() {
+        return albums;
     }
 
-    public EP getEp() {
-        return ep;
+    public ArrayList<EP> getEps() {
+        return eps;
     }
 
-    public Single getSingle() {
-        return single;
+    public ArrayList<Single> getSingles() {
+        return singles;
+    }
+
+    
+    public void setArtistProduct(ArrayList<Album> albums, ArrayList<EP> eps, ArrayList<Single> singles) {
+        if (albums != null) {
+            this.albums = albums;
+        }
+        if (eps != null) {
+            this.eps = eps;
+        }
+        if (singles != null) {
+            this.singles = singles;
+        }
     }
 
     public void displayArtistInfo() {

@@ -29,7 +29,9 @@ public class App {
         // Tạo nghệ sĩ
         Artist IU = new Artist("ATS001", "IU");
         IU.setArtistInfo("Korean", "16-5-1993");
-        IU.setArtistProduct(null, EP1, null);
+        ArrayList<EP> epList = new ArrayList<>();
+        epList.add(EP1);
+        IU.setArtistProduct(null, epList, null);
 
         // Tạo user
         User user1 = new User(

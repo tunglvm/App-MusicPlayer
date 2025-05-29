@@ -13,7 +13,7 @@ public class Album {
         this.albumTitle = albumTitle;
         this.albumID = albumID;
         this.artist = artist;
-        this.songsList = songsList;
+        this.songsList = (songsList != null) ? songsList : new ArrayList<>();
         this.copyright = copyright;
         this.albumDuration = albumDuration;
     }
@@ -38,12 +38,20 @@ public class Album {
         return songsList;
     }
 
+    public void setSongsList(ArrayList<Songs> songsList) {
+        this.songsList = songsList;
+    }
+
     public String getCopyright() {
         return copyright;
     }
 
     public int getAlbumDuration() {
         return albumDuration;
+    }
+
+    public void setAlbumDuration(int albumDuration) {
+        this.albumDuration = albumDuration;
     }
 
     public String getAlbumInfo() {
@@ -57,9 +65,11 @@ public class Album {
         System.out.println("Songs:");
 
         int index = 1;
-        for (Songs s : songsList) {
-            System.out.println(index + ". " + s.getSongInfo());
-            index++;
+        if (songsList != null) {
+            for (Songs s : songsList) {
+                System.out.println(index + ". " + s.getSongInfo());
+                index++;
+            }
         }
 
         System.out.println("Copyright: " + copyright);
