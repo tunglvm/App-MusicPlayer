@@ -18,7 +18,7 @@ public class TestUserList {
         userList.printUserList();
 
         // Sửa tên user (Update)
-        boolean update = userList.editUserName("hi@001", "Huy Quốc");
+        boolean update = userList.editUserName("hi@001", "Huy Trần");
         System.out.println("\n== Sau khi sửa tên user hi@001 ==");
         userList.printUserList();
 
