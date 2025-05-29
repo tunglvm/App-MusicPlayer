@@ -3,64 +3,49 @@ package musicPlayer;
 import java.util.ArrayList;
 
 public class UserList {
-    private ArrayList<User> users;
+    ArrayList<User> users = new ArrayList<>();
 
-    public UserList() {
-        users = new ArrayList<>();
-    }
-
-    // Create
-    public void addUser(User user) {
+    public ArrayList<User> addUser(User user) {
         if (user != null && getUserByID(user.getUserID()) == null) {
             users.add(user);
         } else {
             System.out.println("User đã tồn tại hoặc thông tin không hợp lệ.");
         }
+        return users;
     }
 
-    // Read
+    public ArrayList<User> editUserName(String userID, String newName) {
+        for (User user : users) {
+            if (user.getUserID().equals(userID)) {
+                user.setName(newName);
+            }
+        }
+        return users;
+    }
+
+    public ArrayList<User> deleteUser(String userID) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUserID().equals(userID)) {
+                users.remove(i);
+                break;
+            }
+        }
+        return users;
+    }
+
     public void printUserList() {
-        System.out.println("Danh sách user:");
-        if (users.isEmpty()) {
-            System.out.println("Không có user nào.");
-        }
-        for (User u : users) {
-            u.displayUserInfo();
+        for (User user : users) {
+            user.displayUserInfo();
         }
     }
 
-    // Update
-    public boolean editUserName(String userID, String newName) {
-        User user = getUserByID(userID);
-        if (user != null) {
-            user.setName(newName);
-            return true;
-        }
-        return false;
-    }
-
-    // Delete
-    public boolean deleteUser(String userID) {
-        User user = getUserByID(userID);
-        if (user != null) {
-            users.remove(user);
-            return true;
-        }
-        return false;
-    }
-
-    // Helper: Get user by ID
+    // Helper method to get user by ID
     public User getUserByID(String userID) {
-        for (User u : users) {
-            if (u.getUserID().equals(userID)) {
-                return u;
+        for (User user : users) {
+            if (user.getUserID().equals(userID)) {
+                return user;
             }
         }
         return null;
-    }
-
-    // Get all users
-    public ArrayList<User> getUsers() {
-        return users;
     }
 }
