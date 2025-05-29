@@ -112,5 +112,9 @@ Nội dung 03:
 ![Sơ đồ 3 - Sequence Diagram](https://github.com/user-attachments/assets/735a9b08-7ae9-4db0-99e5-00db09b9ec5e)
 
 
+kiểm thử test CRUD cho n đối tượng:
+
+
+![image](https://github.com/user-attachments/assets/fe1349ec-3bba-4990-948a-95a618c9926a)
 
 
