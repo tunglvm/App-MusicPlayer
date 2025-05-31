@@ -56,11 +56,6 @@ public class App {
 
         // Nếu class Album có các thuộc tính: title, id, artist, songs, copyright,
         // duration
-        Album album1 = new Album("Album 1", "ALB001", iu, albumSongs, "Copyright 2024", 1200);
-        albumList.addAlbum(album1);
-        Album album2 = new Album("Love Poem", "ALB002", iu, albumSongs, "Copyright 2025", 1300);
-        albumList.addAlbum(album2);
-
         // In danh sách album ban đầu
         System.out.println("\nDanh sách album ban đầu:");
         albumList.printAlbumList();
