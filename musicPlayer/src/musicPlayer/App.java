@@ -1,3 +1,5 @@
+package musicPlayer;
+
 import java.util.ArrayList;
 
 public class App {
@@ -7,7 +9,7 @@ public class App {
     }
 
     public void run() {
-        // Tạo các bài hát
+        // === Tạo các bài hát mẫu ===
         Songs song1 = new Songs("IUAFB001");
         Songs song2 = new Songs("IUAFB002");
         Songs song3 = new Songs("IUAFB003");
@@ -15,23 +17,23 @@ public class App {
         Songs song5 = new Songs("IUAFB005");
         Songs song6 = new Songs("IUAFB006");
 
-        song1.setSongInfo("Autumn morning", "K-pop", 218);
-        song2.setSongInfo("Secret Garden", "K-pop", 224);
-        song3.setSongInfo("Sleepless rainy night", "K-pop", 266);
-        song4.setSongInfo("Last night story", "K-pop", 233);
-        song5.setSongInfo("By the stream", "K-pop", 337);
-        song6.setSongInfo("Everyday with you", "K-pop", 224);
+        song1.setSongInfo("Autumn morning", "K-pop", 218, "IU");
+        song2.setSongInfo("Secret Garden", "K-pop", 224, "IU");
+        song3.setSongInfo("Sleepless rainy night", "K-pop", 266, "IU");
+        song4.setSongInfo("Last night story", "K-pop", 233, "IU");
+        song5.setSongInfo("By the stream", "K-pop", 337, "IU");
+        song6.setSongInfo("Everyday with you", "K-pop", 224, "IU");
 
-        // Tạo EP
-        EP EP1 = new EP("IUEPAFB");
-        EP1.setEPInfo("A Flower Bookmark", song1, song2, song3, song4, song5, song6);
+        // === Tạo EP ===
+        EP ep1 = new EP("IUEPAFB");
+        ep1.setEPInfo("A Flower Bookmark", song1, song2, song3, song4, song5, song6);
 
-        // Tạo nghệ sĩ
-        Artist IU = new Artist("ATS001", "IU");
-        IU.setArtistInfo("Korean", "16-5-1993");
-        IU.setArtistProduct(null, EP1, null);
+        // === Tạo nghệ sĩ ===
+        Artist iu = new Artist("ATS001", "IU");
+        iu.setArtistInfo("Korean", "16-5-1993");
+        iu.setArtistProduct(null, ep1, null);
 
-        // Tạo user
+        // === Tạo user ===
         User user1 = new User(
                 "Quốc Huy",
                 19,
@@ -42,8 +44,8 @@ public class App {
                 "2024-05-21");
         user1.displayUserInfo();
 
-        // In thông tin EP
-        System.out.println(EP1.getEPInfo());
+        // === In thông tin EP ===
+        System.out.println(ep1.getEPInfo());
 
         // === CRUD cho Album ===
         System.out.println("\n=== Album CRUD ===");
@@ -52,9 +54,11 @@ public class App {
         albumSongs.add(song1);
         albumSongs.add(song2);
 
-        Album album1 = new Album("Album 1", "ALB001", IU, albumSongs, "Copyright 2024", 1200);
+        // Nếu class Album có các thuộc tính: title, id, artist, songs, copyright,
+        // duration
+        Album album1 = new Album("Album 1", "ALB001", iu, albumSongs, "Copyright 2024", 1200);
         albumList.addAlbum(album1);
-        Album album2 = new Album("Love Poem", "ALB002", IU, albumSongs, "Copyright 2025", 1300);
+        Album album2 = new Album("Love Poem", "ALB002", iu, albumSongs, "Copyright 2025", 1300);
         albumList.addAlbum(album2);
 
         // In danh sách album ban đầu
@@ -77,7 +81,6 @@ public class App {
 
         // === CRUD cho Artist ===
         System.out.println("\n=== Artist CRUD ===");
-        // Tạo ArtistList và một số nghệ sĩ
         ArtistList artistList = new ArtistList();
         Artist artist1 = new Artist("A001", "IU");
         Artist artist2 = new Artist("A002", "Sơn Tùng");
@@ -104,12 +107,9 @@ public class App {
 
         // === CRUD cho Playlist ===
         System.out.println("\n=== Playlist CRUD ===");
-
-        // Tạo PlaylistManager
         PlaylistManager playlistManager = new PlaylistManager();
 
-        // Tạo một số playlist
-        Playlist playlist1 = new Playlist("Chill IU", "PL001", 6, 1402); // tổng thời lượng bài hát
+        Playlist playlist1 = new Playlist("Chill IU", "PL001", 6, 1402);
         Playlist playlist2 = new Playlist("Rainy Vibes", "PL002", 2, 490);
 
         // Thêm playlist
@@ -136,7 +136,5 @@ public class App {
         // In sau khi xóa
         System.out.println("\nSau khi xoá playlist PL002:");
         playlistManager.printPlaylists();
-
     }
-
 }

@@ -1,3 +1,4 @@
+package musicPlayer;
 public class TestPlaylistManager {
     public static void main(String[] args) {
         PlaylistManager manager = new PlaylistManager();
