@@ -1,22 +1,20 @@
 package musicPlayer;
-import java.util.ArrayList;
+
+import java.util.List;
 
 public class Album {
-    private String albumTitle;
     private String albumID;
-    private Artist artist;
-    private ArrayList<Songs> songsList;
-    private String copyright;
-    private int albumDuration;
+    private String albumTitle;
+    private List<Songs> songs;
 
-    public Album(String albumTitle, String albumID, Artist artist, ArrayList<Songs> songsList, String copyright,
-            int albumDuration) {
+    public Album(String albumTitle, String albumID, List<Songs> songs) {
         this.albumTitle = albumTitle;
         this.albumID = albumID;
-        this.artist = artist;
-        this.songsList = songsList;
-        this.copyright = copyright;
-        this.albumDuration = albumDuration;
+        this.songs = songs;
+    }
+
+    public String getAlbumID() {
+        return albumID;
     }
 
     public String getAlbumTitle() {
@@ -27,43 +25,22 @@ public class Album {
         this.albumTitle = albumTitle;
     }
 
-    public String getAlbumID() {
-        return albumID;
+    public List<Songs> getSongs() {
+        return songs;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public void setSongs(List<Songs> songs) {
+        this.songs = songs;
     }
 
-    public ArrayList<Songs> getSongsList() {
-        return songsList;
+    // Thêm phương thức này để tương thích với PlayingSongs
+    public String getAlbumName() {
+        return albumTitle;
     }
 
-    public String getCopyright() {
-        return copyright;
-    }
-
-    public int getAlbumDuration() {
-        return albumDuration;
-    }
-
-    public String getAlbumInfo() {
-        return albumTitle + " (" + songsList.size() + " songs, " + albumDuration + " seconds)";
-    }
-
-    public void displayAlbumInfo() {
-        System.out.println("Album Title: " + albumTitle);
-        System.out.println("Album ID: " + albumID);
-        System.out.println("Artist: " + (artist != null ? artist.getName() : "Unknown"));
-        System.out.println("Songs:");
-
-        int index = 1;
-        for (Songs s : songsList) {
-            System.out.println(index + ". " + s.getSongInfo());
-            index++;
-        }
-
-        System.out.println("Copyright: " + copyright);
-        System.out.println("Duration: " + albumDuration + " seconds");
+    @Override
+    public String toString() {
+        return "Album: " + albumTitle + " (ID: " + albumID + "), Số bài hát: " +
+                (songs != null ? songs.size() : 0);
     }
 }

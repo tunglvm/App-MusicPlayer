@@ -1,17 +1,21 @@
-package musicPlayer;
+package musicPlayer.Test;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import musicPlayer.Songs;
+import musicPlayer.SongsList;
 
 public class TestSongsList {
     ArrayList<Songs> sl = new ArrayList<Songs>();
 
     public ArrayList<Songs> addList() {
         Songs s1 = new Songs("S001");
-        s1.setSongInfo("Song A", "Pop", 200);
+        s1.setSongInfo("Song A", "Pop", 200, "Artist A");
         Songs s2 = new Songs("S002");
-        s2.setSongInfo("Song B", "Ballad", 180);
+        s2.setSongInfo("Song B", "Ballad", 180, "Artist B");
         Songs s3 = new Songs("S003");
-        s3.setSongInfo("Song C", "Rock", 210);
+        s3.setSongInfo("Song C", "Rock", 210, "Artist C");
         sl.add(s1);
         sl.add(s2);
         sl.add(s3);
