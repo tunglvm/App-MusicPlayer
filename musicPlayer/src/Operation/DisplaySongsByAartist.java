@@ -47,25 +47,20 @@ class MusicLibrary {
     }
 }
 
-public class DisplaySongsByArtist {
-    public static void main(String[] args) {
-        MusicLibrary library = new MusicLibrary();
+class Song {
+    private String title;
+    private String artistName;
 
-        // Sample data
-        library.addSong(new Song("Yesterday", "IU"));
-        library.addSong(new Song("ONLY", "LeeHi"));
-        library.addSong(new Song("Magic Shop", "BTS"));
-        library.addSong(new Song("Epiphany", "BTS"));
-        library.addSong(new Song("Blueming", "IU"));
-         library.addSong(new Song("Gone", "ROSÉ"));
-        library.addSong(new Song("BREATHE", "LeeHi"));
-        library.addSong(new Song("Circle", "SEVENTEEN"));
+    public Song(String title, String artistName) {
+        this.title = title;
+        this.artistName = artistName;
+    }
 
+    public String getTitle() {
+        return title;
+    }
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Artist name: ");
-        String artistName = sc.nextLine();
-
-        library.displaySongsByArtist(artistName);
+    public String getArtistName() {
+        return artistName;
     }
 }
