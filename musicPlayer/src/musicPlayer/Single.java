@@ -1,3 +1,4 @@
+package musicPlayer;
 public class Single {
     String singleTitle;
     String singleID;
