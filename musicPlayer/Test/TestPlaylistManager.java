@@ -1,4 +1,8 @@
-package musicPlayer;
+package musicPlayer.Test;
+
+import musicPlayer.Playlist;
+import musicPlayer.PlaylistManager;
+
 public class TestPlaylistManager {
     public static void main(String[] args) {
         PlaylistManager manager = new PlaylistManager();
