@@ -77,24 +77,27 @@ Nội dung 01:
 - Maven hoặc Gradle
 - Thư viện Thymeleaf (nếu sử dụng giao diện web)
 
-## Chức Năng Chính
-### 1. Quản Lý Bài Hát ([Đối tượng 01])
-- **Thêm Bài Hát**: Cho phép người dùng thêm bài hát mới vào hệ thống.
-- **Sửa Bài Hát**: Cung cấp chức năng sửa thông tin bài hát.
-- **Xóa Bài Hát**: Cho phép người dùng xóa bài hát khỏi hệ thống.
-- **Liệt Kê Bài Hát**: Hiển thị danh sách tất cả các bài hát và cho phép lọc theo thể loại.
 
-### 2. Quản Lý Playlist ([Đối tượng 02])
-- **Thêm Playlist**: Cho phép người dùng tạo playlist mới.
-- **Sửa Playlist**: Cung cấp chức năng sửa thông tin playlist.
-- **Xóa Playlist**: Cho phép người dùng xóa playlist khỏi hệ thống.
+## 🎵 Chức năng chính: Quản lý và Phát nhạc từ Album/Playlist
 
-### 3. Gán Bài Hát vào Playlist
-- Cho phép người dùng gán bài hát vào một playlist cụ thể.
+### 🧩 Mô tả chức năng:
+Người dùng có thể tạo và quản lý Playlist hoặc Album nhạc. Sau đó, chọn một Album/Playlist để phát nhạc liên tục, với hỗ trợ các điều khiển cơ bản.
 
-## Lưu Trữ Dữ Liệu
-- Dữ liệu bài hát và playlist được lưu trữ trong bộ nhớ sử dụng các Collection như `ArrayList`.
-- Dữ liệu cũng được lưu trữ xuống file nhị phân để đảm bảo tính bền vững.
+### 🔄 Phân rã chức năng:
+- Tải danh sách Playlist từ thư mục hoặc dữ liệu có sẵn.
+- Hiển thị các Album/Playlist.
+- Người dùng chọn một danh sách để xem chi tiết và phát nhạc.
+- Phát nhạc với điều khiển: Play, Pause, Next, Previous, Stop, Shuffle, Repeat.
+
+### 👥 Phân công nhóm:
+- Đỗ Quỳnh Chi: Xử lý tạo, sửa, xóa Album/Playlist.
+- Đỗ Tùng Lâm: Hiển thị danh sách Playlist và bài hát bên trong.
+- Trần Quốc Huy: Điều khiển phát nhạc từ Playlist.
+- Cả nhóm: Gộp chức năng tổng thể và kiểm thử.
+
+### 🗂 Lưu đồ thuật toán:
+
+![Lưu đồ hoạt động của chức năng](https://github.com/user-attachments/assets/fd37f07f-0fbc-41b6-a718-de14e5077e92)
 
 
 Nội dung 02:
