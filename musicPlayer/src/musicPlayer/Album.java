@@ -44,5 +44,31 @@ public class Album {
         return songs;
     }
 
+
+// Chức năng phát nhạc trong Album.
+    public void printSongList() {
+        if (songs == null || songs.isEmpty()) {
+            System.out.println("Album không có bài hát nào.");
+            return;
+        }
+        System.out.println("Danh sách bài hát trong album \"" + title + "\":");
+        for (Songs song : songs) {
+            System.out.println("- " + song.getTitle() + " (" + song.getArtist() + ")");
+        }
+    }
     // Có thể bổ sung thêm các getter/setter khác nếu cần
+
+    public void playAllFromAlbum(){
+        if(songs == null || songs.isEmpty()) {
+            System.out.println("Album không có bài hát nào để phát.");
+            return;
+        }
+        System.out.println("Đang phát tất cả bài hát trong album: " + title);
+
+        for (Songs song : songs) {
+            System.out.println("Đang phát: " + song.getTitle() + " - " + song.getArtist());
+        }
+        System.out.println("Phát xong tất cả bài hát trong album: " + title);
+    }
 }
+      

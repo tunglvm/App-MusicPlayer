@@ -1,6 +1,7 @@
 package musicPlayer;
 
 import java.util.ArrayList;
+import Operation.PlayingSongs;
 
 public class App {
     public static void main(String[] args) {
@@ -136,5 +137,20 @@ public class App {
         // In sau khi xóa
         System.out.println("\nSau khi xoá playlist PL002:");
         playlistManager.printPlaylists();
+
+        PlayingSongs player = new PlayingSongs();
+        System.out.println("=== Chức năng chính: Phát nhạc từ Album ===");
+        player.playAllFromAlbum(album1);
+    }
+
+    public void printSongList() {
+        if (songs == null || songs.isEmpty()) {
+            System.out.println("Album không có bài hát nào.");
+            return;
+        }
+        System.out.println("Danh sách bài hát trong album \"" + title + "\":");
+        for (Songs song : songs) {
+            System.out.println("- " + song.getTitle() + " (" + song.getArtist() + ")");
+        }
     }
 }

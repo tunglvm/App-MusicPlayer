@@ -34,13 +34,20 @@ public class TestPlayingSongs {
                 590 // duration (tổng thời lượng, ví dụ)
         );
 
-        // Test PlayingSongs
+        // Test các chức năng
         PlayingSongs player = new PlayingSongs();
 
-        System.out.println("=== Test phát Playlist ===");
-        player.playFromPlaylist(playlist);
+        // Gọi hàm của sinh viên A: In danh sách bài hát trong album
+        System.out.println("=== Danh sách bài hát trong Album ===");
+        album.printSongList();
 
-        System.out.println("\n=== Test phát Album ===");
-        player.playFromAlbum(album);
+        // Gọi hàm của sinh viên C: Phát toàn bộ album (tự động gọi hàm phát từng bài
+        // hát của sinh viên B)
+        System.out.println("\n=== Test phát toàn bộ Album ===");
+        player.playAllFromAlbum(album);
+
+        // Gọi hàm phát playlist (nếu muốn test thêm)
+        System.out.println("\n=== Test phát Playlist ===");
+        player.playFromPlaylist(playlist);
     }
 }
