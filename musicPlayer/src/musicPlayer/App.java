@@ -17,6 +17,8 @@ public class App {
         Songs song4 = new Songs("IUAFB004");
         Songs song5 = new Songs("IUAFB005");
         Songs song6 = new Songs("IUAFB006");
+        Songs song7 = new Songs("HTH001");
+        Songs song8 = new Songs("HTH002");
 
         song1.setSongInfo("Autumn morning", "K-pop", 218, "IU");
         song2.setSongInfo("Secret Garden", "K-pop", 224, "IU");
@@ -36,6 +38,7 @@ public class App {
 
         Album album1 = new Album("ALB001", "A Flower Bookmark", "IU", albumSongs, "Loen Entertainment", 1502);
 
+       
         // === Tạo nghệ sĩ ===
         Artist iu = new Artist("ATS001", "IU");
         iu.setArtistInfo("Korean", "16-5-1993");
