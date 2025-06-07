@@ -62,6 +62,21 @@ public class Playlist {
         this.numSongs = (songs != null) ? songs.size() : 0;
     }
 
+    // Hàm để in danh sách bài hát trong Playlist
+    /**
+     * In danh sách bài hát trong Playlist.
+     */
+    public void printSongList() {
+        if (songs == null || songs.isEmpty()) {
+            System.out.println("Playlist không có bài hát nào.");
+            return;
+        }
+        System.out.println("Danh sách bài hát trong playlist \"" + playlistName + "\":");
+        for (Songs song : songs) {
+            System.out.println("- " + song.getTitle() + " (" + song.getArtist() + ")");
+        }
+    }
+
     @Override
     public String toString() {
         return "Playlist: " + playlistName +

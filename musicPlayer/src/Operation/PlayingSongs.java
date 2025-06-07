@@ -7,12 +7,13 @@ import java.util.List;
 
 public class PlayingSongs {
 
-    // Phát một bài hát
+    // Phát một bài hát Sinh viên B
     public void playSong(Songs song) {
         System.out.println("Đang phát: " + song.getTitle() + " - " + song.getArtist());
     }
 
-    // Phát tất cả bài hát trong Album
+    // Phát tất cả bài hát trong Album Sinh viên C
+    // Gọi hàm của sinh viên B để phát từng bài hát
     public void playAllFromAlbum(Album album) {
         System.out.println("Đang phát album: " + album.getAlbumTitle());
         List<Songs> songs = album.getSongs();

@@ -138,17 +138,26 @@ public class App {
         System.out.println("\nSau khi xoá playlist PL002:");
         playlistManager.printPlaylists();
 
+        // YÊU CẦU 6: Chức năng phát nhạc từ Album/Playlist
+
         // === Chức năng chính: Phát nhạc từ Album ===
         PlayingSongs player = new PlayingSongs();
 
         // Gọi hàm của sinh viên A: In danh sách bài hát trong album
         System.out.println("\n--- Danh sách bài hát trong album ---");
         album1.printSongList();
+        // In danh sách bài hát trong playlist
+        System.out.println("\n--- Danh sách bài hát trong playlist ---");
+        playlist1.printSongList();
 
         // Gọi hàm của sinh viên C: Phát toàn bộ album (tự động gọi hàm phát từng bài
         // hát của sinh viên B)
         System.out.println("\n--- Bắt đầu phát toàn bộ album ---");
         player.playAllFromAlbum(album1);
+        // Phát toàn bộ playlist
+        System.out.println("\n--- Bắt đầu phát toàn bộ playlist ---");
+        player.playFromPlaylist(playlist1);
     }
+
 
 }   
