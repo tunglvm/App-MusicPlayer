@@ -138,19 +138,17 @@ public class App {
         System.out.println("\nSau khi xoá playlist PL002:");
         playlistManager.printPlaylists();
 
+        // === Chức năng chính: Phát nhạc từ Album ===
         PlayingSongs player = new PlayingSongs();
-        System.out.println("=== Chức năng chính: Phát nhạc từ Album ===");
+
+        // Gọi hàm của sinh viên A: In danh sách bài hát trong album
+        System.out.println("\n--- Danh sách bài hát trong album ---");
+        album1.printSongList();
+
+        // Gọi hàm của sinh viên C: Phát toàn bộ album (tự động gọi hàm phát từng bài
+        // hát của sinh viên B)
+        System.out.println("\n--- Bắt đầu phát toàn bộ album ---");
         player.playAllFromAlbum(album1);
     }
 
-    public void printSongList() {
-        if (songs == null || songs.isEmpty()) {
-            System.out.println("Album không có bài hát nào.");
-            return;
-        }
-        System.out.println("Danh sách bài hát trong album \"" + title + "\":");
-        for (Songs song : songs) {
-            System.out.println("- " + song.getTitle() + " (" + song.getArtist() + ")");
-        }
-    }
-}
+}   
