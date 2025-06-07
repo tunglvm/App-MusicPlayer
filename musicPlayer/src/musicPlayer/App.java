@@ -41,56 +41,63 @@ public class App {
         // Gọi các chức năng chính
         PlayingSongs player = new PlayingSongs();
 
-        System.out.println("\n--- Danh sách bài hát trong album ---");
-        album1.printSongList();
-
-        System.out.println("\n--- Danh sách bài hát trong playlist ---");
-        playlist1.printSongList();
-
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
-        System.out.println("1. Phát toàn bộ album");
-        System.out.println("2. Phát toàn bộ playlist");
-        System.out.println("3. Chọn và phát một bài hát trong album");
-        System.out.println("4. Chọn và phát một bài hát trong playlist");
-        System.out.println("5. Phát ngẫu nhiên một bài hát trong album");
-        System.out.println("6. Phát ngẫu nhiên một bài hát trong playlist");
-        System.out.print("Nhập lựa chọn: ");
-        int choice = scanner.nextInt();
+        while (true) {
+            System.out.println("\n--- Danh sách bài hát trong album ---");
+            album1.printSongList();
 
-        if (choice == 1) {
-            player.playAllFromAlbum(album1);
-        } else if (choice == 2) {
-            player.playFromPlaylist(playlist1);
-        } else if (choice == 3) {
-            System.out.print("Nhập số thứ tự bài hát trong album (bắt đầu từ 1): ");
-            int idx = scanner.nextInt();
-            if (idx >= 1 && idx <= albumSongs.size()) {
-                player.playSong(albumSongs.get(idx - 1));
+            System.out.println("\n--- Danh sách bài hát trong playlist ---");
+            playlist1.printSongList();
+
+            System.out.println("\nMenu:");
+            System.out.println("1. Phát toàn bộ album");
+            System.out.println("2. Phát toàn bộ playlist");
+            System.out.println("3. Chọn và phát một bài hát trong album");
+            System.out.println("4. Chọn và phát một bài hát trong playlist");
+            System.out.println("5. Phát ngẫu nhiên một bài hát trong album");
+            System.out.println("6. Phát ngẫu nhiên một bài hát trong playlist");
+            System.out.println("0. Thoát");
+            System.out.print("Nhập lựa chọn: ");
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+                player.playAllFromAlbum(album1);
+            } else if (choice == 2) {
+                player.playFromPlaylist(playlist1);
+            } else if (choice == 3) {
+                System.out.print("Nhập số thứ tự bài hát trong album (bắt đầu từ 1): ");
+                int idx = scanner.nextInt();
+                if (idx >= 1 && idx <= albumSongs.size()) {
+                    player.playSong(albumSongs.get(idx - 1));
+                } else {
+                    System.out.println("Số thứ tự không hợp lệ!");
+                }
+            } else if (choice == 4) {
+                System.out.print("Nhập số thứ tự bài hát trong playlist (bắt đầu từ 1): ");
+                int idx = scanner.nextInt();
+                java.util.List<Songs> playlistSongs = playlist1.getSongs();
+                if (idx >= 1 && idx <= playlistSongs.size()) {
+                    player.playSong(playlistSongs.get(idx - 1));
+                } else {
+                    System.out.println("Số thứ tự không hợp lệ!");
+                }
+            } else if (choice == 5) {
+                int idx = random.nextInt(albumSongs.size());
+                System.out.println("Phát ngẫu nhiên bài hát trong album:");
+                player.playSong(albumSongs.get(idx));
+            } else if (choice == 6) {
+                java.util.List<Songs> playlistSongs = playlist1.getSongs();
+                int idx = random.nextInt(playlistSongs.size());
+                System.out.println("Phát ngẫu nhiên bài hát trong playlist:");
+                player.playSong(playlistSongs.get(idx));
+            } else if (choice == 0) {
+                System.out.println("Đã thoát chương trình.");
+                break;
             } else {
-                System.out.println("Số thứ tự không hợp lệ!");
+                System.out.println("Lựa chọn không hợp lệ!");
             }
-        } else if (choice == 4) {
-            System.out.print("Nhập số thứ tự bài hát trong playlist (bắt đầu từ 1): ");
-            int idx = scanner.nextInt();
-            java.util.List<Songs> playlistSongs = playlist1.getSongs();
-            if (idx >= 1 && idx <= playlistSongs.size()) {
-                player.playSong(playlistSongs.get(idx - 1));
-            } else {
-                System.out.println("Số thứ tự không hợp lệ!");
-            }
-        } else if (choice == 5) {
-            int idx = random.nextInt(albumSongs.size());
-            System.out.println("Phát ngẫu nhiên bài hát trong album:");
-            player.playSong(albumSongs.get(idx));
-        } else if (choice == 6) {
-            java.util.List<Songs> playlistSongs = playlist1.getSongs();
-            int idx = random.nextInt(playlistSongs.size());
-            System.out.println("Phát ngẫu nhiên bài hát trong playlist:");
-            player.playSong(playlistSongs.get(idx));
-        } else {
-            System.out.println("Lựa chọn không hợp lệ!");
         }
         scanner.close();
     }

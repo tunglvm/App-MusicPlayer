@@ -1,4 +1,4 @@
-package musicPlayer.Test;
+package musicPlayer.Test.TestFile;
 
 public class testSongs {
     public static void main(String[] args) {

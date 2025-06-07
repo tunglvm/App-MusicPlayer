@@ -1,4 +1,4 @@
-package musicPlayer.Test;
+package musicPlayer.Test.TestFile;
 
 import musicPlayer.Artist;
 import musicPlayer.ArtistList;

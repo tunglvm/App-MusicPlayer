@@ -1,4 +1,4 @@
-package musicPlayer.Test;
+package musicPlayer.Test.TestFile;
 
 import java.util.ArrayList;
 import java.util.Scanner;
