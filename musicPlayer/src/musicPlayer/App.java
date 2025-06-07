@@ -39,7 +39,7 @@ public class App {
         Album album1 = new Album("ALB001", "A Flower Bookmark", "IU", albumSongs, "Loen Entertainment", 1502);
 
        
-        // === Tạo nghệ sĩ ===
+        // === Tạo nghệ sĩ ===/
         Artist iu = new Artist("ATS001", "IU");
         iu.setArtistInfo("Korean", "16-5-1993");
         iu.setArtistProduct(album1);
@@ -54,6 +54,8 @@ public class App {
                 "Hà Nội",
                 "2024-05-21");
         user1.displayUserInfo();
+
+
 
         // === In thông tin Album ===
         System.out.println(album1.getAlbumInfo());
@@ -82,6 +84,8 @@ public class App {
         // In danh sách album sau khi xóa
         System.out.println("\nDanh sách album sau khi xóa:");
         albumList.printAlbumList();
+
+
 
         // === CRUD cho Artist ===
         System.out.println("\n=== Artist CRUD ===");
@@ -160,6 +164,12 @@ public class App {
         // Phát toàn bộ playlist
         System.out.println("\n--- Bắt đầu phát toàn bộ playlist ---");
         player.playFromPlaylist(playlist1);
+
+        // hien thi danh sach song va album duoc lua chon bon boi mot user cụ thể;
+        //object luu tru data transaction
+        //user chon bai hat / tac gia /trong albun/hat boi ca si nao
+        
+
     }
 
 
