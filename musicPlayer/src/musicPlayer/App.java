@@ -24,14 +24,21 @@ public class App {
         song5.setSongInfo("By the stream", "K-pop", 337, "IU");
         song6.setSongInfo("Everyday with you", "K-pop", 224, "IU");
 
-        // === Tạo EP ===
-        EP ep1 = new EP("IUEPAFB");
-        ep1.setEPInfo("A Flower Bookmark", song1, song2, song3, song4, song5, song6);
+        // === Tạo Album ===
+        ArrayList<Songs> albumSongs = new ArrayList<>();
+        albumSongs.add(song1);
+        albumSongs.add(song2);
+        albumSongs.add(song3);
+        albumSongs.add(song4);
+        albumSongs.add(song5);
+        albumSongs.add(song6);
+
+        Album album1 = new Album("ALB001", "A Flower Bookmark", "IU", albumSongs, "Loen Entertainment", 1502);
 
         // === Tạo nghệ sĩ ===
         Artist iu = new Artist("ATS001", "IU");
         iu.setArtistInfo("Korean", "16-5-1993");
-        iu.setArtistProduct(null, ep1, null);
+        iu.setArtistProduct(album1);
 
         // === Tạo user ===
         User user1 = new User(
@@ -44,18 +51,16 @@ public class App {
                 "2024-05-21");
         user1.displayUserInfo();
 
-        // === In thông tin EP ===
-        System.out.println(ep1.getEPInfo());
+        // === In thông tin Album ===
+        System.out.println(album1.getAlbumInfo());
 
         // === CRUD cho Album ===
         System.out.println("\n=== Album CRUD ===");
         AlbumList albumList = new AlbumList();
-        ArrayList<Songs> albumSongs = new ArrayList<>();
-        albumSongs.add(song1);
-        albumSongs.add(song2);
 
-        // Nếu class Album có các thuộc tính: title, id, artist, songs, copyright,
-        // duration
+        // Thêm album vào danh sách
+        albumList.addAlbum(album1);
+
         // In danh sách album ban đầu
         System.out.println("\nDanh sách album ban đầu:");
         albumList.printAlbumList();
@@ -68,7 +73,7 @@ public class App {
         albumList.printAlbumList();
 
         // Xóa album
-        albumList.deleteAlbum("ALB002");
+        albumList.deleteAlbum("ALB001");
 
         // In danh sách album sau khi xóa
         System.out.println("\nDanh sách album sau khi xóa:");

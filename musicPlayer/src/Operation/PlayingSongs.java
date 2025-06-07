@@ -22,7 +22,7 @@ public class PlayingSongs {
 
     // Phát tất cả bài hát trong Album
     public void playFromAlbum(Album album) {
-        System.out.println("Đang phát album: " + album.getAlbumName());
+        System.out.println("Đang phát album: " + album.getAlbumTitle());
         List<Songs> songs = album.getSongs();
         if (songs == null || songs.isEmpty()) {
             System.out.println("Album không có bài hát nào.");

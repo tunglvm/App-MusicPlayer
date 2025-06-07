@@ -1,13 +1,11 @@
 package musicPlayer;
 
 public class Artist {
-    private String name;
-    private Album album;
-    private Single single;
-    private EP ep;
     private String artistID;
+    private String name;
     private String nationality;
     private String dateOfBirth;
+    private Album album;
 
     public Artist(String artistID, String name) {
         this.artistID = artistID;
@@ -19,10 +17,8 @@ public class Artist {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setArtistProduct(Album album, EP ep, Single single) {
+    public void setArtistProduct(Album album) {
         this.album = album;
-        this.ep = ep;
-        this.single = single;
     }
 
     public String getArtistID() {
@@ -47,14 +43,6 @@ public class Artist {
 
     public Album getAlbum() {
         return album;
-    }
-
-    public EP getEp() {
-        return ep;
-    }
-
-    public Single getSingle() {
-        return single;
     }
 
     public void displayArtistInfo() {

@@ -1,16 +1,23 @@
 package musicPlayer;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Album {
     private String albumID;
-    private String albumTitle;
-    private List<Songs> songs;
+    private String title;
+    private String artistName;
+    private ArrayList<Songs> songs;
+    private String publisher;
+    private int duration;
 
-    public Album(String albumTitle, String albumID, List<Songs> songs) {
-        this.albumTitle = albumTitle;
+    public Album(String albumID, String title, String artistName, ArrayList<Songs> songs, String publisher,
+            int duration) {
         this.albumID = albumID;
+        this.title = title;
+        this.artistName = artistName;
         this.songs = songs;
+        this.publisher = publisher;
+        this.duration = duration;
     }
 
     public String getAlbumID() {
@@ -18,29 +25,24 @@ public class Album {
     }
 
     public String getAlbumTitle() {
-        return albumTitle;
+        return title;
     }
 
-    public void setAlbumTitle(String albumTitle) {
-        this.albumTitle = albumTitle;
+    public void setAlbumTitle(String newTitle) {
+        this.title = newTitle;
     }
 
-    public List<Songs> getSongs() {
+    public String getAlbumInfo() {
+        return "Album ID: " + albumID +
+                ", Title: " + title +
+                ", Artist: " + artistName +
+                ", Publisher: " + publisher +
+                ", Duration: " + duration + "s";
+    }
+
+    public ArrayList<Songs> getSongs() {
         return songs;
     }
 
-    public void setSongs(List<Songs> songs) {
-        this.songs = songs;
-    }
-
-    // Thêm phương thức này để tương thích với PlayingSongs
-    public String getAlbumName() {
-        return albumTitle;
-    }
-
-    @Override
-    public String toString() {
-        return "Album: " + albumTitle + " (ID: " + albumID + "), Số bài hát: " +
-                (songs != null ? songs.size() : 0);
-    }
+    // Có thể bổ sung thêm các getter/setter khác nếu cần
 }

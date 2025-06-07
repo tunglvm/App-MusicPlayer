@@ -25,7 +25,14 @@ public class TestPlayingSongs {
 
         // Tạo Playlist và Album
         Playlist playlist = new Playlist("My Playlist", "PL001", songList);
-        Album album = new Album("My Album", "ALB001", songList);
+        Album album = new Album(
+                "ALB001", // albumID
+                "My Album", // title
+                "Artist A", // artistName
+                new ArrayList<>(songList), // songs
+                "Test Publisher", // publisher
+                590 // duration (tổng thời lượng, ví dụ)
+        );
 
         // Test PlayingSongs
         PlayingSongs player = new PlayingSongs();
