@@ -100,23 +100,5 @@ Người dùng có thể tạo và quản lý Playlist hoặc Album nhạc. Sau 
 ![Lưu đồ hoạt động của chức năng](https://github.com/user-attachments/assets/fd37f07f-0fbc-41b6-a718-de14e5077e92)
 
 
-Nội dung 02:
 
-![image](https://github.com/user-attachments/assets/ab0c18b4-c7b1-4907-88d4-b1ea96887b25)
-
-Nội dung 03:
-
-![Sơ đồ 1](https://github.com/user-attachments/assets/9a82e955-78e7-4e7b-a74f-56e460bc6144)
-
-
-![Sơ đồ 2 - Activity Diagram](https://github.com/user-attachments/assets/bd6b42f0-a5c2-43cc-bde8-17b20c69a77f)
-
-
-![Sơ đồ 3 - Sequence Diagram](https://github.com/user-attachments/assets/735a9b08-7ae9-4db0-99e5-00db09b9ec5e)
-
-
-Kiểm thử CRUD cho n đối tượng: 
-
-
-![image](https://github.com/user-attachments/assets/fe1349ec-3bba-4990-948a-95a618c9926a)
 
