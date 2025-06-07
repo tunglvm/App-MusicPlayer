@@ -100,5 +100,11 @@ Người dùng có thể tạo và quản lý Playlist hoặc Album nhạc. Sau 
 ![Lưu đồ hoạt động của chức năng](https://github.com/user-attachments/assets/fd37f07f-0fbc-41b6-a718-de14e5077e92)
 
 
+### Chạy chương trình:
+
+![image](https://github.com/user-attachments/assets/705eec8f-94af-4ed1-aee7-a7f7538126aa)
+
+
+
 
 
