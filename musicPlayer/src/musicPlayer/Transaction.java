@@ -8,7 +8,7 @@ public class Transaction {
     private String userID;
     private String songID;
     private String artistID;
-    private String transactionType; // "buy" orU "rent"
+    private String transactionType; // "buy" or "rent"
     private String transactionDate;
 
     public Transaction(String transactionID, String userID, String songID, String artistID, String transactionType,
