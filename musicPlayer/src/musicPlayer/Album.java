@@ -10,14 +10,17 @@ public class Album {
     private String publisher;
     private int duration;
 
-    public Album(String albumID, String title, String artistName, ArrayList<Songs> songs, String publisher,
-            int duration) {
-        this.albumID = albumID;
-        this.title = title;
-        this.artistName = artistName;
-        this.songs = songs;
-        this.publisher = publisher;
-        this.duration = duration;
+    public Album(String albumID, String title, String artistName, ArrayList<Songs> songs, String publisher, int duration) {
+        try {
+            this.albumID = albumID;
+            this.title = title;
+            this.artistName = artistName;
+            this.songs = songs;
+            this.publisher = publisher;
+            this.duration = duration;
+        } catch (Exception e) {
+            System.out.println("Lỗi trong constructor Album: " + e.getMessage());
+        }
     }
 
     public String getAlbumID() {
@@ -29,15 +32,24 @@ public class Album {
     }
 
     public void setAlbumTitle(String newTitle) {
-        this.title = newTitle;
+        try {
+            this.title = newTitle;
+        } catch (Exception e) {
+            System.out.println("Lỗi trong setAlbumTitle: " + e.getMessage());
+        }
     }
 
     public String getAlbumInfo() {
-        return "Album ID: " + albumID +
-                ", Title: " + title +
-                ", Artist: " + artistName +
-                ", Publisher: " + publisher +
-                ", Duration: " + duration + "s";
+        try {
+            return "Album ID: " + albumID +
+                    ", Title: " + title +
+                    ", Artist: " + artistName +
+                    ", Publisher: " + publisher +
+                    ", Duration: " + duration + "s";
+        } catch (Exception e) {
+            System.out.println("Lỗi trong getAlbumInfo: " + e.getMessage());
+            return null;
+        }
     }
 
     public ArrayList<Songs> getSongs() {
@@ -46,26 +58,37 @@ public class Album {
 
     // Chức năng phát nhạc trong Album.
     public void printSongList() {
-        if (songs == null || songs.isEmpty()) {
-            System.out.println("Album không có bài hát nào.");
-            return;
-        }
-        System.out.println("Danh sách bài hát trong album \"" + title + "\":");
-        for (Songs song : songs) {
-            System.out.println("- " + song.getTitle() + " (" + song.getArtist() + ")");
+        try {
+            if (songs == null || songs.isEmpty()) {
+                System.out.println("Album không có bài hát nào.");
+                return;
+            }
+            System.out.println("Danh sách bài hát trong album \"" + title + "\":");
+            for (Songs song : songs) {
+                System.out.println("- " + song.getTitle() + " (" + song.getArtist() + ")");
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi trong printSongList: " + e.getMessage());
         }
     }
 
+    //function
     public void playAllFromAlbum() {
-        if (songs == null || songs.isEmpty()) {
-            System.out.println("Album không có bài hát nào để phát.");
-            return;
-        }
-        System.out.println("Đang phát tất cả bài hát trong album: " + title);
+        try {
+            if (songs == null || songs.isEmpty()) {
+                System.out.println("Album không có bài hát nào để phát.");
+                return;
+            }
+            System.out.println("Đang phát tất cả bài hát trong album: " + title);
 
-        for (Songs song : songs) {
-            System.out.println("Đang phát: " + song.getTitle() + " - " + song.getArtist());
+            for (Songs song : songs) {
+                System.out.println("Đang phát: " + song.getTitle() + " - " + song.getArtist());
+            }
+            System.out.println("Phát xong tất cả bài hát trong album: " + title);
+        } catch (Exception e) {
+            System.out.println("Lỗi trong playAllFromAlbum: " + e.getMessage());
         }
-        System.out.println("Phát xong tất cả bài hát trong album: " + title);
     }
 }
+
+
