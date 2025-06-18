@@ -112,9 +112,6 @@ public class AlbumList {
             System.out.println("Lỗi trong getAlbums: " + e.getMessage());
         } finally {
         }
-    return result;
-            // Có thể log hoặc cleanup nếu cần
-        }
         return result;
     }
 }
