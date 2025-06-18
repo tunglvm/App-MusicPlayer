@@ -48,7 +48,7 @@ class MusicLibrary {
     }
 
     public void displaySongsByArtist(String artistName) {
-        try {
+        try {   
             System.out.println("Songs by artist: " + artistName);
             boolean found = false;
             for (Song song : allSongs) {

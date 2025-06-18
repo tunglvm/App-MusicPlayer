@@ -13,24 +13,44 @@ public class AlbumList {
      * Thêm album mới vào danh sách.
      */
     public boolean addAlbum(Album album) {
-        if (album != null) {
-            albums.add(album);
-            return true;
+        boolean result = false;
+        try {
+            if (album != null) {
+                albums.add(album);
+                result = true;
+            } else {
+                System.out.println("Album không hợp lệ.");
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi trong addAlbum: " + e.getMessage());
+        } finally {
+            // Có thể log hoặc cleanup nếu cần
         }
-        return false;
+        return result;
     }
 
     /**
      * Sửa tiêu đề album theo ID.
      */
     public boolean editAlbum(String newTitle, String albumID) {
-        for (Album album : albums) {
-            if (album.getAlbumID().equals(albumID)) {
-                album.setAlbumTitle(newTitle);
-                return true;
+        boolean result = false;
+        try {
+            for (Album album : albums) {
+                if (album.getAlbumID().equals(albumID)) {
+                    album.setAlbumTitle(newTitle);
+                    result = true;
+                    break;
+                }
             }
+            if (!result) {
+                System.out.println("Không tìm thấy album với ID: " + albumID);
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi trong editAlbum: " + e.getMessage());
+        } finally {
+            // Có thể log hoặc cleanup nếu cần
         }
-        return false;
+        return result;
     }
 
     /**
@@ -48,6 +68,16 @@ public class AlbumList {
             } finally {
 // Có thể log hoặc cleanup nếu cần
             }
+        try {
+            removed = albums.removeIf(album -> album.getAlbumID().equals(albumID));
+            if (!removed) {
+                System.out.println("Không tìm thấy album để xóa với ID: " + albumID);
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi trong deleteAlbum: " + e.getMessage());
+        } finally {
+            // Có thể log hoặc cleanup nếu cần
+        }
         return removed;
     }
     
@@ -81,9 +111,10 @@ public class AlbumList {
         } catch (Exception e) {
             System.out.println("Lỗi trong getAlbums: " + e.getMessage());
         } finally {
-// Có thể log hoặc cleanup nếu cần
         }
     return result;
-
+            // Có thể log hoặc cleanup nếu cần
+        }
+        return result;
     }
 }
