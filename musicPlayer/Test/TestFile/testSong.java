@@ -1,6 +1,6 @@
 package musicPlayer.Test.TestFile;
 
-public class testSongs {
+public class testSong {
     public static void main(String[] args) {
         testSongList();
         getSongName();

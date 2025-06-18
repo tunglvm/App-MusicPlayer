@@ -3,10 +3,10 @@ package musicPlayer.Test.TestFile;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import musicPlayer.Songs;
-import musicPlayer.SongsList;
+import musicPlayer.Song;
+import musicPlayer.SongList;
 
-public class TestSongsList {
+public class TestSongList {
     ArrayList<Songs> sl = new ArrayList<Songs>();
 
     public ArrayList<Songs> addList() {
