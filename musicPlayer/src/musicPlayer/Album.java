@@ -56,6 +56,7 @@ public class Album {
         }
     }
 
+    //function
     public void playAllFromAlbum() {
         if (songs == null || songs.isEmpty()) {
             System.out.println("Album không có bài hát nào để phát.");
@@ -69,3 +70,5 @@ public class Album {
         System.out.println("Phát xong tất cả bài hát trong album: " + title);
     }
 }
+
+
