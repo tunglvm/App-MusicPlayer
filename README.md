@@ -104,6 +104,9 @@ Người dùng có thể tạo và quản lý Playlist hoặc Album nhạc. Sau 
 
 ![image](https://github.com/user-attachments/assets/705eec8f-94af-4ed1-aee7-a7f7538126aa)
 
+### Giao diện chính
+
+![image](https://github.com/user-attachments/assets/5f5faf5c-a123-4042-bd16-9907f4948cef)
 
 
 
