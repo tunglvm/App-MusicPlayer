@@ -20,6 +20,8 @@ public class Album {
             this.duration = duration;
         } catch (Exception e) {
             System.out.println("Lỗi trong constructor Album: " + e.getMessage());
+        } finally {
+            System.out.println("Khởi tạo Album hoàn tất (có thể thành công hoặc có lỗi).");
         }
     }
 
@@ -36,6 +38,8 @@ public class Album {
             this.title = newTitle;
         } catch (Exception e) {
             System.out.println("Lỗi trong setAlbumTitle: " + e.getMessage());
+        } finally {
+            System.out.println("Kết thúc phương thức setAlbumTitle.");
         }
     }
 
@@ -49,6 +53,8 @@ public class Album {
         } catch (Exception e) {
             System.out.println("Lỗi trong getAlbumInfo: " + e.getMessage());
             return null;
+        } finally {
+            System.out.println("Kết thúc phương thức getAlbumInfo.");
         }
     }
 
@@ -56,7 +62,6 @@ public class Album {
         return songs;
     }
 
-    // Chức năng phát nhạc trong Album.
     public void printSongList() {
         try {
             if (songs == null || songs.isEmpty()) {
@@ -69,10 +74,11 @@ public class Album {
             }
         } catch (Exception e) {
             System.out.println("Lỗi trong printSongList: " + e.getMessage());
+        } finally {
+            System.out.println("Kết thúc phương thức printSongList.");
         }
     }
 
-    //function
     public void playAllFromAlbum() {
         try {
             if (songs == null || songs.isEmpty()) {
@@ -80,15 +86,14 @@ public class Album {
                 return;
             }
             System.out.println("Đang phát tất cả bài hát trong album: " + title);
-
             for (Songs song : songs) {
                 System.out.println("Đang phát: " + song.getTitle() + " - " + song.getArtist());
             }
             System.out.println("Phát xong tất cả bài hát trong album: " + title);
         } catch (Exception e) {
             System.out.println("Lỗi trong playAllFromAlbum: " + e.getMessage());
+        } finally {
+            System.out.println("Kết thúc phương thức playAllFromAlbum.");
         }
     }
 }
-
-
