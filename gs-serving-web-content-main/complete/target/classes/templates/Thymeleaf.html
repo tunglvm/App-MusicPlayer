@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách Playlist</title>
+</head>
+<body>
+    <h1>Danh sách Playlist</h1>
+    <table border="1">
+        <tr>
+            <th>Tên Playlist</th>
+            <th>ID</th>
+            <th>Số bài hát</th>
+            <th>Thời lượng (giây)</th>
+        </tr>
+        <tr th:each="pl : ${playlists}">
+            <td th:text="${pl.name}"></td>
+            <td th:text="${pl.id}"></td>
+            <td th:text="${pl.numSongs}"></td>
+            <td th:text="${pl.duration}"></td>
+        </tr>
+    </table>
+</body>
+</html>

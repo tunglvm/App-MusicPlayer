@@ -15,55 +15,6 @@ Github id: Huybip
 
 Github id: quynchi16
 
-## Objects
-
-   Class Songs {
-
-String Title
-
-String Song ID
-
-String Artis
-
-String Type
-
-Int Duration
-
-}
-
-   Class Album {
-
-String Title
-
-String ID
-
-String Artist
-
-String Songs
-
-String Copyright
-
-Int Duration
-
-}
-
-   Class Artist {
-
-String Name
-
-String ID
-
-String Information
-
-String Featuring
-
-String Songs
-
-String Album
-
-
-}
-
 Nội dung 01:
 
 # Ứng Dụng Nghe Nhạc
@@ -104,6 +55,9 @@ Người dùng có thể tạo và quản lý Playlist hoặc Album nhạc. Sau 
 
 ![image](https://github.com/user-attachments/assets/705eec8f-94af-4ed1-aee7-a7f7538126aa)
 
+### Giao diện chính
+
+![image](https://github.com/user-attachments/assets/5f5faf5c-a123-4042-bd16-9907f4948cef)
 
 
 
