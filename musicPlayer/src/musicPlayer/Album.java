@@ -72,6 +72,7 @@ public class Album {
         }
     }
 
+    //function
     public void playAllFromAlbum() {
         try {
             if (songs == null || songs.isEmpty()) {
@@ -89,3 +90,5 @@ public class Album {
         }
     }
 }
+
+
