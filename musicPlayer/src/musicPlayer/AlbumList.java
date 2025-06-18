@@ -37,19 +37,37 @@ public class AlbumList {
      * Xóa album theo ID.
      */
     public boolean deleteAlbum(String albumID) {
-        return albums.removeIf(album -> album.getAlbumID().equals(albumID));
+        boolean removed = false;
+            try {
+                removed = albums.removeIf(album -> album.getAlbumID().equals(albumID));
+                if (!removed) {
+                        System.out.println("Không tìm thấy album để xóa với ID: " + albumID);
+                }
+            } catch (Exception e) {
+                System.out.println("Lỗi trong deleteAlbum: " + e.getMessage());
+            } finally {
+// Có thể log hoặc cleanup nếu cần
+            }
+        return removed;
     }
+    
 
     /**
      * In danh sách album.
      */
     public void printAlbumList() {
-        if (albums.isEmpty()) {
-            System.out.println("No albums found.");
-            return;
-        }
-        for (Album album : albums) {
-            System.out.println("Album ID: " + album.getAlbumID() + " Title: " + album.getAlbumTitle());
+        try {
+            if (albums.isEmpty()) {
+                System.out.println("No albums found.");
+                return;
+            }
+            for (Album album : albums) {
+                System.out.println("Album ID: " + album.getAlbumID() + " Title: " + album.getAlbumTitle());
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi trong printAlbumList: " + e.getMessage());
+        } finally {
+// Có thể log hoặc cleanup nếu cần
         }
     }
 
@@ -57,6 +75,15 @@ public class AlbumList {
      * Lấy toàn bộ danh sách album (nếu cần dùng ngoài class).
      */
     public List<Album> getAlbums() {
-        return new ArrayList<>(albums);
+        List<Album> result = new ArrayList<>();
+        try {
+            result = new ArrayList<>(albums);
+        } catch (Exception e) {
+            System.out.println("Lỗi trong getAlbums: " + e.getMessage());
+        } finally {
+// Có thể log hoặc cleanup nếu cần
+        }
+    return result;
+
     }
 }
