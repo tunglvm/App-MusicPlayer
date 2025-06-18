@@ -9,9 +9,25 @@ public class Copyright {
     private String description;
 
     public Copyright(String owner, String year, String description) {
-        this.owner = owner;
-        this.year = year;
-        this.description = description;
+        try {
+            if (owner == null || owner.isEmpty()) {
+                throw new IllegalArgumentException("Owner không thể là null hoặc rỗng.");
+            }
+            if (year == null || year.isEmpty()) {
+                throw new IllegalArgumentException("Year không thể là null hoặc rỗng.");
+            }
+            if (description == null || description.isEmpty()) {
+                throw new IllegalArgumentException("Description không thể là null hoặc rỗng.");
+            }
+
+            this.owner = owner;
+            this.year = year;
+            this.description = description;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Lỗi trong constructor Copyright: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Lỗi không xác định trong constructor Copyright: " + e.getMessage());
+        }
     }
 
     public String getOwner() {
@@ -19,7 +35,16 @@ public class Copyright {
     }
 
     public void setOwner(String owner) {
-        this.owner = owner;
+        try {
+            if (owner == null || owner.isEmpty()) {
+                throw new IllegalArgumentException("Owner không thể là null hoặc rỗng.");
+            }
+            this.owner = owner;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Lỗi trong setOwner: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Lỗi không xác định trong setOwner: " + e.getMessage());
+        }
     }
 
     public String getYear() {
@@ -27,7 +52,16 @@ public class Copyright {
     }
 
     public void setYear(String year) {
-        this.year = year;
+        try {
+            if (year == null || year.isEmpty()) {
+                throw new IllegalArgumentException("Year không thể là null hoặc rỗng.");
+            }
+            this.year = year;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Lỗi trong setYear: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Lỗi không xác định trong setYear: " + e.getMessage());
+        }
     }
 
     public String getDescription() {
@@ -35,11 +69,24 @@ public class Copyright {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        try {
+            if (description == null || description.isEmpty()) {
+                throw new IllegalArgumentException("Description không thể là null hoặc rỗng.");
+            }
+            this.description = description;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Lỗi trong setDescription: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Lỗi không xác định trong setDescription: " + e.getMessage());
+        }
     }
 
-    @Override
     public String toString() {
-        return "Copyright © " + year + " by " + owner + ". " + description;
+        try {
+            return "Copyright © " + year + " by " + owner + ". " + description;
+        } catch (Exception e) {
+            System.out.println("Lỗi trong toString: " + e.getMessage());
+            return "Lỗi khi hiển thị thông tin bản quyền.";
+        }
     }
 }
