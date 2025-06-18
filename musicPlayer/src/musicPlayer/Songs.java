@@ -11,6 +11,8 @@ public class Songs {
         this.songID = songID;
     }
 
+
+    //gettes, setters
     public void setSongInfo(String songTitle, String genre, int duration, String artist) {
         this.songTitle = songTitle;
         this.genre = genre;

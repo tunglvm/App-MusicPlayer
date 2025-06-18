@@ -12,6 +12,7 @@ public class Artist {
         this.name = name;
     }
 
+    //setters, getters
     public void setArtistInfo(String nationality, String dateOfBirth) {
         this.nationality = nationality;
         this.dateOfBirth = dateOfBirth;
