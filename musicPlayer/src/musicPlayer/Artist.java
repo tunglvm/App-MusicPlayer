@@ -8,18 +8,30 @@ public class Artist {
     private Album album;
 
     public Artist(String artistID, String name) {
-        this.artistID = artistID;
-        this.name = name;
+        try {
+            this.artistID = artistID;
+            this.name = name;
+        } catch (Exception e) {
+            System.out.println("Lỗi trong Artist Constructor: " + e.getMessage());
+        }
     }
 
-    //setters, getters
+    // Setters và getters
     public void setArtistInfo(String nationality, String dateOfBirth) {
-        this.nationality = nationality;
-        this.dateOfBirth = dateOfBirth;
+        try {
+            this.nationality = nationality;
+            this.dateOfBirth = dateOfBirth;
+        } catch (Exception e) {
+            System.out.println("Lỗi trong setArtistInfo: " + e.getMessage());
+        }
     }
 
     public void setArtistProduct(Album album) {
-        this.album = album;
+        try {
+            this.album = album;
+        } catch (Exception e) {
+            System.out.println("Lỗi trong setArtistProduct: " + e.getMessage());
+        }
     }
 
     public String getArtistID() {
@@ -31,7 +43,11 @@ public class Artist {
     }
 
     public void setName(String newName) {
-        this.name = newName;
+        try {
+            this.name = newName;
+        } catch (Exception e) {
+            System.out.println("Lỗi trong setName: " + e.getMessage());
+        }
     }
 
     public String getNationality() {
@@ -47,6 +63,10 @@ public class Artist {
     }
 
     public void displayArtistInfo() {
-        System.out.println("Artist ID: " + artistID + ", Name: " + name);
+        try {
+            System.out.println("Artist ID: " + artistID + ", Name: " + name);
+        } catch (Exception e) {
+            System.out.println("Lỗi trong displayArtistInfo: " + e.getMessage());
+        }
     }
 }
