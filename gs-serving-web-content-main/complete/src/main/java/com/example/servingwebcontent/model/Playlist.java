@@ -1,32 +1,50 @@
-package com.example.musicplayer.model;
+package com.example.servingwebcontent.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist {
     private Long id;
     private String name;
-    private List<Song> songs;
+    private List<Song> songs = new ArrayList<>();
 
-    public Playlist() {}
-
+    // Constructor đầy đủ
     public Playlist(Long id, String name, List<Song> songs) {
-        try {
-            this.id = id;
-            this.name = name;
-            this.songs = songs;
-        } catch (Exception e) {
-            System.out.println("Lỗi khi tạo Playlist: " + e.getMessage());
-        } finally {
-            System.out.println("Khởi tạo Playlist hoàn tất.");
-        }
+        this.id = id;
+        this.name = name;
+        this.songs = songs;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // Constructor chỉ có name (tạo mới)
+    public Playlist(String name) {
+        this.name = name;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public Playlist() {
+    }
 
-    public List<Song> getSongs() { return songs; }
-    public void setSongs(List<Song> songs) { this.songs = songs; }
+    // Getter và Setter
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
 }

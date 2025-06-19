@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Album</title>
+</head>
+<body>
+    <h1>Danh sách Album</h1>
+
+    <ul>
+        <li th:each="album : ${albums}" th:text="${album.title}">Tên album</li>
+    </ul>
+
+    <form th:action="@{/albums}" method="post">
+        <input type="text" name="title" placeholder="Tên Album mới" required>
+        <button type="submit">Thêm Album</button>
+    </form>
+
+    <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+</body>
+</html>
