@@ -22,7 +22,7 @@ public class PlayerController {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Hoàn tất xử lý PlayerController.");
+            System.out.println("Xử lý player hoàn tất.");
         }
         return "player";
     }

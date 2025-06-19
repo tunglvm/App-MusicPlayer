@@ -1,29 +1,21 @@
 package com.example.servingwebcontent.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Album {
     private Long id;
-    private String title;
-    private List<Song> songs = new ArrayList<>();
+    private String name;
+    private List<Song> songs;
 
-    // Constructor đầy đủ
-    public Album(Long id, String title, List<Song> songs) {
+    public Album(Long id, String name, List<Song> songs) {
         this.id = id;
-        this.title = title;
+        this.name = name;
         this.songs = songs;
-    }
-
-    // Constructor chỉ có title
-    public Album(String title) {
-        this.title = title;
     }
 
     public Album() {
     }
 
-    // Getter và Setter
     public Long getId() {
         return id;
     }
@@ -32,12 +24,12 @@ public class Album {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Song> getSongs() {

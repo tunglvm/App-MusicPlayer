@@ -20,16 +20,16 @@ public class AlbumController {
                 new Song(2L, "Bài hát B", "/audio/song2.mp3")
             );
 
-            List<Album> albumList = Arrays.asList(
+            List<Album> albums = Arrays.asList(
                 new Album(1L, "Album 1", songs),
                 new Album(2L, "Album 2", songs)
             );
 
-            model.addAttribute("albums", albumList);
+            model.addAttribute("albums", albums);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Hiển thị album thành công.");
+            System.out.println("Tải album thành công.");
         }
 
         return "album";

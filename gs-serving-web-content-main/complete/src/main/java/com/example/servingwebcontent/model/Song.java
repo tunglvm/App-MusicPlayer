@@ -2,26 +2,18 @@ package com.example.servingwebcontent.model;
 
 public class Song {
     private Long id;
-    private String title;
-    private String filePath;
+    private String name;
+    private String url;
 
-    // Constructor đầy đủ
-    public Song(Long id, String title, String filePath) {
+    public Song(Long id, String name, String url) {
         this.id = id;
-        this.title = title;
-        this.filePath = filePath;
-    }
-
-    // Constructor không có id (dành cho trường hợp tạo mới)
-    public Song(String title, String filePath) {
-        this.title = title;
-        this.filePath = filePath;
+        this.name = name;
+        this.url = url;
     }
 
     public Song() {
     }
 
-    // Getter và Setter
     public Long getId() {
         return id;
     }
@@ -30,19 +22,19 @@ public class Song {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getUrl() {
+        return url;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
