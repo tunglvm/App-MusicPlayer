@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trình phát nhạc</title>
+</head>
+<body>
+    <h1>Trình phát nhạc</h1>
+
+    <div th:each="song : ${songs}">
+        <p th:text="${song.title}">Tên bài hát</p>
+        <audio controls th:src="@{${song.url}}"></audio>
+    </div>
+
+    <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+</body>
+</html>
