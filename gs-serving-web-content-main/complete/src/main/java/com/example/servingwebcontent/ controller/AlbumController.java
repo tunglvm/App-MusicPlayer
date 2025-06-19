@@ -13,19 +13,25 @@ import java.util.List;
 public class AlbumController {
 
     @GetMapping("/album")
-    public String viewAlbum(Model model) {
+    public String showAlbums(Model model) {
         try {
             List<Song> songs = Arrays.asList(
-                new Song(1L, "Ca khúc X", "/audio/x.mp3"),
-                new Song(2L, "Ca khúc Y", "/audio/y.mp3")
+                new Song(1L, "Bài hát A", "/audio/song1.mp3"),
+                new Song(2L, "Bài hát B", "/audio/song2.mp3")
             );
-            Album album = new Album(1L, "Album Xuân Hè", songs);
-            model.addAttribute("album", album);
+
+            List<Album> albumList = Arrays.asList(
+                new Album(1L, "Album 1", songs),
+                new Album(2L, "Album 2", songs)
+            );
+
+            model.addAttribute("albums", albumList);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Hoàn tất xử lý AlbumController.");
+            System.out.println("Hiển thị album thành công.");
         }
+
         return "album";
     }
 }
