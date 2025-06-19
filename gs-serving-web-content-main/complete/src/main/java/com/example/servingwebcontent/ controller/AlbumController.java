@@ -1,38 +1,34 @@
 package com.example.musicplayer.controller;
 
 import com.example.musicplayer.model.Album;
-import com.example.musicplayer.model.Song;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/albums")
 public class AlbumController {
-    private List<Album> albums = new ArrayList<>();
+    private List<Album> albumList = new ArrayList<>();
 
     @GetMapping
-    public String listAlbums(Model model) {
+    public String getAllAlbums(Model model) {
         try {
-            model.addAttribute("albums", albums);
+            model.addAttribute("albums", albumList);
         } catch (Exception e) {
-            model.addAttribute("error", "Lỗi khi tải danh sách album");
-        } finally {
-            System.out.println("[GET] /albums");
+            model.addAttribute("error", "Lỗi khi lấy danh sách album");
         }
         return "album";
     }
 
     @PostMapping
-    public String addAlbum(@RequestParam String title) {
+    public String createAlbum(@RequestParam String title) {
         try {
-            albums.add(new Album((long) (albums.size() + 1), title, new ArrayList<>()));
+            albumList.add(new Album(title));
         } catch (Exception e) {
-            System.out.println("Lỗi tạo album: " + e.getMessage());
-        } finally {
-            System.out.println("[POST] /albums");
+            return "redirect:/albums?error=1";
         }
         return "redirect:/albums";
     }

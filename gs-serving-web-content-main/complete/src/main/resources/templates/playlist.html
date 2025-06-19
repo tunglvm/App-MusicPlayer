@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Danh sách Playlist</title>
+    <title>Playlist</title>
 </head>
 <body>
     <h1>Danh sách Playlist</h1>
@@ -10,7 +10,7 @@
         <li th:each="playlist : ${playlists}" th:text="${playlist.name}">Tên playlist</li>
     </ul>
 
-    <form th:action="@{/playlists}" method="post">
+    <form th:action="@{/playlist}" method="post">
         <input type="text" name="name" placeholder="Tên Playlist mới" required>
         <button type="submit">Thêm Playlist</button>
     </form>
