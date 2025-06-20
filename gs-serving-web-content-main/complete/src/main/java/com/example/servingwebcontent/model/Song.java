@@ -2,39 +2,55 @@ package com.example.servingwebcontent.model;
 
 public class Song {
     private Long id;
-    private String name;
-    private String url;
+    private String title;
+    private String artist;
+    private int duration;
 
-    public Song(Long id, String name, String url) {
+    // Constructor không tham số
+    public Song() {}
+
+    // Constructor đầy đủ 4 tham số
+    public Song(Long id, String title, String artist, int duration) {
         this.id = id;
-        this.name = name;
-        this.url = url;
+        this.title = title;
+        this.artist = artist;
+        this.duration = duration;
     }
 
-    public Song() {
+    // Constructor 3 tham số (nếu chỉ cần id, title, artist)
+    public Song(Long id, String title, String artist) {
+        this.id = id;
+        this.title = title;
+        this.artist = artist;
+        this.duration = 0; // hoặc giá trị mặc định
     }
 
+    // Getter và Setter
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getArtist() {
+        return artist;
+    }
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 
-    public String getUrl() {
-        return url;
+    public int getDuration() {
+        return duration;
     }
-
-    public void setUrl(String url) {
-        this.url = url;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }
