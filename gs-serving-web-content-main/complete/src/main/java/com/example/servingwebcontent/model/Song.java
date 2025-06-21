@@ -5,24 +5,27 @@ public class Song {
     private String title;
     private String artist;
     private int duration;
+    private String url;
 
     // Constructor không tham số
     public Song() {}
 
     // Constructor đầy đủ 4 tham số
-    public Song(Long id, String title, String artist, int duration) {
+    public Song(Long id, String title, String artist, int duration, String url) {
         this.id = id;
         this.title = title;
         this.artist = artist;
         this.duration = duration;
+        this.url = url;
     }
 
     // Constructor 3 tham số (nếu chỉ cần id, title, artist)
-    public Song(Long id, String title, String artist) {
+    public Song(Long id, String title, String url) {
         this.id = id;
         this.title = title;
-        this.artist = artist;
+        this.artist = "";
         this.duration = 0; // hoặc giá trị mặc định
+        this.url = url;
     }
 
     // Getter và Setter
@@ -52,5 +55,13 @@ public class Song {
     }
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public String getUrl(){
+        return url;
+    }
+
+    public void setUrl(String url){
+        this.url = url;
     }
 }

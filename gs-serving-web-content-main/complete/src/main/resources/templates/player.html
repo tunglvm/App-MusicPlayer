@@ -8,7 +8,7 @@
     <h1>Danh sách bài hát</h1>
     <ul>
         <li th:each="song : ${songs}">
-            <p th:text="${song.name}">Tên bài hát</p>
+            <p th:text="${song.title}">Tên bài hát</p>
             <audio controls th:src="@{${song.url}}"></audio>
         </li>
     </ul>
