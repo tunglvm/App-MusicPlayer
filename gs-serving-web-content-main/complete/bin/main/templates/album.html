@@ -6,13 +6,11 @@
 </head>
 <body>
     <h1>Danh sách Album</h1>
-
     <div th:each="album : ${albums}">
         <h2 th:text="${album.name}">Tên Album</h2>
-
         <ul>
             <li th:each="song : ${album.songs}">
-                <p th:text="${song.name}">Tên bài hát</p>
+                <p th:text="${song.title}">Tên bài hát</p>
                 <audio controls th:src="@{${song.url}}"></audio>
             </li>
         </ul>
