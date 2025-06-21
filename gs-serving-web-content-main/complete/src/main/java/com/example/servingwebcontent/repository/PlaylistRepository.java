@@ -16,14 +16,47 @@ public class PlaylistRepository {
              ResultSet rs = stmt.executeQuery("SELECT * FROM playlist")) {
             while (rs.next()) {
                 Playlist playlist = new Playlist();
-                playlist.setId(rs.getLong("playlistId"));
+                playlist.setId(rs.getLong("id"));
                 playlist.setName(rs.getString("name"));
-                // playlist.setSongs(...) nếu cần lấy danh sách bài hát
                 playlists.add(playlist);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return playlists;
+    }
+
+    public void addPlaylist(Playlist playlist) {
+        String sql = "INSERT INTO playlist (name) VALUES (?)";
+        try (Connection conn = db.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, playlist.getName());
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePlaylist(Playlist playlist) {
+        String sql = "UPDATE playlist SET name = ? WHERE id = ?";
+        try (Connection conn = db.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, playlist.getName());
+            stmt.setLong(2, playlist.getId());
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deletePlaylist(long id) {
+        String sql = "DELETE FROM playlist WHERE id = ?";
+        try (Connection conn = db.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

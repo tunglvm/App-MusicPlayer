@@ -16,14 +16,47 @@ public class PlayerRepository {
              ResultSet rs = stmt.executeQuery("SELECT * FROM player")) {
             while (rs.next()) {
                 Player player = new Player();
-                player.setId(rs.getLong("playerId"));
+                player.setId(rs.getLong("id"));
                 player.setName(rs.getString("name"));
-                // Thêm các trường khác nếu có
                 players.add(player);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return players;
+    }
+
+    public void addPlayer(Player player) {
+        String sql = "INSERT INTO player (name) VALUES (?)";
+        try (Connection conn = db.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, player.getName());
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePlayer(Player player) {
+        String sql = "UPDATE player SET name = ? WHERE id = ?";
+        try (Connection conn = db.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, player.getName());
+            stmt.setLong(2, player.getId());
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deletePlayer(long id) {
+        String sql = "DELETE FROM player WHERE id = ?";
+        try (Connection conn = db.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
