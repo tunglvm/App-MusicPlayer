@@ -1,12 +1,9 @@
-static/index.html
 com/example/servingwebcontent/repository/AlbumRepository.class
 com/example/servingwebcontent/model/Playlist.class
 com/example/servingwebcontent/GreetingController.class
-com/example/servingwebcontent/controller/PlayerController.class
 com/example/servingwebcontent/repository/PlayerRepository.class
 com/example/servingwebcontent/repository/UserRepository.class
 com/example/servingwebcontent/model/Player.class
-com/example/servingwebcontent/controller/SongController.class
 com/example/servingwebcontent/model/User.class
 com/example/servingwebcontent/repository/PlaylistRepository.class
 com/example/servingwebcontent/model/Album.class
@@ -15,7 +12,6 @@ com/example/servingwebcontent/repository/SongRepository.class
 com/example/servingwebcontent/database/UserAiven.class
 com/example/servingwebcontent/database/TestAivenConnection.class
 com/example/servingwebcontent/database/aivenConnection.class
-templates/playlist.html
 com/example/servingwebcontent/controller/PlaylistController.class
 com/example/servingwebcontent/controller/AlbumController.class
 com/example/servingwebcontent/model/Song.class
