@@ -14,37 +14,58 @@ public class UserController {
 
     @GetMapping("/user")
     public String getUserPage(Model model) {
-        List<User> users = userRepository.getAllUsers();
-        model.addAttribute("users", users);
-        model.addAttribute("user", new User());
-        return "user";
+        try {
+            List<User> users = userRepository.getAllUsers();
+            model.addAttribute("users", users);
+            model.addAttribute("user", new User());
+            return "user";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi tải danh sách người dùng!");
+            return "error";
+        }
     }
 
     @PostMapping("/user")
-    public String addUser(@RequestParam String username,
-                          @RequestParam String email) {
-        User user = new User();
-        user.setUsername(username);
-        user.setEmail(email);
-        userRepository.addUser(user);
-        return "redirect:/user";
+    public String addUser(@RequestParam String username, @RequestParam String password, Model model) {
+        try {
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            userRepository.addUser(user);
+            return "redirect:/user";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi thêm người dùng!");
+            return "error";
+        }
     }
 
     @PostMapping("/user/update")
-    public String updateUser(@RequestParam long id,
-                             @RequestParam String username,
-                             @RequestParam String email) {
-        User user = new User();
-        user.setId(id);
-        user.setUsername(username);
-        user.setEmail(email);
-        userRepository.updateUser(user);
-        return "redirect:/user";
+    public String updateUser(@RequestParam int id, @RequestParam String username, @RequestParam String password, Model model) {
+        try {
+            User user = new User();
+            user.setId(id);
+            user.setUsername(username);
+            user.setPassword(password);
+            userRepository.updateUser(user);
+            return "redirect:/user";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi cập nhật người dùng!");
+            return "error";
+        }
     }
 
     @GetMapping("/user/delete/{id}")
-    public String deleteUser(@PathVariable long id) {
-        userRepository.deleteUser(id);
-        return "redirect:/user";
+    public String deleteUser(@PathVariable int id, Model model) {
+        try {
+            userRepository.deleteUser(id);
+            return "redirect:/user";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi xóa người dùng!");
+            return "error";
+        }
     }
 }

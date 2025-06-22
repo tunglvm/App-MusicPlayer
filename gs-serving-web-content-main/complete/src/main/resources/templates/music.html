@@ -128,7 +128,7 @@
                 </button>
             </td>
             <td>
-                <a th:href="@{'/music/song/delete/' + ${song.id}}">
+                <a th:href="@{'/music/delete/' + ${song.id}}">
                     <button class="delete-btn" type="button"><i class="fa-solid fa-trash"></i></button>
                 </a>
             </td>
@@ -136,7 +136,7 @@
     </table>
 
     <h3><i class="fa-solid fa-plus"></i> Add Song</h3>
-    <form class="add-form" th:action="@{/music/song}" method="post">
+    <form class="add-form" th:action="@{/music}" method="post">
         <input type="text" name="title" placeholder="Title" required />
         <input type="text" name="artist" placeholder="Artist" required />
         <input type="number" name="duration" placeholder="Duration (s)" required min="1" />

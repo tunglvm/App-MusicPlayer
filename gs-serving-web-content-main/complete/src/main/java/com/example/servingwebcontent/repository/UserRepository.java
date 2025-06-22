@@ -1,65 +1,50 @@
 package com.example.servingwebcontent.repository;
 
 import com.example.servingwebcontent.model.User;
-import com.example.servingwebcontent.database.aivenConnection;
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository {
-    private aivenConnection db = new aivenConnection();
+    private final List<User> users = new ArrayList<>();
 
     public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        try (Connection conn = db.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM user")) {
-            while (rs.next()) {
-                User user = new User();
-                user.setId(rs.getLong("id"));
-                user.setUsername(rs.getString("username"));
-                user.setEmail(rs.getString("email"));
-                users.add(user);
-            }
+        try {
+            return new ArrayList<>(users);
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Lỗi khi lấy danh sách người dùng", e);
         }
-        return users;
     }
 
     public void addUser(User user) {
-        String sql = "INSERT INTO user (username, email) VALUES (?, ?)";
-        try (Connection conn = db.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getEmail());
-            stmt.executeUpdate();
+        try {
+            users.add(user);
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Lỗi khi thêm người dùng", e);
         }
     }
 
     public void updateUser(User user) {
-        String sql = "UPDATE user SET username = ?, email = ? WHERE id = ?";
-        try (Connection conn = db.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getEmail());
-            stmt.setLong(3, user.getId());
-            stmt.executeUpdate();
+        try {
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getId() == user.getId()) {
+                    users.set(i, user);
+                    return;
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Lỗi khi cập nhật người dùng", e);
         }
     }
 
-    public void deleteUser(long id) {
-        String sql = "DELETE FROM user WHERE id = ?";
-        try (Connection conn = db.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setLong(1, id);
-            stmt.executeUpdate();
+    public void deleteUser(int id) {
+        try {
+            users.removeIf(u -> u.getId() == id);
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Lỗi khi xóa người dùng", e);
         }
     }
 }

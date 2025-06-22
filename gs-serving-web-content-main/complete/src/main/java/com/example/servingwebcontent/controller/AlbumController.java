@@ -14,32 +14,56 @@ public class AlbumController {
 
     @GetMapping("/album")
     public String getAlbumPage(Model model) {
-        List<Album> albums = albumRepository.getAllAlbums();
-        model.addAttribute("albums", albums);
-        model.addAttribute("album", new Album());
-        return "album";
+        try {
+            List<Album> albums = albumRepository.getAllAlbums();
+            model.addAttribute("albums", albums);
+            model.addAttribute("album", new Album());
+            return "album";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi tải danh sách album!");
+            return "error";
+        }
     }
 
     @PostMapping("/album")
-    public String addAlbum(@RequestParam String name) {
-        Album album = new Album();
-        album.setName(name);
-        albumRepository.addAlbum(album);
-        return "redirect:/album";
+    public String addAlbum(@RequestParam String name, Model model) {
+        try {
+            Album album = new Album();
+            album.setName(name);
+            albumRepository.addAlbum(album);
+            return "redirect:/album";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi thêm album!");
+            return "error";
+        }
     }
 
     @PostMapping("/album/update")
-    public String updateAlbum(@RequestParam int id, @RequestParam String name) {
-        Album album = new Album();
-        album.setId(id);
-        album.setName(name);
-        albumRepository.updateAlbum(album);
-        return "redirect:/album";
+    public String updateAlbum(@RequestParam int id, @RequestParam String name, Model model) {
+        try {
+            Album album = new Album();
+            album.setId(id);
+            album.setName(name);
+            albumRepository.updateAlbum(album);
+            return "redirect:/album";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi cập nhật album!");
+            return "error";
+        }
     }
 
     @GetMapping("/album/delete/{id}")
-    public String deleteAlbum(@PathVariable int id) {
-        albumRepository.deleteAlbum(id);
-        return "redirect:/album";
+    public String deleteAlbum(@PathVariable int id, Model model) {
+        try {
+            albumRepository.deleteAlbum(id);
+            return "redirect:/album";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi xóa album!");
+            return "error";
+        }
     }
 }
