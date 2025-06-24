@@ -106,6 +106,23 @@
 <body>
 <div class="container">
     <h2><i class="fa-solid fa-music"></i> Song List</h2>
+
+    <!-- Form tìm kiếm -->
+    <form th:action="@{/music/search}" method="get" style="margin-bottom: 18px; display: flex; gap: 8px;">
+        <input type="text" name="query" th:value="${query}" placeholder="Search by title or artist..." style="flex:1; padding:6px 10px; border-radius:5px; border:1px solid #ccc;">
+        <button type="submit" style="background:#3182ce; color:#fff; border:none; border-radius:5px; padding:7px 18px; cursor:pointer;">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+        <a th:href="@{/music}" style="margin-left:8px; color:#3182ce; text-decoration:none; align-self:center;">Reset</a>
+    </form>
+
+    <!-- Hiển thị thông báo khi tìm kiếm -->
+    <div th:if="${query}">
+        <p style="color:#3182ce; margin-bottom:10px;">
+            Search results for "<b th:text="${query}"></b>"
+        </p>
+    </div>
+
     <table>
         <tr>
             <th>#</th>

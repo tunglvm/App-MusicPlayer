@@ -1,165 +1,90 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Music Player</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Music Library</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f6f8fa;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            padding: 32px 40px 24px 40px;
-        }
-        h2 {
-            color: #2d3748;
-            margin-bottom: 10px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 24px;
-        }
-        th, td {
-            padding: 10px 8px;
-            text-align: left;
-        }
-        th {
-            background: #f0f0f0;
-            color: #333;
-        }
-        tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-        tr:hover {
-            background: #e6f7ff;
-        }
-        .play-btn, .delete-btn {
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 1.2em;
-        }
-        .play-btn {
-            color: #1db954;
-        }
-        .delete-btn {
-            color: #e53e3e;
-        }
-        .add-form {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
-            align-items: center;
-        }
-        .add-form input[type="text"], .add-form input[type="number"] {
-            padding: 6px 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-        .add-form button {
-            background: #1db954;
-            color: #fff;
-            border: none;
-            padding: 7px 18px;
-            border-radius: 5px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .add-form button:hover {
-            background: #159c41;
-        }
-        .player-bar {
-            display: flex;
-            align-items: center;
-            background: #222;
-            color: #fff;
-            border-radius: 8px;
-            padding: 18px 24px;
-            margin-top: 32px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-        }
-        .player-bar audio {
-            width: 300px;
-            margin-right: 24px;
-        }
-        .now-playing {
-            font-size: 1.1em;
-            margin-left: 12px;
-        }
-        @media (max-width: 700px) {
-            .container { padding: 12px; }
-            .player-bar { flex-direction: column; align-items: flex-start; }
-            .player-bar audio { width: 100%; margin: 0 0 10px 0; }
-        }
+        body { font-family: Arial; background-color: #f5f5f5; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; background-color: #fff; }
+        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+        h2 { margin-top: 30px; }
+        form { margin-bottom: 20px; }
+        input[type=text], input[type=number] { padding: 5px; margin-right: 10px; }
+        img { max-width: 50px; max-height: 50px; }
+        audio { width: 100%; margin-top: 10px; }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2><i class="fa-solid fa-music"></i> Song List</h2>
-    <table>
-        <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Duration</th>
-            <th>Play</th>
-            <th>Delete</th>
-        </tr>
-        <tr th:each="song, iterStat : ${songs}">
-            <td th:text="${iterStat.count}"></td>
-            <td th:text="${song.title}"></td>
-            <td th:text="${song.artist}"></td>
-            <td th:text="${song.duration} + 's'"></td>
-            <td>
-                <button class="play-btn"
-                    type="button"
-                    th:onclick="'playSong(\'' + ${song.title} + '\', \'' + ${song.artist} + '\', \'' + ${song.url} + '\')'">
-                    <i class="fa-solid fa-play"></i>
-                </button>
-            </td>
-            <td>
-                <a th:href="@{'/music/delete/' + ${song.id}}">
-                    <button class="delete-btn" type="button"><i class="fa-solid fa-trash"></i></button>
-                </a>
-            </td>
-        </tr>
-    </table>
 
-    <h3><i class="fa-solid fa-plus"></i> Add Song</h3>
-    <form class="add-form" th:action="@{/music}" method="post">
-        <input type="text" name="title" placeholder="Title" required />
-        <input type="text" name="artist" placeholder="Artist" required />
-        <input type="number" name="duration" placeholder="Duration (s)" required min="1" />
-        <input type="text" name="url" placeholder="Song URL (mp3)" />
-        <button type="submit"><i class="fa-solid fa-plus"></i> Add Song</button>
-    </form>
+<h1>Music Library 🎵</h1>
 
-    <div class="player-bar">
-        <audio id="audioPlayer" controls>
-            <source id="audioSource" src="" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <span class="now-playing" id="nowPlaying">No song playing</span>
-    </div>
-</div>
+<!-- 🔍 Tìm kiếm và sắp xếp -->
+<form th:action="@{/music/search}" method="get">
+    <input type="text" name="query" placeholder="Tìm kiếm bài hát..." th:value="${query}">
+    <button type="submit">Tìm</button>
+    <a th:href="@{/music}">Reset</a>
+</form>
 
-<script>
-    function playSong(title, artist, url) {
-        document.getElementById('audioSource').src = url;
-        document.getElementById('audioPlayer').load();
-        document.getElementById('audioPlayer').play();
-        document.getElementById('nowPlaying').innerText = "Now playing: " + artist + " - " + title;
-    }
-</script>
+<p>Sắp xếp: 
+    <a th:href="@{/music(sort='title')}">A → Z</a> | 
+    <a th:href="@{/music}">Mặc định</a>
+</p>
+
+<!-- ➕ Thêm bài hát -->
+<h2>Thêm bài hát</h2>
+<form th:action="@{/music/add}" method="post">
+    <input type="text" name="title" placeholder="Tên bài hát" required>
+    <input type="text" name="artist" placeholder="Nghệ sĩ" required>
+    <input type="number" name="duration" placeholder="Thời lượng (s)" required>
+    <input type="text" name="url" placeholder="URL nhạc (tùy chọn)">
+    <input type="text" name="coverUrl" placeholder="URL ảnh bìa (tùy chọn)">
+    <button type="submit">Thêm</button>
+</form>
+
+<!-- 📋 Danh sách bài hát -->
+<h2>Danh sách bài hát</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Nghệ sĩ</th>
+        <th>Thời lượng</th>
+        <th>Ảnh</th>
+        <th>Phát</th>
+        <th>Hành động</th>
+    </tr>
+    <tr th:each="song : ${songs}">
+        <td th:text="${song.id}"></td>
+        <td th:text="${song.title}"></td>
+        <td th:text="${song.artist}"></td>
+        <td th:text="${song.duration} + 's'"></td>
+        <td>
+            <img th:if="${song.coverUrl != null}" th:src="${song.coverUrl}" alt="cover">
+            <span th:if="${song.coverUrl == null}">Không có</span>
+        </td>
+        <td>
+            <audio controls th:if="${song.url != null}" th:src="${song.url}"></audio>
+            <span th:if="${song.url == null}">Không có URL</span>
+        </td>
+        <td>
+            <!-- ✏️ Form sửa -->
+            <form th:action="@{/music/update}" method="post">
+                <input type="hidden" name="id" th:value="${song.id}" />
+                <input type="text" name="title" th:placeholder="${song.title}" required>
+                <input type="text" name="artist" th:placeholder="${song.artist}" required>
+                <input type="number" name="duration" th:placeholder="${song.duration}" required>
+                <input type="text" name="url" th:placeholder="${song.url}">
+                <input type="text" name="coverUrl" th:placeholder="${song.coverUrl}">
+                <button type="submit">Sửa</button>
+            </form>
+            <!-- 🗑 Xóa -->
+            <a th:href="@{'/music/delete/' + ${song.id}}">Xóa</a>
+        </td>
+    </tr>
+</table>
+
+<!-- 🧹 Xóa tất cả -->
+<br>
+<a th:href="@{/music/clear}" onclick="return confirm('Bạn có chắc muốn xóa tất cả không?')">🧹 Xóa tất cả bài hát</a>
+
 </body>
 </html>

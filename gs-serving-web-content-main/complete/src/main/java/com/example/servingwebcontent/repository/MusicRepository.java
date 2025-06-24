@@ -31,4 +31,23 @@ public class MusicRepository {
             }
         }
     }
+
+    // Xóa tất cả bài hát
+    public void clearAllSongs() {
+        songs.clear();
+        idGen.set(1); // reset lại id nếu muốn
+    }
+
+    // Tìm kiếm bài hát theo tiêu đề hoặc nghệ sĩ
+    public List<Song> searchSongs(String query) {
+        String lowerQuery = query.toLowerCase();
+        List<Song> result = new ArrayList<>();
+        for (Song song : songs) {
+            if (song.getTitle().toLowerCase().contains(lowerQuery) ||
+                song.getArtist().toLowerCase().contains(lowerQuery)) {
+                result.add(song);
+            }
+        }
+        return result;
+    }
 }
