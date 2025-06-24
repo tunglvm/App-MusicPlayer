@@ -1,182 +1,91 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Music Player</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f6f8fa;
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f3f4f6;
+            margin: 40px;
         }
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
+        h1 {
+            color: #333;
+        }
+        .form, .table, .player {
             background: #fff;
+            padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            padding: 32px 40px 24px 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
         }
-        h2 {
-            color: #2d3748;
-            margin-bottom: 10px;
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 24px;
         }
-        th, td {
-            padding: 10px 8px;
-            text-align: left;
+        td, th {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
         }
-        th {
-            background: #f0f0f0;
-            color: #333;
+        audio {
+            width: 100%;
         }
-        tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-        tr:hover {
-            background: #e6f7ff;
-        }
-        .play-btn, .delete-btn {
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 1.2em;
-        }
-        .play-btn {
-            color: #1db954;
-        }
-        .delete-btn {
-            color: #e53e3e;
-        }
-        .add-form {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
-            align-items: center;
-        }
-        .add-form input[type="text"], .add-form input[type="number"] {
-            padding: 6px 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-        .add-form button {
-            background: #1db954;
-            color: #fff;
-            border: none;
-            padding: 7px 18px;
-            border-radius: 5px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .add-form button:hover {
-            background: #159c41;
-        }
-        .player-bar {
-            display: flex;
-            align-items: center;
-            background: #222;
-            color: #fff;
-            border-radius: 8px;
-            padding: 18px 24px;
-            margin-top: 32px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-        }
-        .player-bar audio {
-            width: 300px;
-            margin-right: 24px;
-        }
-        .now-playing {
-            font-size: 1.1em;
-            margin-left: 12px;
-        }
-        @media (max-width: 700px) {
-            .container { padding: 12px; }
-            .player-bar { flex-direction: column; align-items: flex-start; }
-            .player-bar audio { width: 100%; margin: 0 0 10px 0; }
+        .actions a {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2><i class="fa-solid fa-music"></i> Song List</h2>
+<h1>🎵 Danh sách bài hát</h1>
 
-    <!-- Form tìm kiếm -->
-    <form th:action="@{/music/search}" method="get" style="margin-bottom: 18px; display: flex; gap: 8px;">
-        <input type="text" name="query" th:value="${query}" placeholder="Search by title or artist..." style="flex:1; padding:6px 10px; border-radius:5px; border:1px solid #ccc;">
-        <button type="submit" style="background:#3182ce; color:#fff; border:none; border-radius:5px; padding:7px 18px; cursor:pointer;">
-            <i class="fa-solid fa-magnifying-glass"></i> Search
-        </button>
-        <a th:href="@{/music}" style="margin-left:8px; color:#3182ce; text-decoration:none; align-self:center;">Reset</a>
+<div class="form">
+    <form action="/music/add" method="post">
+        <input type="hidden" name="id" th:value="${music.id}">
+        <input type="text" name="title" placeholder="Tên bài hát" th:value="${music.title}" required>
+        <input type="text" name="artist" placeholder="Nghệ sĩ" th:value="${music.artist}" required>
+        <input type="text" name="url" placeholder="Link mp3" th:value="${music.url}" required>
+        <button type="submit">Lưu</button>
     </form>
-
-    <!-- Hiển thị thông báo khi tìm kiếm -->
-    <div th:if="${query}">
-        <p style="color:#3182ce; margin-bottom:10px;">
-            Search results for "<b th:text="${query}"></b>"
-        </p>
-    </div>
-
-    <table>
-        <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Duration</th>
-            <th>Play</th>
-            <th>Delete</th>
-        </tr>
-        <tr th:each="song, iterStat : ${songs}">
-            <td th:text="${iterStat.count}"></td>
-            <td th:text="${song.title}"></td>
-            <td th:text="${song.artist}"></td>
-            <td th:text="${song.duration} + 's'"></td>
-            <td>
-                <button class="play-btn"
-                    type="button"
-                    th:onclick="'playSong(\'' + ${song.title} + '\', \'' + ${song.artist} + '\', \'' + ${song.url} + '\')'">
-                    <i class="fa-solid fa-play"></i>
-                </button>
-            </td>
-            <td>
-                <a th:href="@{'/music/delete/' + ${song.id}}">
-                    <button class="delete-btn" type="button"><i class="fa-solid fa-trash"></i></button>
-                </a>
-            </td>
-        </tr>
-    </table>
-
-    <h3><i class="fa-solid fa-plus"></i> Add Song</h3>
-    <form class="add-form" th:action="@{/music}" method="post">
-        <input type="text" name="title" placeholder="Title" required />
-        <input type="text" name="artist" placeholder="Artist" required />
-        <input type="number" name="duration" placeholder="Duration (s)" required min="1" />
-        <input type="text" name="url" placeholder="Song URL (mp3)" />
-        <button type="submit"><i class="fa-solid fa-plus"></i> Add Song</button>
-    </form>
-
-    <div class="player-bar">
-        <audio id="audioPlayer" controls>
-            <source id="audioSource" src="" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <span class="now-playing" id="nowPlaying">No song playing</span>
-    </div>
 </div>
 
-<script>
-    function playSong(title, artist, url) {
-        document.getElementById('audioSource').src = url;
-        document.getElementById('audioPlayer').load();
-        document.getElementById('audioPlayer').play();
-        document.getElementById('nowPlaying').innerText = "Now playing: " + artist + " - " + title;
-    }
-</script>
+<div class="table">
+    <table>
+        <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Nghệ sĩ</th>
+            <th>Phát</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${musicList}">
+            <td th:text="${m.title}">Title</td>
+            <td th:text="${m.artist}">Artist</td>
+            <td><a th:href="@{/music/play/{id}(id=${m.id})}">▶️</a></td>
+            <td class="actions">
+                <a th:href="@{/music/edit/{id}(id=${m.id})}">✏️</a>
+                <a th:href="@{/music/delete/{id}(id=${m.id})}" onclick="return confirm('Xóa bài hát này?')">🗑️</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="player" th:if="${playing != null}">
+    <h2>Đang phát: <span th:text="${playing.title}"></span> - <span th:text="${playing.artist}"></span></h2>
+    <audio controls autoplay th:src="${playing.url}">Trình duyệt của bạn không hỗ trợ phát nhạc</audio>
+</div>
 </body>
 </html>

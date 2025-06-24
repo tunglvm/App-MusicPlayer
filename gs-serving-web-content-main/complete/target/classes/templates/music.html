@@ -1,90 +1,91 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Music Library</title>
+    <meta charset="UTF-8">
+    <title>Music Player</title>
     <style>
-        body { font-family: Arial; background-color: #f5f5f5; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; background-color: #fff; }
-        th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
-        h2 { margin-top: 30px; }
-        form { margin-bottom: 20px; }
-        input[type=text], input[type=number] { padding: 5px; margin-right: 10px; }
-        img { max-width: 50px; max-height: 50px; }
-        audio { width: 100%; margin-top: 10px; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f3f4f6;
+            margin: 40px;
+        }
+        h1 {
+            color: #333;
+        }
+        .form, .table, .player {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        audio {
+            width: 100%;
+        }
+        .actions a {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
+<h1>🎵 Danh sách bài hát</h1>
 
-<h1>Music Library 🎵</h1>
+<div class="form">
+    <form action="/music/add" method="post">
+        <input type="hidden" name="id" th:value="${music.id}">
+        <input type="text" name="title" placeholder="Tên bài hát" th:value="${music.title}" required>
+        <input type="text" name="artist" placeholder="Nghệ sĩ" th:value="${music.artist}" required>
+        <input type="text" name="url" placeholder="Link mp3" th:value="${music.url}" required>
+        <button type="submit">Lưu</button>
+    </form>
+</div>
 
-<!-- 🔍 Tìm kiếm và sắp xếp -->
-<form th:action="@{/music/search}" method="get">
-    <input type="text" name="query" placeholder="Tìm kiếm bài hát..." th:value="${query}">
-    <button type="submit">Tìm</button>
-    <a th:href="@{/music}">Reset</a>
-</form>
+<div class="table">
+    <table>
+        <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Nghệ sĩ</th>
+            <th>Phát</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${musicList}">
+            <td th:text="${m.title}">Title</td>
+            <td th:text="${m.artist}">Artist</td>
+            <td><a th:href="@{/music/play/{id}(id=${m.id})}">▶️</a></td>
+            <td class="actions">
+                <a th:href="@{/music/edit/{id}(id=${m.id})}">✏️</a>
+                <a th:href="@{/music/delete/{id}(id=${m.id})}" onclick="return confirm('Xóa bài hát này?')">🗑️</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
-<p>Sắp xếp: 
-    <a th:href="@{/music(sort='title')}">A → Z</a> | 
-    <a th:href="@{/music}">Mặc định</a>
-</p>
-
-<!-- ➕ Thêm bài hát -->
-<h2>Thêm bài hát</h2>
-<form th:action="@{/music/add}" method="post">
-    <input type="text" name="title" placeholder="Tên bài hát" required>
-    <input type="text" name="artist" placeholder="Nghệ sĩ" required>
-    <input type="number" name="duration" placeholder="Thời lượng (s)" required>
-    <input type="text" name="url" placeholder="URL nhạc (tùy chọn)">
-    <input type="text" name="coverUrl" placeholder="URL ảnh bìa (tùy chọn)">
-    <button type="submit">Thêm</button>
-</form>
-
-<!-- 📋 Danh sách bài hát -->
-<h2>Danh sách bài hát</h2>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Tên</th>
-        <th>Nghệ sĩ</th>
-        <th>Thời lượng</th>
-        <th>Ảnh</th>
-        <th>Phát</th>
-        <th>Hành động</th>
-    </tr>
-    <tr th:each="song : ${songs}">
-        <td th:text="${song.id}"></td>
-        <td th:text="${song.title}"></td>
-        <td th:text="${song.artist}"></td>
-        <td th:text="${song.duration} + 's'"></td>
-        <td>
-            <img th:if="${song.coverUrl != null}" th:src="${song.coverUrl}" alt="cover">
-            <span th:if="${song.coverUrl == null}">Không có</span>
-        </td>
-        <td>
-            <audio controls th:if="${song.url != null}" th:src="${song.url}"></audio>
-            <span th:if="${song.url == null}">Không có URL</span>
-        </td>
-        <td>
-            <!-- ✏️ Form sửa -->
-            <form th:action="@{/music/update}" method="post">
-                <input type="hidden" name="id" th:value="${song.id}" />
-                <input type="text" name="title" th:placeholder="${song.title}" required>
-                <input type="text" name="artist" th:placeholder="${song.artist}" required>
-                <input type="number" name="duration" th:placeholder="${song.duration}" required>
-                <input type="text" name="url" th:placeholder="${song.url}">
-                <input type="text" name="coverUrl" th:placeholder="${song.coverUrl}">
-                <button type="submit">Sửa</button>
-            </form>
-            <!-- 🗑 Xóa -->
-            <a th:href="@{'/music/delete/' + ${song.id}}">Xóa</a>
-        </td>
-    </tr>
-</table>
-
-<!-- 🧹 Xóa tất cả -->
-<br>
-<a th:href="@{/music/clear}" onclick="return confirm('Bạn có chắc muốn xóa tất cả không?')">🧹 Xóa tất cả bài hát</a>
-
+<div class="player" th:if="${playing != null}">
+    <h2>Đang phát: <span th:text="${playing.title}"></span> - <span th:text="${playing.artist}"></span></h2>
+    <audio controls autoplay th:src="${playing.url}">Trình duyệt của bạn không hỗ trợ phát nhạc</audio>
+</div>
 </body>
 </html>
