@@ -2,21 +2,60 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Phát nhạc</title>
+    <style>
+        body {
+            background: #181818;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .player-card {
+            background: #222;
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+            text-align: center;
+            min-width: 350px;
+        }
+        .player-title {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        .player-artist {
+            color: #b3b3b3;
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+        }
+        .big-play-btn {
+            background: #1db954;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 64px;
+            height: 64px;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            cursor: pointer;
+            box-shadow: 0 2px 16px rgba(30,185,84,0.2);
+            transition: background 0.2s;
+        }
+        .big-play-btn:hover {
+            background: #1ed760;
+        }
+    </style>
 </head>
 <body>
-    <div th:if="${music != null}">
-        <h2 th:text="${music.title}">Tên bài hát</h2>
-        <img th:src="${music.cover}" alt="Ảnh bìa" style="max-width:200px;max-height:200px"/><br/>
-        <audio controls autoplay>
-            <source th:src="${music.url}" type="audio/mpeg">
-            Trình duyệt của bạn không hỗ trợ audio.
-        </audio>
-        <p>Ca sĩ: <span th:text="${music.artist}"></span></p>
-        <a th:href="@{/music}">Quay lại danh sách</a>
-    </div>
-    <div th:if="${music == null}">
-        <p th:text="${error}">Bài hát không tồn tại!</p>
-        <a th:href="@{/music}">Quay lại danh sách</a>
+    <div class="player-card">
+        <div class="player-title" th:text="${music.title}">Tên bài hát</div>
+        <div class="player-artist" th:text="${music.artist}">Ca sĩ</div>
+        <button class="big-play-btn">&#9654;</button>
     </div>
 </body>
 </html>
