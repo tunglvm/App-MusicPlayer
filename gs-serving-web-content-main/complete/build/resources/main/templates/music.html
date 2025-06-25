@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Music List</title>
+</head>
+<body>
+    <h1>Danh sách bài hát</h1>
+    <a th:href="@{/music/add}">Thêm bài hát</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Tên bài hát</th>
+            <th>Ca sĩ</th>
+            <th>Phát</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+        </tr>
+        <tr th:each="music : ${musics}">
+            <td th:text="${music.id}"></td>
+            <td th:text="${music.title}"></td>
+            <td th:text="${music.artist}"></td>
+            <td>
+                <a th:href="@{'/music/play/' + ${music.id}}" target="_blank">Phát</a>
+            </td>
+            <td>
+                <a th:href="@{'/music/edit/' + ${music.id}}">Sửa</a>
+            </td>
+            <td>
+                <a th:href="@{'/music/delete/' + ${music.id}}"
+                   onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
+            </td>
+        </tr>
+    </table>
+    <!-- XÓA hoặc COMMENT đoạn form dưới đây -->
+    <!--
+    <form th:action="@{${music.id} == null ? '/music/add' : '/music/edit/' + ${music.id}}" th:object="${music}" method="post">
+        <!-- Form fields for music object -->
+    </form>
+    -->
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Phát nhạc</title>
+</head>
+<body>
+    <div th:if="${music != null}">
+        <h2 th:text="${music.title}">Tên bài hát</h2>
+        <img th:src="${music.cover}" alt="Ảnh bìa" style="max-width:200px;max-height:200px"/><br/>
+        <audio controls autoplay>
+            <source th:src="${music.url}" type="audio/mpeg">
+            Trình duyệt của bạn không hỗ trợ audio.
+        </audio>
+        <p>Ca sĩ: <span th:text="${music.artist}"></span></p>
+        <a th:href="@{/music}">Quay lại danh sách</a>
+    </div>
+    <div th:if="${music == null}">
+        <p th:text="${error}">Bài hát không tồn tại!</p>
+        <a th:href="@{/music}">Quay lại danh sách</a>
+    </div>
+</body>
+</html>
