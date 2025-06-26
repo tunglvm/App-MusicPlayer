@@ -1,0 +1,107 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.Hashtable;
+
+import javax.imageio.ImageIO;
+import javax.print.attribute.standard.JobName;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+public class MusicPlayerGUI extends JFrame{
+
+    //color configuration
+    public static final Color FRAME_COLOR = Color.BLACK;
+    public static final Color TEXT_COLOR = Color.WHITE;
+
+    private MusicPlayer musicPlayer; //creat music player
+
+    //use file explorer in app
+    private JFileChooser jFileChooser;
+
+    //creat panel to display title and artist
+    private JLabel songTitle, songArtist;
+
+    //creat button
+    private JPanel playbackButton;
+
+    //creat slider
+    private JSlider playbackSlider;
+
+    public MusicPlayerGUI(){
+        //calls JFrame constructor out GUI and set header to "musicPlayer"
+        super("Music Player");
+
+        //set width and height
+        setSize( 400, 600);  //creat a windown with width and height (400px x 6600p)
+
+        //end process when app close
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        //launch the app at the center of screen
+        setLocationRelativeTo(null);
+
+        //prevent app from resize
+        setResizable(false);
+
+        setLayout(null);
+        
+        //Change th frame color
+        getContentPane().setBackground(FRAME_COLOR);
+
+        musicPlayer = new MusicPlayer(this); //reference to musicPlayer which created in "musicPlayer" class
+
+        jFileChooser = new JFileChooser();
+        //set a default PATH for filr explorer
+        jFileChooser.setCurrentDirectory(new File("test song"));
+        //fiter file chooser to only show .mp3 file
+        jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3", "mp3"));
+
+        addGuiComponents();
+
+    }
+    private void addGuiComponents(){ //tạo giao diện
+        //add toolbar
+        addToolBar();
+
+        //load record image
+        JLabel songImage = new JLabel(loadImage("src\\assets\\record.png"));
+        songImage.setBounds(0, 50, getWidth() - 20, 225 );  //set position of song's image and width & height
+        add(songImage);                                                //add song's image to GUI
+
+        //Song title
+        songTitle = new JLabel("Song Title");
+        songTitle.setBounds(0, 285, getWidth() - 10, 30);        //set bound ==>> where the coponent locate at
+        songTitle.setFont(new Font("Dialog", Font.BOLD, 24));     //set font
+        songTitle.setForeground(TEXT_COLOR);                                //set text color
+        songTitle.setHorizontalAlignment(SwingConstants.CENTER);            //set algnment
+        add(songTitle);                                                     //add song's title to GUI
+
+        //song artist
+        songArtist = new JLabel("Artist");
+        songArtist.setBounds(0, 315, getWidth() - 10, 30);        //set bound
+        songArtist.setFont(new Font("Dialog", Font.PLAIN, 24));    //set font
+        songArtist.setForeground(TEXT_COLOR);                                //set text color
+        songArtist.setHorizontalAlignment(SwingConstants.CENTER);            //set algnment
+        add(songArtist);
+
+        //Playback slider
+        playbackSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
+        playbackSlider.setBounds(getWidth()/2 - 300/2, 365, 300, 40 );  //set place of slider
+        playbackSlider.setBackground(null);    //none background
