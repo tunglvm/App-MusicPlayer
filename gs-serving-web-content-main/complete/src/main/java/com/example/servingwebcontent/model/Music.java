@@ -1,6 +1,7 @@
 package com.example.servingwebcontent.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "music") // ánh xạ với bảng 'music' trong database
@@ -21,6 +22,13 @@ public class Music {
 
     @Column(length = 500)
     private String cover; // Link ảnh bìa
+
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private Album album;
+
+    @ManyToMany(mappedBy = "musics")
+    private List<Playlist> playlists;
 
     // Constructor mặc định (cần thiết cho JPA)
     public Music() {}
@@ -72,5 +80,21 @@ public class Music {
 
     public void setCover(String cover) {
         this.cover = cover;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    public List<Playlist> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(List<Playlist> playlists) {
+        this.playlists = playlists;
     }
 }
