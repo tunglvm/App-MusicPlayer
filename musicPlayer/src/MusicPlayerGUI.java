@@ -81,7 +81,7 @@ public class MusicPlayerGUI extends JFrame{
         addToolBar();
 
         //load record image
-        JLabel songImage = new JLabel(loadImage("src\\assets\\record.png"));
+        JLabel songImage = new JLabel(loadImage("musicPlayer\\src\\assets\\record.png"));
         songImage.setBounds(0, 50, getWidth() - 20, 225 );  //set position of song's image and width & height
         add(songImage);                                                //add song's image to GUI
 
@@ -240,7 +240,7 @@ public class MusicPlayerGUI extends JFrame{
         playbackButton.setBackground(null);
 
         //previous button
-        JButton prevButton = new JButton(loadImage("src\\assets\\previous.png"));
+        JButton prevButton = new JButton(loadImage("musicPlayer\\src\\assets\\previous.png"));
         prevButton.setBorderPainted(false);  //set none to border
         prevButton.setBackground(null);    //set none background
         prevButton.addActionListener(new ActionListener() {
@@ -253,7 +253,7 @@ public class MusicPlayerGUI extends JFrame{
         playbackButton.add(prevButton);      //show the button
 
         //play button
-        JButton playButton = new JButton(loadImage("src\\assets\\play.png"));
+        JButton playButton = new JButton(loadImage("musicPlayer\\src\\assets\\play.png"));
         playButton.setBorderPainted(false);
         playButton.setBackground(null);
         playButton.addActionListener(new ActionListener() {  //CREAT RESUME FUNCTION
@@ -269,7 +269,7 @@ public class MusicPlayerGUI extends JFrame{
         playbackButton.add(playButton);       //show the button
 
         //pause butoon
-        JButton pauseButton = new JButton(loadImage("src\\assets\\pause.png"));
+        JButton pauseButton = new JButton(loadImage("musicPlayer\\src\\assets\\pause.png"));
         pauseButton.setBorderPainted(false); 
         pauseButton.setBackground(null);
         pauseButton.setVisible(false);
@@ -287,7 +287,7 @@ public class MusicPlayerGUI extends JFrame{
         playbackButton.add(pauseButton);             //show the button
 
         //next button
-        JButton nextButton = new JButton(loadImage("src\\assets\\next.png"));
+        JButton nextButton = new JButton(loadImage("musicPlayer\\src\\assets\\next.png"));
         nextButton.setBorderPainted(false); //set border color
         nextButton.setBackground(null);    //set the background
         playbackButton.add(nextButton);
