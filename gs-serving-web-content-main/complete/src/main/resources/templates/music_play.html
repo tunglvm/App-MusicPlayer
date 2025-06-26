@@ -1,61 +1,75 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Phát nhạc</title>
+    <title>Đang phát nhạc</title>
     <style>
         body {
             background: #181818;
             color: #fff;
             font-family: 'Segoe UI', Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 0;
         }
-        .player-card {
+        .player-container {
+            max-width: 600px;
+            margin: 60px auto;
             background: #222;
-            border-radius: 24px;
-            padding: 48px 40px;
-            box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.4);
             text-align: center;
-            min-width: 350px;
         }
-        .player-title {
-            font-size: 2rem;
-            margin-bottom: 12px;
+        img.cover {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
         }
-        .player-artist {
-            color: #b3b3b3;
-            margin-bottom: 32px;
-            font-size: 1.1rem;
+        h2 {
+            margin: 12px 0 6px;
+            font-size: 1.6rem;
         }
-        .big-play-btn {
-            background: #1db954;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 64px;
-            height: 64px;
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            cursor: pointer;
-            box-shadow: 0 2px 16px rgba(30,185,84,0.2);
-            transition: background 0.2s;
+        h3 {
+            margin: 0 0 24px;
+            font-size: 1.2rem;
+            color: #ccc;
         }
-        .big-play-btn:hover {
-            background: #1ed760;
+        audio {
+            width: 100%;
+            margin-top: 16px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #1db954;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: #ff5555;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-    <div class="player-card">
-        <div class="player-title" th:text="${music.title}">Tên bài hát</div>
-        <div class="player-artist" th:text="${music.artist}">Ca sĩ</div>
-        <button class="big-play-btn">&#9654;</button>
-    </div>
+<div class="player-container" th:if="${music != null}">
+    <img th:src="${music.cover}" alt="Ảnh bìa" class="cover" />
+    <h2 th:text="${music.title}">Tên bài hát</h2>
+    <h3 th:text="${music.artist}">Ca sĩ</h3>
+    <audio controls th:src="${music.url}">
+        Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+    <br>
+    <a th:href="@{/music}" class="back-link">← Quay lại danh sách</a>
+</div>
+
+<!-- Hiển thị lỗi nếu không có bài hát -->
+<div th:if="${error}" class="error-message" th:text="${error}">Không tìm thấy bài hát</div>
 </body>
 </html>

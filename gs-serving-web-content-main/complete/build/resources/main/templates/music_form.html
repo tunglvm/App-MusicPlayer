@@ -2,25 +2,87 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Thêm/Sửa Bài Hát</title>
+    <style>
+        body {
+            background: #181818;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 60px auto;
+            background: #222;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+        }
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 14px;
+            margin-bottom: 18px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #111;
+            color: #fff;
+            font-size: 1rem;
+        }
+        button {
+            padding: 12px 24px;
+            background: #1db954;
+            border: none;
+            border-radius: 24px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #1ed760;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 16px;
+            color: #1db954;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+<div class="form-container">
     <h1 th:text="${music.id} != null ? 'Sửa bài hát' : 'Thêm bài hát'">Thêm/Sửa Bài Hát</h1>
-    <form th:action="@{${music.id} != null ? '/music/edit/' + ${music.id} : '/music/add'}" th:object="${music}" method="post">
+    <form th:action="@{${music.id} != null ? '/music/edit/' + ${music.id} : '/music/add'}"
+          th:object="${music}" method="post">
         <label for="title">Tên bài hát:</label>
-        <input type="text" id="title" th:field="*{title}" required/><br/>
+        <input type="text" id="title" th:field="*{title}" required/>
 
         <label for="artist">Ca sĩ:</label>
-        <input type="text" id="artist" th:field="*{artist}" required/><br/>
+        <input type="text" id="artist" th:field="*{artist}" required/>
 
-        <label for="url">Đường dẫn file nhạc (URL):</label>
-        <input type="text" id="url" th:field="*{url}" required/><br/>
+        <label for="url">URL file nhạc:</label>
+        <input type="text" id="url" th:field="*{url}" required/>
 
-        <!-- Thêm trường nhập ảnh bìa -->
         <label for="cover">Link ảnh bìa:</label>
-        <input type="text" id="cover" th:field="*{cover}" /><br/>
+        <input type="text" id="cover" th:field="*{cover}"/>
 
         <button type="submit">Lưu</button>
-        <a th:href="@{/music}">Quay lại</a>
+        <a th:href="@{/music}" class="back-link">← Quay lại danh sách</a>
     </form>
+</div>
 </body>
 </html>

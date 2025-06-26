@@ -1,7 +1,9 @@
 package com.example.servingwebcontent.repository;
 
 import com.example.servingwebcontent.model.Music;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MusicRepository extends CrudRepository<Music, Long> {
+@Repository
+public interface MusicRepository extends JpaRepository<Music, Long> {
 }

@@ -3,18 +3,29 @@ package com.example.servingwebcontent.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "music") // ánh xạ với bảng 'music' trong database
 public class Music {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tăng ID
     private Long id;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String artist;
-    private String url; // Đường dẫn file nhạc
+
+    @Column(length = 500)
+    private String url; // Đường dẫn đến file nhạc (MP3)
+
+    @Column(length = 500)
     private String cover; // Link ảnh bìa
 
-    // Constructors
+    // Constructor mặc định (cần thiết cho JPA)
     public Music() {}
 
+    // Constructor đầy đủ
     public Music(String title, String artist, String url, String cover) {
         this.title = title;
         this.artist = artist;
@@ -22,19 +33,44 @@ public class Music {
         this.cover = cover;
     }
 
-    // Getters & Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // Getters và Setters
+    public Long getId() {
+        return id;
+    }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getArtist() { return artist; }
-    public void setArtist(String artist) { this.artist = artist; }
+    public String getTitle() {
+        return title;
+    }
 
-    public String getUrl() { return url; }
-    public void setUrl(String url) { this.url = url; }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public String getCover() { return cover; }
-    public void setCover(String cover) { this.cover = cover; }
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 }
