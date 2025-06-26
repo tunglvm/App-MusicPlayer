@@ -97,21 +97,4 @@ public class AlbumList {
         } catch (Exception e) {
             System.out.println("Lỗi trong printAlbumList: " + e.getMessage());
         } finally {
-// Có thể log hoặc cleanup nếu cần
-        }
-    }
-
-    /**
-     * Lấy toàn bộ danh sách album (nếu cần dùng ngoài class).
-     */
-    public List<Album> getAlbums() {
-        List<Album> result = new ArrayList<>();
-        try {
-            result = new ArrayList<>(albums);
-        } catch (Exception e) {
-            System.out.println("Lỗi trong getAlbums: " + e.getMessage());
-        } finally {
-        }
-        return result;
-    }
-}
+/
