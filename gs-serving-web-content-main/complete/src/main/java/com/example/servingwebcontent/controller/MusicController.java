@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,23 +47,22 @@ public class MusicController {
     // Xử lý thêm mới
     @PostMapping("/add")
     public String addMusic(@ModelAttribute Music music,
-                           @RequestParam("albumId") Long albumId,
+                           @RequestParam(value = "albumId", required = false) Long albumId,
                            @RequestParam(value = "playlistIds", required = false) List<Long> playlistIds) {
-        try {
-            // Liên kết album
-            Optional<Album> albumOpt = albumRepository.findById(albumId);
-            albumOpt.ifPresent(music::setAlbum);
-
-            // Liên kết playlist
-            if (playlistIds != null && !playlistIds.isEmpty()) {
-                List<Playlist> playlists = playlistRepository.findAllById(playlistIds);
-                music.setPlaylists(playlists);
-            }
-
-            musicRepository.save(music);
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Liên kết album
+        if (albumId != null) {
+            albumRepository.findById(albumId).ifPresent(music::setAlbum);
         }
+
+        // Liên kết playlists
+        if (playlistIds != null && !playlistIds.isEmpty()) {
+            List<Playlist> playlists = playlistRepository.findAllById(playlistIds);
+            music.setPlaylists(playlists);
+        } else {
+            music.setPlaylists(new ArrayList<>());
+        }
+
+        musicRepository.save(music);
         return "redirect:/music";
     }
 
@@ -83,26 +83,32 @@ public class MusicController {
     @PostMapping("/edit/{id}")
     public String editMusic(@PathVariable Long id,
                             @ModelAttribute Music music,
-                            @RequestParam("albumId") Long albumId,
+                            @RequestParam(value = "albumId", required = false) Long albumId,
                             @RequestParam(value = "playlistIds", required = false) List<Long> playlistIds) {
-        try {
-            music.setId(id);
+        Optional<Music> musicOpt = musicRepository.findById(id);
+        if (musicOpt.isPresent()) {
+            Music existing = musicOpt.get();
+            existing.setTitle(music.getTitle());
+            existing.setArtist(music.getArtist());
+            existing.setUrl(music.getUrl());
+            existing.setCover(music.getCover());
 
             // Cập nhật album
-            Optional<Album> albumOpt = albumRepository.findById(albumId);
-            albumOpt.ifPresent(music::setAlbum);
-
-            // Cập nhật playlist
-            if (playlistIds != null && !playlistIds.isEmpty()) {
-                List<Playlist> playlists = playlistRepository.findAllById(playlistIds);
-                music.setPlaylists(playlists);
+            if (albumId != null) {
+                albumRepository.findById(albumId).ifPresent(existing::setAlbum);
             } else {
-                music.setPlaylists(null); // Nếu bỏ chọn hết thì clear luôn
+                existing.setAlbum(null);
             }
 
-            musicRepository.save(music);
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Cập nhật playlists
+            if (playlistIds != null && !playlistIds.isEmpty()) {
+                List<Playlist> playlists = playlistRepository.findAllById(playlistIds);
+                existing.setPlaylists(playlists);
+            } else {
+                existing.setPlaylists(new ArrayList<>());
+            }
+
+            musicRepository.save(existing);
         }
         return "redirect:/music";
     }

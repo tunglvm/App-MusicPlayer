@@ -1,6 +1,7 @@
 package com.example.servingwebcontent.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class Playlist {
         joinColumns = @JoinColumn(name = "playlist_id"),
         inverseJoinColumns = @JoinColumn(name = "music_id")
     )
-    private List<Music> musics;
+    private List<Music> musics = new ArrayList<>();
 
     // Constructor mặc định
     public Playlist() {}

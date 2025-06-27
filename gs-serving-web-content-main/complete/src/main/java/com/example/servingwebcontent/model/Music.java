@@ -1,6 +1,7 @@
 package com.example.servingwebcontent.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,7 +29,7 @@ public class Music {
     private Album album;
 
     @ManyToMany(mappedBy = "musics")
-    private List<Playlist> playlists;
+    private List<Playlist> playlists = new ArrayList<>();
 
     // Constructor mặc định (cần thiết cho JPA)
     public Music() {}

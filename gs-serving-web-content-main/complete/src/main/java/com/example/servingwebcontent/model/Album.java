@@ -1,6 +1,7 @@
 package com.example.servingwebcontent.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,7 @@ public class Album {
     private String cover;
 
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
-    private List<Music> musics;
+    private List<Music> musics = new ArrayList<>();
 
     // Constructor
     public Album() {}

@@ -41,9 +41,9 @@ public class PlaylistController {
 
     // Xử lý thêm playlist
     @PostMapping("/add")
-    public String addPlaylist(@ModelAttribute Playlist playlist, @RequestParam("musicIds") List<Long> musicIds) {
+    public String addPlaylist(@ModelAttribute Playlist playlist, @RequestParam(value = "musicIds", required = false) List<Long> musicIds) {
         try {
-            List<Music> musics = musicRepository.findAllById(musicIds);
+            List<Music> musics = (musicIds != null && !musicIds.isEmpty()) ? musicRepository.findAllById(musicIds) : new ArrayList<>();
             playlist.setMusics(musics);
             playlistRepository.save(playlist);
         } catch (Exception e) {
@@ -66,10 +66,10 @@ public class PlaylistController {
 
     // Xử lý sửa playlist
     @PostMapping("/edit/{id}")
-    public String editPlaylist(@PathVariable Long id, @ModelAttribute Playlist playlist, @RequestParam("musicIds") List<Long> musicIds) {
+    public String editPlaylist(@PathVariable Long id, @ModelAttribute Playlist playlist, @RequestParam(value = "musicIds", required = false) List<Long> musicIds) {
         try {
             playlist.setId(id);
-            List<Music> musics = musicRepository.findAllById(musicIds);
+            List<Music> musics = (musicIds != null && !musicIds.isEmpty()) ? musicRepository.findAllById(musicIds) : new ArrayList<>();
             playlist.setMusics(musics);
             playlistRepository.save(playlist);
         } catch (Exception e) {
@@ -94,11 +94,15 @@ public class PlaylistController {
     public String playPlaylist(@PathVariable Long id, Model model) {
         Optional<Playlist> playlist = playlistRepository.findById(id);
         if (playlist.isPresent()) {
-            playQueue = playlist.get().getMusics();
+            playQueue = new ArrayList<>(playlist.get().getMusics() != null ? playlist.get().getMusics() : new ArrayList<>());
             currentIndex = 0;
             if (!playQueue.isEmpty()) {
                 model.addAttribute("music", playQueue.get(currentIndex));
+            } else {
+                model.addAttribute("error", "Playlist không có bài hát nào!");
             }
+        } else {
+            model.addAttribute("error", "Playlist không tồn tại!");
         }
         return "music_play";
     }
@@ -109,6 +113,8 @@ public class PlaylistController {
         if (!playQueue.isEmpty()) {
             currentIndex = (currentIndex + 1) % playQueue.size();
             model.addAttribute("music", playQueue.get(currentIndex));
+        } else {
+            model.addAttribute("error", "Không có bài hát nào trong hàng đợi!");
         }
         return "music_play";
     }
@@ -120,6 +126,8 @@ public class PlaylistController {
             Random random = new Random();
             currentIndex = random.nextInt(playQueue.size());
             model.addAttribute("music", playQueue.get(currentIndex));
+        } else {
+            model.addAttribute("error", "Không có bài hát nào trong hàng đợi!");
         }
         return "music_play";
     }
