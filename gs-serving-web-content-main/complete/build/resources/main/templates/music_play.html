@@ -44,7 +44,10 @@
         <img th:src="${music.cover}" alt="cover" />
         <h2 th:text="${music.title}"></h2>
         <p th:text="${music.artist}"></p>
-        <audio th:src="${music.url}" controls autoplay></audio>
+        <audio controls>
+      <source src="assets/music/HIEUTHUHAI - TRÌNH (prod. by Kewtiie).mp3" type="audio/mpeg">
+      Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
     </div>
     <div th:if="${music == null}">
         <p th:text="${error}"></p>

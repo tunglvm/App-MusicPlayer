@@ -84,7 +84,8 @@ public class MusicController {
     public String editMusic(@PathVariable Long id,
                             @ModelAttribute Music music,
                             @RequestParam(value = "albumId", required = false) Long albumId,
-                            @RequestParam(value = "playlistIds", required = false) List<Long> playlistIds) {
+                            @RequestParam(value = "playlistIds", required = false) List<Long> playlistIds,
+                            Model model) {
         Optional<Music> musicOpt = musicRepository.findById(id);
         if (musicOpt.isPresent()) {
             Music existing = musicOpt.get();
@@ -109,6 +110,9 @@ public class MusicController {
             }
 
             musicRepository.save(existing);
+        } else {
+            model.addAttribute("error", "Không tìm thấy bài hát để sửa!");
+            return "music_form";
         }
         return "redirect:/music";
     }
