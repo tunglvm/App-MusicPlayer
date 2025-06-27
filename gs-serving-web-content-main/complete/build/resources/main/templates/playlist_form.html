@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm/Sửa Playlist</title>
+    <style>
+        body {
+            background: #121212;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        label {
+            display: block;
+            margin-top: 16px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            background: #2c2c2c;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            margin-top: 8px;
+        }
+        .checkbox-group {
+            margin-top: 16px;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        button {
+            margin-top: 24px;
+            padding: 12px 24px;
+            background: #1db954;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1ed760;
+        }
+    </style>
+</head>
+<body>
+    <form th:action="@{${playlist.id} == null ? '/playlist/add' : '/playlist/edit/' + ${playlist.id}}" th:object="${playlist}" method="post">
+        <label>Tên playlist</label>
+        <input type="text" th:field="*{name}" />
+
+        <label>Ảnh bìa</label>
+        <input type="text" th:field="*{cover}" />
+
+        <label>Chọn bài hát</label>
+        <div class="checkbox-group">
+            <label th:each="music : ${musics}">
+                <input type="checkbox" th:value="${music.id}" th:field="*{musics}" />
+                <span th:text="${music.title}"></span>
+            </label>
+        </div>
+
+        <button type="submit">Lưu Playlist</button>
+    </form>
+</body>
+</html>

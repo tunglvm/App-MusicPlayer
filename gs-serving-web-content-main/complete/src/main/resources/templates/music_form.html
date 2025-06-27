@@ -4,85 +4,86 @@
     <title>Thêm/Sửa Bài Hát</title>
     <style>
         body {
-            background: #181818;
+            background: #121212;
             color: #fff;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
         }
-        .form-container {
+        form {
             max-width: 600px;
-            margin: 60px auto;
-            background: #222;
-            border-radius: 16px;
-            padding: 32px;
-            box-shadow: 0 4px 32px rgba(0,0,0,0.4);
-        }
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 24px;
-            text-align: center;
+            margin: auto;
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
         }
         label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
+            margin-top: 16px;
+            font-weight: bold;
         }
-        input[type="text"] {
+        input, select {
             width: 100%;
-            padding: 10px 14px;
-            margin-bottom: 18px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            background: #111;
+            padding: 10px;
+            background: #2c2c2c;
+            border: none;
+            border-radius: 6px;
             color: #fff;
-            font-size: 1rem;
+            margin-top: 8px;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         button {
+            margin-top: 24px;
             padding: 12px 24px;
             background: #1db954;
+            color: white;
             border: none;
             border-radius: 24px;
-            color: #fff;
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s;
         }
         button:hover {
             background: #1ed760;
         }
-        .back-link {
-            display: inline-block;
-            margin-top: 16px;
-            color: #1db954;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
-<div class="form-container">
-    <h1 th:text="${music.id} != null ? 'Sửa bài hát' : 'Thêm bài hát'">Thêm/Sửa Bài Hát</h1>
-    <form th:action="@{${music.id} != null ? '/music/edit/' + ${music.id} : '/music/add'}"
-          th:object="${music}" method="post">
-        <label for="title">Tên bài hát:</label>
-        <input type="text" id="title" th:field="*{title}" required/>
+    <form th:action="@{${music.id} == null ? '/music/add' : '/music/edit/' + ${music.id}}" th:object="${music}" method="post">
+        <label>Tên bài hát</label>
+        <input type="text" th:field="*{title}" />
 
-        <label for="artist">Ca sĩ:</label>
-        <input type="text" id="artist" th:field="*{artist}" required/>
+        <label>Ca sĩ</label>
+        <input type="text" th:field="*{artist}" />
 
-        <label for="url">URL file nhạc:</label>
-        <input type="text" id="url" th:field="*{url}" required/>
+        <label>URL file nhạc</label>
+        <input type="text" th:field="*{url}" />
 
-        <label for="cover">Link ảnh bìa:</label>
-        <input type="text" id="cover" th:field="*{cover}"/>
+        <label>Link ảnh bìa</label>
+        <input type="text" th:field="*{cover}" />
 
-        <button type="submit">Lưu</button>
-        <a th:href="@{/music}" class="back-link">← Quay lại danh sách</a>
+        <label>Album</label>
+        <select th:field="*{album}">
+            <option th:each="album : ${albums}" th:value="${album}" th:text="${album.name}"></option>
+        </select>
+
+        <label>Playlists</label>
+        <div class="checkbox-group">
+            <label th:each="playlist : ${playlists}">
+                <input type="checkbox" th:value="${playlist.id}" th:field="*{playlists}" />
+                <span th:text="${playlist.name}"></span>
+            </label>
+        </div>
+
+        <button type="submit">Lưu bài hát</button>
     </form>
-</div>
 </body>
 </html>

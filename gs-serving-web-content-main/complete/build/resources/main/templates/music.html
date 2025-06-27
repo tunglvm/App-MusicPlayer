@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Music List</title>
+    <title>Danh sách Bài hát</title>
     <style>
         body {
             background: #181818;
@@ -81,7 +81,7 @@
     <div class="music-container">
         <h1>Danh sách bài hát</h1>
         <a th:href="@{/music/add}" class="add-btn">Thêm bài hát</a>
-        <table border="1">
+        <table>
             <tr>
                 <th>ID</th>
                 <th>Tên bài hát</th>
@@ -95,25 +95,12 @@
                 <td th:text="${music.title}"></td>
                 <td th:text="${music.artist}"></td>
                 <td>
-                    <a th:href="@{'/music/play/' + ${music.id}}" class="play-btn" title="Phát" target="_blank">
-                        &#9654;
-                    </a>
+                    <a th:href="@{'/music/play/' + ${music.id}}" class="play-btn" title="Phát" target="_blank">&#9654;</a>
                 </td>
-                <td>
-                    <a th:href="@{'/music/edit/' + ${music.id}}">Sửa</a>
-                </td>
-                <td>
-                    <a th:href="@{'/music/delete/' + ${music.id}}"
-                       onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a>
-                </td>
+                <td><a th:href="@{'/music/edit/' + ${music.id}}">Sửa</a></td>
+                <td><a th:href="@{'/music/delete/' + ${music.id}}" onclick="return confirm('Bạn có chắc muốn xóa?');">Xóa</a></td>
             </tr>
         </table>
-        <!-- XÓA hoặc COMMENT đoạn form dưới đây -->
-        <!--
-        <form th:action="@{${music.id} == null ? '/music/add' : '/music/edit/' + ${music.id}}" th:object="${music}" method="post">
-            <!-- Form fields for music object -->
-        </form>
-        -->
     </div>
 </body>
 </html>
