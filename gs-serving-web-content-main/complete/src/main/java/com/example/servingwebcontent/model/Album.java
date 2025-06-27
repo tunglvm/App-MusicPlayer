@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "albums")
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +13,7 @@ public class Album {
     private String name;
     private String cover;
 
-    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "album")
     private List<Music> musics = new ArrayList<>();
 
     // Constructor
@@ -35,6 +34,11 @@ public class Album {
     public String getCover() { return cover; }
     public void setCover(String cover) { this.cover = cover; }
 
-    public List<Music> getMusics() { return musics; }
-    public void setMusics(List<Music> musics) { this.musics = musics; }
+    public List<Music> getMusics() {
+        return musics;
+    }
+
+    public void setMusics(List<Music> musics) {
+        this.musics = musics;
+    }
 }

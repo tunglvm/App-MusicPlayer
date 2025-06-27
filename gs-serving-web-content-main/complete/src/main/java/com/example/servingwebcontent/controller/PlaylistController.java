@@ -1,15 +1,13 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.model.Music;
 import com.example.servingwebcontent.model.Playlist;
-import com.example.servingwebcontent.repository.MusicRepository;
 import com.example.servingwebcontent.repository.PlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/playlist")
@@ -17,12 +15,6 @@ public class PlaylistController {
 
     @Autowired
     private PlaylistRepository playlistRepository;
-
-    @Autowired
-    private MusicRepository musicRepository;
-
-    private List<Music> playQueue = new ArrayList<>();
-    private int currentIndex = 0;
 
     // Danh sách playlist
     @GetMapping
@@ -35,16 +27,13 @@ public class PlaylistController {
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("playlist", new Playlist());
-        model.addAttribute("musics", musicRepository.findAll());
         return "playlist_form";
     }
 
     // Xử lý thêm playlist
     @PostMapping("/add")
-    public String addPlaylist(@ModelAttribute Playlist playlist, @RequestParam(value = "musicIds", required = false) List<Long> musicIds) {
+    public String addPlaylist(@ModelAttribute Playlist playlist) {
         try {
-            List<Music> musics = (musicIds != null && !musicIds.isEmpty()) ? musicRepository.findAllById(musicIds) : new ArrayList<>();
-            playlist.setMusics(musics);
             playlistRepository.save(playlist);
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,7 +47,6 @@ public class PlaylistController {
         Optional<Playlist> playlist = playlistRepository.findById(id);
         if (playlist.isPresent()) {
             model.addAttribute("playlist", playlist.get());
-            model.addAttribute("musics", musicRepository.findAll());
             return "playlist_form";
         }
         return "redirect:/playlist";
@@ -66,11 +54,9 @@ public class PlaylistController {
 
     // Xử lý sửa playlist
     @PostMapping("/edit/{id}")
-    public String editPlaylist(@PathVariable Long id, @ModelAttribute Playlist playlist, @RequestParam(value = "musicIds", required = false) List<Long> musicIds) {
+    public String editPlaylist(@PathVariable Long id, @ModelAttribute Playlist playlist) {
         try {
             playlist.setId(id);
-            List<Music> musics = (musicIds != null && !musicIds.isEmpty()) ? musicRepository.findAllById(musicIds) : new ArrayList<>();
-            playlist.setMusics(musics);
             playlistRepository.save(playlist);
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,46 +75,57 @@ public class PlaylistController {
         return "redirect:/playlist";
     }
 
-    // Phát nhạc từ playlist
-    @GetMapping("/play/{id}")
-    public String playPlaylist(@PathVariable Long id, Model model) {
-        Optional<Playlist> playlist = playlistRepository.findById(id);
-        if (playlist.isPresent()) {
-            playQueue = new ArrayList<>(playlist.get().getMusics() != null ? playlist.get().getMusics() : new ArrayList<>());
-            currentIndex = 0;
-            if (!playQueue.isEmpty()) {
-                model.addAttribute("music", playQueue.get(currentIndex));
-            } else {
-                model.addAttribute("error", "Playlist không có bài hát nào!");
+    // Hiển thị danh sách bài hát trong playlist
+    @GetMapping("/{id}/songs")
+    public String showSongsInPlaylist(@PathVariable Long id, Model model) {
+        Optional<Playlist> playlistOpt = playlistRepository.findById(id);
+        if (playlistOpt.isPresent()) {
+            Playlist playlist = playlistOpt.get();
+            model.addAttribute("playlist", playlist);
+            model.addAttribute("musics", playlist.getMusics());
+            return "playlist_songs"; // Tạo view playlist_songs.html để hiển thị danh sách bài hát
+        }
+        return "redirect:/playlist";
+    }
+
+    // Phát toàn bộ playlist (giả lập)
+    @GetMapping("/{id}/play")
+    @ResponseBody
+    public String playAllSongs(@PathVariable Long id) {
+        Optional<Playlist> playlistOpt = playlistRepository.findById(id);
+        if (playlistOpt.isPresent()) {
+            Playlist playlist = playlistOpt.get();
+            return "Đang phát toàn bộ playlist: " + playlist.getName();
+        }
+        return "Playlist không tồn tại!";
+    }
+
+    // Phát một bài hát cụ thể trong playlist (giả lập)
+    @GetMapping("/{playlistId}/songs/{songIndex}/play")
+    @ResponseBody
+    public String playSongInPlaylist(@PathVariable Long playlistId, @PathVariable int songIndex) {
+        Optional<Playlist> playlistOpt = playlistRepository.findById(playlistId);
+        if (playlistOpt.isPresent()) {
+            Playlist playlist = playlistOpt.get();
+            if (playlist.getMusics() != null && songIndex >= 0 && songIndex < playlist.getMusics().size()) {
+                return "Đang phát: " + playlist.getMusics().get(songIndex).getTitle();
             }
-        } else {
-            model.addAttribute("error", "Playlist không tồn tại!");
+            return "Bài hát không tồn tại!";
         }
-        return "music_play";
+        return "Playlist không tồn tại!";
     }
 
-    // Phát bài tiếp theo
-    @GetMapping("/play/next")
-    public String playNext(Model model) {
-        if (!playQueue.isEmpty()) {
-            currentIndex = (currentIndex + 1) % playQueue.size();
-            model.addAttribute("music", playQueue.get(currentIndex));
-        } else {
-            model.addAttribute("error", "Không có bài hát nào trong hàng đợi!");
+    // Phát ngẫu nhiên một bài hát trong playlist (giả lập)
+    @GetMapping("/{id}/random/play")
+    @ResponseBody
+    public String playRandomSong(@PathVariable Long id) {
+        Optional<Playlist> playlistOpt = playlistRepository.findById(id);
+        if (playlistOpt.isPresent()) {
+            Playlist playlist = playlistOpt.get();
+            if (playlist.getMusics() == null || playlist.getMusics().isEmpty()) return "Playlist không có bài hát!";
+            int idx = new java.util.Random().nextInt(playlist.getMusics().size());
+            return "Đang phát ngẫu nhiên: " + playlist.getMusics().get(idx).getTitle();
         }
-        return "music_play";
-    }
-
-    // Phát ngẫu nhiên
-    @GetMapping("/play/shuffle")
-    public String playShuffle(Model model) {
-        if (!playQueue.isEmpty()) {
-            Random random = new Random();
-            currentIndex = random.nextInt(playQueue.size());
-            model.addAttribute("music", playQueue.get(currentIndex));
-        } else {
-            model.addAttribute("error", "Không có bài hát nào trong hàng đợi!");
-        }
-        return "music_play";
+        return "Playlist không tồn tại!";
     }
 }

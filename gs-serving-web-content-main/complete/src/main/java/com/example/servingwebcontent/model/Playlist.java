@@ -5,17 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "playlist") // ánh xạ với bảng 'playlist'
 public class Playlist {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(length = 500)
     private String cover; // ảnh đại diện playlist (nếu có)
 
     @ManyToMany
