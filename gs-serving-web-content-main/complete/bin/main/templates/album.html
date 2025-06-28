@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Albums</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            padding: 40px;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .card:hover {
+            background-color: #2a2a2a;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            height: 180px;
+            object-fit: cover;
+        }
+        .card h3 {
+            margin: 12px 0 4px;
+            font-size: 1rem;
+        }
+        .actions a {
+            color: #1db954;
+            margin: 0 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .add-btn {
+            margin: 30px;
+            background: #1db954;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <a th:href="@{/album/add}" class="add-btn">Thêm Album</a>
+    <div class="grid">
+        <div class="card" th:each="album : ${albums}">
+            <img th:src="${album.cover}" alt="Ảnh album" />
+            <h3 th:text="${album.name}"></h3>
+            <div class="actions">
+                <a th:href="@{'/album/edit/' + ${album.id}}">Sửa</a>
+                <a th:href="@{'/album/delete/' + ${album.id}}" onclick="return confirm('Xóa album?')">Xóa</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
