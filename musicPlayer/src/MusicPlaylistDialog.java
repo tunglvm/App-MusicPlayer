@@ -96,7 +96,7 @@ public class MusicPlaylistDialog extends JDialog { //inherit form JDialog
 
         
         /*
-         *            SAVE SONG BUTTON
+         *            SAVE PLAYLIST BUTTON
          */
         JButton savePlaylistButton = new JButton("save");
         savePlaylistButton.setBounds(215, (int) (getWidth() * 0.80), 100, 25); //set positon, width and height

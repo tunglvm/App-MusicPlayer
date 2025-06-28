@@ -86,7 +86,7 @@ public class MusicPlayerGUI extends JFrame{
 
         //Song title
         songTitle = new JLabel("Song Title");
-        songTitle.setBounds(0, 285, getWidth() - 10, 30);        //set bound ==>> where the coponent locate at
+        songTitle.setBounds(0, 285, getWidth() - 10, 30);        //set bound ==>> where the coponent locate at, width and height
         songTitle.setFont(new Font("Dialog", Font.BOLD, 24));     //set font
         songTitle.setForeground(TEXT_COLOR);                                //set text color
         songTitle.setHorizontalAlignment(SwingConstants.CENTER);            //set algnment
@@ -94,7 +94,7 @@ public class MusicPlayerGUI extends JFrame{
 
         //song artist
         songArtist = new JLabel("Artist");
-        songArtist.setBounds(0, 315, getWidth() - 10, 30);        //set bound
+        songArtist.setBounds(0, 315, getWidth() - 10, 30);        //set bound  
         songArtist.setFont(new Font("Dialog", Font.PLAIN, 24));    //set font
         songArtist.setForeground(TEXT_COLOR);                                //set text color
         songArtist.setHorizontalAlignment(SwingConstants.CENTER);            //set algnment
@@ -159,7 +159,7 @@ public class MusicPlayerGUI extends JFrame{
 
         //add "load song" option in the menu
         JMenuItem loadSong = new JMenuItem("Load Song");  //creat"load song" option 
-        loadSong.addActionListener(new ActionListener() {  //process when user click
+        loadSong.addActionListener(new ActionListener() {     //process when user click
             @Override
             public void actionPerformed(ActionEvent e){  //method actionPerformed will be called when user choose
                 //on int is return to let program know what user did ==> prevent load song when user "cancel"
@@ -227,7 +227,7 @@ public class MusicPlayerGUI extends JFrame{
                 }
             }
         });
-        playlistMenu.add(loadPlaylist);                                  //add "load playlist" option to "play list" drop-down menu
+        playlistMenu.add(loadPlaylist);     //add "load playlist" option to "play list" drop-down menu
 
         add(toolBar);   
     }
@@ -253,8 +253,8 @@ public class MusicPlayerGUI extends JFrame{
 
         //play button
         JButton playButton = new JButton(loadImage("musicPlayer\\src\\assets\\play.png"));
-        playButton.setBorderPainted(false);
-        playButton.setBackground(null);
+        playButton.setBorderPainted(false);  //no border
+        playButton.setBackground(null);     //no background
         playButton.addActionListener(new ActionListener() {  //CREAT RESUME FUNCTION
             @Override //switch to "pause" when music is playing
             public void actionPerformed(ActionEvent e){
