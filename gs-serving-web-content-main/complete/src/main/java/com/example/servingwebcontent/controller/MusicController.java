@@ -139,6 +139,11 @@ public class MusicController {
         }
         return "music_play";
     }
+    @GetMapping("/play/test/{id}")
+    public String playMusic2(@PathVariable Long id, Model model) {
+        
+        return "music_play2";
+    }
 
     @GetMapping("/play")
     public String playFirstMusic(Model model) {

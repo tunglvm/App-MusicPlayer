@@ -3,6 +3,7 @@ package com.example.servingwebcontent.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.servingwebcontent.model.Music; // Thêm dòng này
 
 @Entity
 public class Album {
