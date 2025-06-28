@@ -4,7 +4,6 @@ import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import java.io.File;
-import javax.sound.sampled.AudioFileFormat;
 
 //class used to describe song
 public class Song {

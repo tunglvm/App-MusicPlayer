@@ -9,7 +9,6 @@ import java.io.File;
 import java.util.Hashtable;
 
 import javax.imageio.ImageIO;
-import javax.print.attribute.standard.JobName;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -46,7 +45,7 @@ public class MusicPlayerGUI extends JFrame{
 
     public MusicPlayerGUI(){
         //calls JFrame constructor out GUI and set header to "musicPlayer"
-        super("Music Player");
+        super("Group 6: Our Music Player");
 
         //set width and height
         setSize( 400, 600);  //creat a windown with width and height (400px x 6600p)
