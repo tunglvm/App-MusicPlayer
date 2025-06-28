@@ -76,14 +76,14 @@ public class AlbumController {
     }
 
     // Hiển thị danh sách bài hát trong album
-    @GetMapping("/{id}/songs")
+    @GetMapping("/{id}/musics")
     public String showSongsInAlbum(@PathVariable Long id, Model model) {
         Optional<Album> albumOpt = albumRepository.findById(id);
         if (albumOpt.isPresent()) {
             Album album = albumOpt.get();
             model.addAttribute("album", album);
             model.addAttribute("musics", album.getMusics());
-            return "album_songs"; // Tạo view album_songs.html để hiển thị danh sách bài hát
+            return "album_musics"; // Tạo view album_songs.html để hiển thị danh sách bài hát
         }
         return "redirect:/album";
     }

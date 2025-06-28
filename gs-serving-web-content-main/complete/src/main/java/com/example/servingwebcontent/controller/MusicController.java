@@ -139,4 +139,16 @@ public class MusicController {
         }
         return "music_play";
     }
+
+    @GetMapping("/play")
+    public String playFirstMusic(Model model) {
+        Optional<Music> music = musicRepository.findAll().stream().findFirst();
+        if (music.isPresent()) {
+            model.addAttribute("music", music.get());
+        } else {
+            model.addAttribute("error", "Không tìm thấy bài hát.");
+        }
+        return "music_play";
+    }
+
 }
