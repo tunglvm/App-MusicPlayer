@@ -19,11 +19,16 @@ public class PlaylistController {
     // Danh sách playlist
     @GetMapping
     public String listPlaylists(Model model) {
-        model.addAttribute("playlists", playlistRepository.findAll());
+        try {
+            model.addAttribute("playlists", playlistRepository.findAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi lấy danh sách playlist: " + e.getMessage());
+        }
         return "playlist";
     }
 
-    // Hiển thị form thêm playlist mới
+    // Hiển thị form thêm playlist
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("playlist", new Playlist());
@@ -32,11 +37,14 @@ public class PlaylistController {
 
     // Xử lý thêm playlist
     @PostMapping("/add")
-    public String addPlaylist(@ModelAttribute Playlist playlist) {
+    public String addPlaylist(@ModelAttribute Playlist playlist, Model model) {
         try {
             playlistRepository.save(playlist);
         } catch (Exception e) {
             e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi thêm playlist: " + e.getMessage());
+            model.addAttribute("playlist", playlist);
+            return "playlist_form";
         }
         return "redirect:/playlist";
     }
@@ -44,22 +52,30 @@ public class PlaylistController {
     // Hiển thị form sửa playlist
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
-        Optional<Playlist> playlist = playlistRepository.findById(id);
-        if (playlist.isPresent()) {
-            model.addAttribute("playlist", playlist.get());
-            return "playlist_form";
+        try {
+            Optional<Playlist> playlist = playlistRepository.findById(id);
+            if (playlist.isPresent()) {
+                model.addAttribute("playlist", playlist.get());
+                return "playlist_form";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi lấy thông tin playlist: " + e.getMessage());
         }
         return "redirect:/playlist";
     }
 
     // Xử lý sửa playlist
     @PostMapping("/edit/{id}")
-    public String editPlaylist(@PathVariable Long id, @ModelAttribute Playlist playlist) {
+    public String editPlaylist(@PathVariable Long id, @ModelAttribute Playlist playlist, Model model) {
         try {
             playlist.setId(id);
             playlistRepository.save(playlist);
         } catch (Exception e) {
             e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi cập nhật playlist: " + e.getMessage());
+            model.addAttribute("playlist", playlist);
+            return "playlist_form";
         }
         return "redirect:/playlist";
     }
@@ -76,55 +92,75 @@ public class PlaylistController {
     }
 
     // Hiển thị danh sách bài hát trong playlist
-    @GetMapping("/{id}/songs")
+    @GetMapping("/{id}/musics")
     public String showSongsInPlaylist(@PathVariable Long id, Model model) {
-        Optional<Playlist> playlistOpt = playlistRepository.findById(id);
-        if (playlistOpt.isPresent()) {
-            Playlist playlist = playlistOpt.get();
-            model.addAttribute("playlist", playlist);
-            model.addAttribute("musics", playlist.getMusics());
-            return "playlist_songs"; // Tạo view playlist_songs.html để hiển thị danh sách bài hát
+        try {
+            Optional<Playlist> playlistOpt = playlistRepository.findById(id);
+            if (playlistOpt.isPresent()) {
+                Playlist playlist = playlistOpt.get();
+                model.addAttribute("playlist", playlist);
+                model.addAttribute("musics", playlist.getMusics());
+                return "playlist_musics";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Lỗi khi lấy bài hát trong playlist: " + e.getMessage());
         }
         return "redirect:/playlist";
     }
 
-    // Phát toàn bộ playlist (giả lập)
+    // Phát toàn bộ playlist
     @GetMapping("/{id}/play")
     @ResponseBody
     public String playAllSongs(@PathVariable Long id) {
-        Optional<Playlist> playlistOpt = playlistRepository.findById(id);
-        if (playlistOpt.isPresent()) {
-            Playlist playlist = playlistOpt.get();
-            return "Đang phát toàn bộ playlist: " + playlist.getName();
+        try {
+            Optional<Playlist> playlistOpt = playlistRepository.findById(id);
+            if (playlistOpt.isPresent()) {
+                Playlist playlist = playlistOpt.get();
+                return "Đang phát toàn bộ playlist: " + playlist.getName();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Lỗi khi phát playlist: " + e.getMessage();
         }
         return "Playlist không tồn tại!";
     }
 
-    // Phát một bài hát cụ thể trong playlist (giả lập)
+    // Phát một bài hát cụ thể trong playlist
     @GetMapping("/{playlistId}/songs/{songIndex}/play")
     @ResponseBody
     public String playSongInPlaylist(@PathVariable Long playlistId, @PathVariable int songIndex) {
-        Optional<Playlist> playlistOpt = playlistRepository.findById(playlistId);
-        if (playlistOpt.isPresent()) {
-            Playlist playlist = playlistOpt.get();
-            if (playlist.getMusics() != null && songIndex >= 0 && songIndex < playlist.getMusics().size()) {
-                return "Đang phát: " + playlist.getMusics().get(songIndex).getTitle();
+        try {
+            Optional<Playlist> playlistOpt = playlistRepository.findById(playlistId);
+            if (playlistOpt.isPresent()) {
+                Playlist playlist = playlistOpt.get();
+                if (playlist.getMusics() != null && songIndex >= 0 && songIndex < playlist.getMusics().size()) {
+                    return "Đang phát: " + playlist.getMusics().get(songIndex).getTitle();
+                }
+                return "Bài hát không tồn tại!";
             }
-            return "Bài hát không tồn tại!";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Lỗi khi phát bài hát trong playlist: " + e.getMessage();
         }
         return "Playlist không tồn tại!";
     }
 
-    // Phát ngẫu nhiên một bài hát trong playlist (giả lập)
+    // Phát ngẫu nhiên một bài hát trong playlist
     @GetMapping("/{id}/random/play")
     @ResponseBody
     public String playRandomSong(@PathVariable Long id) {
-        Optional<Playlist> playlistOpt = playlistRepository.findById(id);
-        if (playlistOpt.isPresent()) {
-            Playlist playlist = playlistOpt.get();
-            if (playlist.getMusics() == null || playlist.getMusics().isEmpty()) return "Playlist không có bài hát!";
-            int idx = new java.util.Random().nextInt(playlist.getMusics().size());
-            return "Đang phát ngẫu nhiên: " + playlist.getMusics().get(idx).getTitle();
+        try {
+            Optional<Playlist> playlistOpt = playlistRepository.findById(id);
+            if (playlistOpt.isPresent()) {
+                Playlist playlist = playlistOpt.get();
+                if (playlist.getMusics() == null || playlist.getMusics().isEmpty()) return "Playlist không có bài hát!";
+                int idx = new java.util.Random().nextInt(playlist.getMusics().size());
+                return "Đang phát ngẫu nhiên: " + playlist.getMusics().get(idx).getTitle();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Lỗi khi phát bài hát ngẫu nhiên: " + e.getMessage();
         }
         return "Playlist không tồn tại!";
     }

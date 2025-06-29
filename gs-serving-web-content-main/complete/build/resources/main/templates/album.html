@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Album</title>
+    <title>Albums</title>
     <style>
         body {
             background-color: #121212;
@@ -49,18 +49,33 @@
             text-decoration: none;
             font-weight: 600;
         }
+        .view-songs-btn {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #1db954;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .view-songs-btn:hover {
+            background-color: #1ed760;
+        }
     </style>
 </head>
 <body>
     <a th:href="@{/album/add}" class="add-btn">Thêm Album</a>
     <div class="grid">
         <div class="card" th:each="album : ${albums}">
-            <img th:src="${album.cover}" alt="Ảnh album" />
-            <h3 th:text="${album.name}"></h3>
+            <img th:src="${album.cover != null ? album.cover : '/static/default.jpg'}" alt="Ảnh album" />
+            <h3 th:text="${album.name != null ? album.name : 'No name'}"></h3>
             <div class="actions">
                 <a th:href="@{'/album/edit/' + ${album.id}}">Sửa</a>
                 <a th:href="@{'/album/delete/' + ${album.id}}" onclick="return confirm('Xóa album?')">Xóa</a>
             </div>
+            <a th:href="@{'/album/' + ${album.id} + '/musics'}" class="view-songs-btn">Xem bài hát</a>
         </div>
     </div>
 </body>

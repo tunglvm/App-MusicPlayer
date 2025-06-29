@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách bài hát trong Playlist</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .music-card {
+            background: #1e1e1e;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .music-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .music-artist {
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+
+        .play-button {
+            background: #1db954;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            color: #1db954;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h2 th:text="'Playlist: ' + ${playlist.name}"></h2>
+
+    <div th:if="${musics.size() > 0}">
+        <div th:each="music : ${musics}" class="music-card">
+            <div class="music-info">
+                <div class="music-title" th:text="${music.title}"></div>
+                <div class="music-artist" th:text="${music.artist}"></div>
+            </div>
+            <a th:href="@{'/music/play/' + ${music.id}}">
+                <button class="play-button">Phát</button>
+            </a>
+        </div>
+    </div>
+
+    <p th:if="${musics.size() == 0}">Playlist này chưa có bài hát nào.</p>
+
+    <a href="/playlist" class="back-link">← Quay lại danh sách Playlist</a>
+</body>
+</html>

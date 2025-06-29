@@ -70,6 +70,8 @@
         </div>
 
         <button type="submit">Lưu Playlist</button>
+        <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+        <p th:if="${success}" th:text="${success}" style="color: green;"></p>
     </form>
 </body>
 </html>

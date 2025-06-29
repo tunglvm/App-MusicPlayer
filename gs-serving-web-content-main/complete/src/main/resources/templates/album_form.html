@@ -54,6 +54,8 @@
         <input type="text" th:field="*{cover}" />
 
         <button type="submit">Lưu Album</button>
+        <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+        <p th:if="${success}" th:text="${success}" style="color: green;"></p>
     </form>
 </body>
 </html>
