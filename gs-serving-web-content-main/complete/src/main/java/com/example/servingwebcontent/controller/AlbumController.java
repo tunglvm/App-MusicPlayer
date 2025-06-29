@@ -17,7 +17,7 @@ public class AlbumController {
     private AlbumRepository albumRepository;
 
     // Danh sách album
-    @GetMapping
+    @GetMapping("")
     public String listAlbums(Model model) {
         model.addAttribute("albums", albumRepository.findAll());
         return "album";

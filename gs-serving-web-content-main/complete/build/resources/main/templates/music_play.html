@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Phát Nhạc</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .player {
+            background: #181818;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 0 32px rgba(0,0,0,0.5);
+        }
+        img {
+            width: 100%;
+            height: 300px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin: 12px 0 4px;
+        }
+        p {
+            color: #ccc;
+            margin: 0 0 16px;
+        }
+        audio {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="player" th:if="${music != null}">
+        <img th:src="${music.cover}" alt="cover" />
+        <h2 th:text="${music.title}"></h2>
+        <p th:text="${music.artist}"></p>
+    <audio controls>
+      <source src="assets/music/HIEUTHUHAI - TRÌNH (prod. by Kewtiie).mp3" type="audio/mpeg">
+      Trình duyệt của bạn không hỗ trợ phát nhạc.
+    </audio>
+    </div>
+    <div th:if="${music == null}">
+        <p th:text="${error}"></p>
+    </div>
+</body>
+</html>

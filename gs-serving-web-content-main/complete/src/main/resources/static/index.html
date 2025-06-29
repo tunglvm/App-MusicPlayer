@@ -1,14 +1,51 @@
-<!DOCTYPE HTML>
-<html>
-<head> 
-    <title>Getting Started: Serving Web Content</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Index</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            text-align: center;
+            font-family: 'Segoe UI', sans-serif;
+            margin-top: 100px;
+        }
+        .btn {
+            background-color: #1db954;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            margin: 16px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #25e06e;
+        }
+        .search-bar {
+            margin-bottom: 40px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            width: 300px;
+        }
+    </style>
 </head>
 <body>
-    <p>Get your greeting <a href="/greeting">here</a></p>
-    <audio controls>
-      <source src="assets/music/HIEUTHUHAI - TRÌNH (prod. by Kewtiie).mp3" type="audio/mpeg">
-      Trình duyệt của bạn không hỗ trợ phát nhạc.
-    </audio>
+    <div class="search-bar">
+        <form th:action="@{/search}" method="get">
+            <input type="text" name="keyword" placeholder="Tìm kiếm bài hát, playlist, album..."/>
+        </form>
+    </div>
+
+    <a href="/music" class="btn">Music</a>
+    <a href="/playlist" class="btn">Playlist</a>
+    <a href="/album" class="btn">Album</a>
+
+    <button>Here</button>
 </body>
 </html>
