@@ -62,7 +62,7 @@ public class MusicController {
             }
 
             musicRepository.save(music);
-            return "redirect:/music/";
+            return "redirect:/music";
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(">>> ERROR khi thêm bài hát: " + e.getMessage());
