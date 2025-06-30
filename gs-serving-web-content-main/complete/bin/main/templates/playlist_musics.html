@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bài hát trong Playlist</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 24px;
+        }
+
+        .music-card {
+            background: #1e1e1e;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .music-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .music-artist {
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+
+        .play-button {
+            background: #1db954;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .play-button:hover {
+            background: #1ed760;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            color: #1db954;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <h2 th:text="'Playlist: ' + ${playlist.name}">Tên Playlist</h2>
+
+    <div th:if="${musics != null and musics.size() > 0}">
+        <div th:each="music : ${musics}" class="music-card">
+            <div class="music-info">
+                <div class="music-title" th:text="${music.title}">Tên bài hát</div>
+                <div class="music-artist" th:text="${music.artist}">Tên ca sĩ</div>
+            </div>
+            <a th:href="@{'/music/play/' + ${music.id}}" target="_blank">
+                <button class="play-button">Phát</button>
+            </a>
+        </div>
+    </div>
+
+    <p th:if="${musics == null or musics.size() == 0}">Playlist này chưa có bài hát nào.</p>
+
+    <a href="/playlist" class="back-link">← Quay lại danh sách Playlist</a>
+</body>
+</html>

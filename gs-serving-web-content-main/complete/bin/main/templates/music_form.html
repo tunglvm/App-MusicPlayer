@@ -87,6 +87,8 @@
         </div>
 
         <button type="submit">Lưu bài hát</button>
+        <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+        <p th:if="${success}" th:text="${success}" style="color: green;"></p>
     </form>
 </body>
 </html>

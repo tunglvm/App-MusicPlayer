@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/music")
@@ -178,5 +179,31 @@ public class MusicController {
             model.addAttribute("error", "Lỗi khi phát bài hát đầu tiên: " + e.getMessage());
         }
         return "music_play";
+    }
+
+    @GetMapping("/music")
+    public String music(
+        @RequestParam(name = "keyword", required = false) String keyword,
+        Model model
+    ) {
+        try {
+            List<Music> allSongs = musicRepository.findAll();
+            List<Music> filteredSongs;
+            if (keyword != null && !keyword.trim().isEmpty()) {
+                filteredSongs = allSongs.stream()
+                    .filter(song -> song.getTitle().toLowerCase().contains(keyword.toLowerCase())
+                        || song.getArtist().toLowerCase().contains(keyword.toLowerCase()))
+                    .collect(Collectors.toList());
+            } else {
+                filteredSongs = allSongs;
+            }
+            model.addAttribute("musics", filteredSongs);
+            model.addAttribute("keyword", keyword);
+        } catch (Exception e) {
+            model.addAttribute("musics", List.of());
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("error", "Đã xảy ra lỗi khi tải danh sách bài hát.");
+        }
+        return "music";
     }
 }

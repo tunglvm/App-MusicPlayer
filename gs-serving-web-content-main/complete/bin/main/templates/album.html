@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Album</title>
+    <title>Albums</title>
     <style>
         body {
             background-color: #121212;
             color: #fff;
             font-family: 'Segoe UI', sans-serif;
+        }
+        .top-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 30px 40px 0 40px;
+        }
+        .back-btn {
+            background: #222326;
+            color: #fff;
+            border: none;
+            border-radius: 16px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid #333;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #1db954;
+            color: #191414;
+        }
+        .search-bar {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+        }
+        .search-input {
+            padding: 10px 16px;
+            border-radius: 16px;
+            border: none;
+            font-size: 1rem;
+            width: 100%;
+        }
+        .search-btn {
+            background: #1db954;
+            color: #191414;
+            border: none;
+            border-radius: 16px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-btn:hover {
+            background: #1ed760;
         }
         .grid {
             display: grid;
@@ -41,26 +89,49 @@
             font-size: 0.9rem;
         }
         .add-btn {
-            margin: 30px;
+            margin: 30px 40px 0 40px;
             background: #1db954;
             color: white;
             padding: 12px 24px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
+            display: inline-block;
+        }
+        .view-songs-btn {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #1db954;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .view-songs-btn:hover {
+            background-color: #1ed760;
         }
     </style>
 </head>
 <body>
+    <div class="top-bar">
+        <button class="back-btn" onclick="window.location.href='/greeting'">&larr; Quay về trang chủ</button>
+        <form class="search-bar" method="get" action="/album">
+            <input class="search-input" type="text" name="keyword" placeholder="Tìm kiếm album..." th:value="${keyword}">
+            <button class="search-btn" type="submit">Tìm kiếm</button>
+        </form>
+    </div>
     <a th:href="@{/album/add}" class="add-btn">Thêm Album</a>
     <div class="grid">
         <div class="card" th:each="album : ${albums}">
-            <img th:src="${album.cover}" alt="Ảnh album" />
-            <h3 th:text="${album.name}"></h3>
+            <img th:src="${album.cover != null ? album.cover : '/static/default.jpg'}" alt="Ảnh album" />
+            <h3 th:text="${album.name != null ? album.name : 'No name'}"></h3>
             <div class="actions">
                 <a th:href="@{'/album/edit/' + ${album.id}}">Sửa</a>
                 <a th:href="@{'/album/delete/' + ${album.id}}" onclick="return confirm('Xóa album?')">Xóa</a>
             </div>
+            <a th:href="@{'/album/' + ${album.id} + '/musics'}" class="view-songs-btn">Xem bài hát</a>
         </div>
     </div>
 </body>

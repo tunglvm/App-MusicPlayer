@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Music</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
     <style>
         body {
             background: #181818;
             color: #fff;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Montserrat', Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -14,13 +16,61 @@
             margin: 30px 0 20px 40px;
             font-size: 2rem;
         }
-        .music-container {
-            margin: 0 auto;
+        .container {
             max-width: 900px;
-            background: #222;
-            border-radius: 16px;
+            margin: 40px auto;
+            background: #222326;
+            border-radius: 24px;
             padding: 32px;
-            box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+        }
+        .top-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .back-btn {
+            background: #222326;
+            color: #fff;
+            border: none;
+            border-radius: 16px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-right: 16px;
+            border: 2px solid #333;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #1db954;
+            color: #191414;
+        }
+        .search-bar {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+        }
+        .search-input {
+            padding: 10px 16px;
+            border-radius: 16px;
+            border: none;
+            font-size: 1rem;
+            width: 100%;
+        }
+        .search-btn {
+            background: #1db954;
+            color: #191414;
+            border: none;
+            border-radius: 16px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-btn:hover {
+            background: #1ed760;
         }
         table {
             width: 100%;
@@ -78,9 +128,15 @@
     </style>
 </head>
 <body>
-    <div class="music-container">
-        <a href="/" style="display:inline-block;margin-bottom:24px;background:#282828;color:#fff;padding:10px 24px;border-radius:24px;font-weight:600;text-decoration:none;">Quay về trang chủ</a>
-        <h1>Danh sách bài hát</h1>
+    <div class="container">
+        <div class="top-bar">
+            <button class="back-btn" onclick="window.location.href='/greeting'">&larr; Quay về trang chủ</button>
+            <form class="search-bar" method="get" action="/music">
+                <input class="search-input" type="text" name="keyword" placeholder="Tìm kiếm bài hát, ca sĩ..." th:value="${keyword}">
+                <button class="search-btn" type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+        <h2>Danh sách bài hát</h2>
         <a th:href="@{/music/add}" class="add-btn">Thêm bài hát</a>
         <table>
             <tr>

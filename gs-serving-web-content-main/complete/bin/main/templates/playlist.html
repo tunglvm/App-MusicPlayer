@@ -8,6 +8,54 @@
             color: #fff;
             font-family: 'Segoe UI', sans-serif;
         }
+        .top-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 30px 40px 0 40px;
+        }
+        .back-btn {
+            background: #222326;
+            color: #fff;
+            border: none;
+            border-radius: 16px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 2px solid #333;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #1db954;
+            color: #191414;
+        }
+        .search-bar {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+        }
+        .search-input {
+            padding: 10px 16px;
+            border-radius: 16px;
+            border: none;
+            font-size: 1rem;
+            width: 100%;
+        }
+        .search-btn {
+            background: #1db954;
+            color: #191414;
+            border: none;
+            border-radius: 16px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-btn:hover {
+            background: #1ed760;
+        }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -41,17 +89,39 @@
             font-size: 0.9rem;
         }
         .add-btn {
-            margin: 30px;
+            margin: 30px 40px 0 40px;
             background: #1db954;
             color: white;
             padding: 12px 24px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
+            display: inline-block;
+        }
+        .view-songs-btn {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #1db954;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .view-songs-btn:hover {
+            background-color: #1ed760;
         }
     </style>
 </head>
 <body>
+    <div class="top-bar">
+        <button class="back-btn" onclick="window.location.href='/greeting'">&larr; Quay về trang chủ</button>
+        <form class="search-bar" method="get" action="/playlist">
+            <input class="search-input" type="text" name="keyword" placeholder="Tìm kiếm playlist..." th:value="${keyword}">
+            <button class="search-btn" type="submit">Tìm kiếm</button>
+        </form>
+    </div>
     <a th:href="@{/playlist/add}" class="add-btn">Thêm Playlist</a>
     <div class="grid">
         <div class="card" th:each="playlist : ${playlists}">
@@ -60,6 +130,13 @@
             <div class="actions">
                 <a th:href="@{'/playlist/edit/' + ${playlist.id}}">Sửa</a>
                 <a th:href="@{'/playlist/delete/' + ${playlist.id}}" onclick="return confirm('Xóa playlist?')">Xóa</a>
+            </div>
+            <a th:href="@{'/playlist/' + ${playlist.id} + '/musics'}" class="view-songs-btn">Xem bài hát</a>
+            <div th:if="${playlist.musics != null and playlist.musics.size() > 0}">
+                <p>Playlist có <span th:text="${playlist.musics.size()}">0</span> bài hát</p>
+            </div>
+            <div th:if="${playlist.musics == null or playlist.musics.size() == 0}">
+                <p>Playlist này chưa có bài hát nào.</p>
             </div>
         </div>
     </div>
