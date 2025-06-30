@@ -1,63 +1,195 @@
-# Group6_OOP_N02_term3_2025
-Music Player
+# 🎵 ỨNG DỤNG NGHE NHẠC (SPRING BOOT)
 
-## Members
+## Group 6
 
-Đỗ Tùng Lâm 23010874
+### 📌 Tiêu đề bài tập lớn cuối kỳ: Ứng dụng nghe nhạc trực tuyến Music Player
 
-Github id: tunglvm
+---
 
-Trần Quốc Huy 23010184
+## 👥 Thành viên nhóm
 
-Github id: Huybip
+| Họ và tên       | MSSV      | GitHub ID     | Nhiệm vụ chính                                           |
+|------------------|-----------|---------------|-----------------------------------------------------------|
+| Đỗ Tùng Lâm       | 23010874  | tunglvm        | Hiển thị danh sách Playlist & bài hát                    |
+| Trần Quốc Huy     | 23010184  | Huybip         | Điều khiển phát nhạc từ Playlist                         |
+| Đỗ Quỳnh Chi      | 23010618  | quynchi16      | Tạo, sửa, xóa Album và Playlist                          |
 
-Đỗ Quỳnh Chi 23010618
+---
 
-Github id: quynchi16
+## I. Phân tích đối tượng
+---
 
-Nội dung 01:
+### 1. Bài hát (Music)
 
-# Ứng Dụng Nghe Nhạc
+#### Thuộc tính:
+- Mã bài hát
+- Tên bài hát
+- Tác giả/Nhạc sĩ
+- Thể loại
+- File nhạc (đường dẫn trong `/static/assets/music/`)
+- Thời lượng (tuỳ chọn)
 
-## Mô Tả
-Ứng dụng nghe nhạc được xây dựng bằng Java Spring Boot, cho phép người dùng quản lý bài hát và playlist. Ứng dụng cung cấp các chức năng như thêm, sửa, xóa bài hát, cũng như gán bài hát vào playlist.
+#### Hành vi:
+- Hiển thị thông tin
+- Phát bài hát
+- Gán vào Playlist hoặc Album
 
-## Yêu Cầu
-- Java 11 hoặc cao hơn
-- Spring Boot
-- Maven hoặc Gradle
-- Thư viện Thymeleaf (nếu sử dụng giao diện web)
+---
+
+### 2. Playlist
+
+#### Thuộc tính:
+- Mã Playlist
+- Tên Playlist
+- Danh sách bài hát
+
+#### Hành vi:
+- Tạo Playlist mới
+- Thêm/Xóa bài hát
+- Phát toàn bộ Playlist
+
+---
+
+### 3. Album
+
+#### Thuộc tính:
+- Mã Album
+- Tên Album
+- Danh sách bài hát
+
+#### Hành vi:
+- Quản lý danh sách bài hát trong Album
+- Phát toàn bộ Album
+
+---
+
+## II. Cấu trúc thư mục Project
+
+music-player-springboot/
+├── .vscode/
+├── build/
+├── gradle/
+├── src/
+│ └── main/
+│ ├── java/com/example/servingwebcontent/
+│ │ ├── controller/
+│ │ │ ├── AlbumController.java
+│ │ │ ├── PlaylistController.java
+│ │ │ └── MusicController.java
+│ │ ├── model/
+│ │ │ ├── Album.java
+│ │ │ ├── Playlist.java
+│ │ │ └── Music.java
+│ │ ├── repository/
+│ │ │ ├── AlbumRepository.java
+│ │ │ ├── PlaylistRepository.java
+│ │ │ └── MusicRepository.java
+│ │ ├── database/
+│ │ │ └── AivenDatabaseConfig.java
+│ │ └── ServingWebContentApplication.java
+│ └── resources/
+│ ├── static/assets/music/
+│ ├── index.html
+│ ├── templates/
+│ │ ├── playlist.html
+│ │ ├── album.html
+│ │ ├── music.html
+│ │ ├── music_form.html
+│ │ ├── music_play.html
+│ │ ├── music_play2.html
+│ │ ├── playlist_form.html
+│ │ ├── playlist_musics.html
+│ │ ├── album_form.html
+│ │ ├── album_musics.html
+└── README.md
 
 
-## 🎵 Chức năng chính: Quản lý và Phát nhạc từ Album/Playlist
+---
 
-### 🧩 Mô tả chức năng:
-Người dùng có thể tạo và quản lý Playlist hoặc Album nhạc. Sau đó, chọn một Album/Playlist để phát nhạc liên tục, với hỗ trợ các điều khiển cơ bản.
+## III. Hệ thống chức năng chính
 
-### 🔄 Phân rã chức năng:
-- Tải danh sách Playlist từ thư mục hoặc dữ liệu có sẵn.
-- Hiển thị các Album/Playlist.
-- Người dùng chọn một danh sách để xem chi tiết và phát nhạc.
-- Phát nhạc với điều khiển: Play, Pause, Next, Previous, Stop, Shuffle, Repeat.
+---
 
-### 👥 Phân công nhóm:
-- Đỗ Quỳnh Chi: Xử lý tạo, sửa, xóa Album/Playlist.
-- Đỗ Tùng Lâm: Hiển thị danh sách Playlist và bài hát bên trong.
-- Trần Quốc Huy: Điều khiển phát nhạc từ Playlist.
-- Cả nhóm: Gộp chức năng tổng thể và kiểm thử.
+| Chức năng                  | Mô tả chi tiết                                                      |
+| -------------------------- | ------------------------------------------------------------------- |
+| 🎵 Thêm nhạc               | Upload file nhạc vào thư mục `static/assets/music/`                 |
+| 📁 Tạo Playlist/Album      | Người dùng tạo danh sách nhạc riêng                                 |
+| ➕ Gán nhạc vào danh sách   | Chọn nhạc để gán vào Playlist hoặc Album                            |
+| 📋 Hiển thị danh sách nhạc | Trang hiển thị danh sách playlist, album, nhạc trong từng danh sách |
+| ▶️ Phát nhạc               | Phát từng bài hát hoặc toàn bộ Playlist/Album                       |
+| 🔁 Shuffle/Repeat          | Cho phép phát ngẫu nhiên hoặc lặp lại                               |
+| ⏭⏮ Điều khiển bài hát      | Next/Previous/Pause nhạc ngay trong trình phát                      |
+| 🔍 Tìm kiếm                | Tìm kiếm bài hát hoặc playlist theo từ khóa                         |
 
-### 🗂 Lưu đồ thuật toán:
+---
 
-![Lưu đồ hoạt động của chức năng](https://github.com/user-attachments/assets/fd37f07f-0fbc-41b6-a718-de14e5077e92)
+## IV. Lưu trữ dữ liệu
 
+- Dữ liệu người dùng, bài hát, playlist và album được lưu trong **CSDL MySQL** (qua Aiven hoặc local).
+- Tập tin nhạc được lưu trong thư mục: `resources/static/assets/music/`
+- Các danh sách và dữ liệu liên quan được quản lý bằng các collection như `List<Music>`, `List<Playlist>`...
 
-### Chạy chương trình:
+---
 
-![image](https://github.com/user-attachments/assets/705eec8f-94af-4ed1-aee7-a7f7538126aa)
+## V. Kiểm thử hệ thống
 
-### Giao diện chính
+### 🧪 Music, Playlist, Album:
+- Kiểm tra thêm/xóa bài hát, phát nhạc thành công
+- Kiểm tra phát Playlist và Album theo thứ tự, ngẫu nhiên
+- Kiểm tra điều hướng giữa các giao diện
 
-![image](https://github.com/user-attachments/assets/5f5faf5c-a123-4042-bd16-9907f4948cef)
+### 🧪 UI:
+- Kiểm thử giao diện bằng trình duyệt
+- Kiểm tra khả năng hiển thị nhạc, playlist, album
+- Thử các thao tác người dùng như thêm bài hát, play/pause, chọn danh sách
+
+---
+
+## VI. Yêu cầu môi trường
+
+- Java 11 trở lên
+- Spring Boot 3.x
+- Gradle
+- MySQL (có thể thay bằng Aiven MySQL)
+- Trình duyệt để chạy giao diện người dùng
+
+---
+
+## VII. Cách chạy chương trình
+
+### 1. Cấu hình CSDL 
+
+- Để liên kết với MySQL Workbench, sử dụng các câu lệnh export trực tiếp từ terminal để kết nối.
+
+## 2. Cách chạy chương và sử dụng
+
+- Sử dụng ./gradlew bootRun
+- Truy cập vào https://local.host:8080/
+
+## Sơ đồ chức năng
+1. Class Diagram
+   
+![image](https://github.com/user-attachments/assets/ca265c95-a565-4c2d-ac55-063a47344aa7)
+
+2. Sơ đồ chức năng phát nhạc và crud liên quan
+
+![image](https://github.com/user-attachments/assets/6b64d6c4-c0c0-45f2-8d88-4679a12c4230)
+
+3. Sơ đồ khái quát chức năng của ứng dụng
+   
+![image](https://github.com/user-attachments/assets/df8915c7-36c7-4432-af54-eeb50b9d6e57)
+
+4. Phát bài hát trong playlist
+   
+![image](https://github.com/user-attachments/assets/da3ff373-6b10-4907-bb55-05b6de626c15)
+
+5. Phát bài hát trong Album
+   
+![image](https://github.com/user-attachments/assets/0b273ed0-316b-4a75-8e8f-32f2575ddfc3)
+
+## Màn hình giao diện
+
+Giao diện truy cập vào phần chức năng: 
 
 
 
