@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Danh sách bài hát trong Playlist</title>
+    <title>Bài hát trong Playlist</title>
     <style>
         body {
             background-color: #121212;
-            color: white;
+            color: #ffffff;
             font-family: 'Segoe UI', sans-serif;
-            padding: 20px;
+            padding: 40px;
         }
 
         h2 {
             font-size: 28px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .music-card {
@@ -48,32 +48,38 @@
             color: white;
             cursor: pointer;
             font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .play-button:hover {
+            background: #1ed760;
         }
 
         .back-link {
-            margin-top: 20px;
             display: inline-block;
+            margin-top: 24px;
             color: #1db954;
             text-decoration: none;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
-    <h2 th:text="'Playlist: ' + ${playlist.name}"></h2>
+    <h2 th:text="'Playlist: ' + ${playlist.name}">Tên Playlist</h2>
 
-    <div th:if="${musics.size() > 0}">
+    <div th:if="${musics != null and musics.size() > 0}">
         <div th:each="music : ${musics}" class="music-card">
             <div class="music-info">
-                <div class="music-title" th:text="${music.title}"></div>
-                <div class="music-artist" th:text="${music.artist}"></div>
+                <div class="music-title" th:text="${music.title}">Tên bài hát</div>
+                <div class="music-artist" th:text="${music.artist}">Tên ca sĩ</div>
             </div>
-            <a th:href="@{'/music/play/' + ${music.id}}">
+            <a th:href="@{'/music/play/' + ${music.id}}" target="_blank">
                 <button class="play-button">Phát</button>
             </a>
         </div>
     </div>
 
-    <p th:if="${musics.size() == 0}">Playlist này chưa có bài hát nào.</p>
+    <p th:if="${musics == null or musics.size() == 0}">Playlist này chưa có bài hát nào.</p>
 
     <a href="/playlist" class="back-link">← Quay lại danh sách Playlist</a>
 </body>

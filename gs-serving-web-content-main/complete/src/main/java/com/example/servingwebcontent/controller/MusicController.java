@@ -28,7 +28,8 @@ public class MusicController {
     @Autowired
     private PlaylistRepository playlistRepository;
 
-    @GetMapping
+    // Hỗ trợ cả /music và /music/
+    @GetMapping({"", "/"})
     public String listMusic(Model model) {
         model.addAttribute("musics", musicRepository.findAll());
         return "music";
@@ -60,9 +61,11 @@ public class MusicController {
             }
 
             musicRepository.save(music);
-            return "redirect:/music";
+            return "redirect:/music/";
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(">>> ERROR khi thêm bài hát: " + e.getMessage());
+
             model.addAttribute("error", "Lỗi khi thêm bài hát: " + e.getMessage());
             model.addAttribute("music", music);
             model.addAttribute("albums", albumRepository.findAll());
@@ -80,7 +83,7 @@ public class MusicController {
             model.addAttribute("playlists", playlistRepository.findAll());
             return "music_form";
         }
-        return "redirect:/music";
+        return "redirect:/music/";
     }
 
     @PostMapping("/edit/{id}")
@@ -112,13 +115,15 @@ public class MusicController {
                 }
 
                 musicRepository.save(existing);
-                return "redirect:/music";
+                return "redirect:/music/";
             } else {
                 model.addAttribute("error", "Không tìm thấy bài hát để sửa!");
                 return "music_form";
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(">>> ERROR khi sửa bài hát: " + e.getMessage());
+
             model.addAttribute("error", "Lỗi khi sửa bài hát: " + e.getMessage());
             model.addAttribute("music", music);
             model.addAttribute("albums", albumRepository.findAll());
@@ -133,8 +138,9 @@ public class MusicController {
             musicRepository.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(">>> ERROR khi xóa bài hát: " + e.getMessage());
         }
-        return "redirect:/music";
+        return "redirect:/music/";
     }
 
     @GetMapping("/play/{id}")

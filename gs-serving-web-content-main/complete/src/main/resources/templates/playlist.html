@@ -75,8 +75,14 @@
                 <a th:href="@{'/playlist/edit/' + ${playlist.id}}">Sửa</a>
                 <a th:href="@{'/playlist/delete/' + ${playlist.id}}" onclick="return confirm('Xóa playlist?')">Xóa</a>
             </div>
-            <a th:href="@{'/playlist/' + ${playlist.id} + '/songs'}" class="view-songs-btn">Xem bài hát</a>
+            <a th:href="@{'/playlist/' + ${playlist.id} + '/musics'}" class="view-songs-btn">Xem bài hát</a>
+            <div th:if="${playlist.musics != null and playlist.musics.size() > 0}">
+                <p>Playlist có <span th:text="${playlist.musics.size()}">0</span> bài hát</p>
         </div>
+        <p th:text="'Số bài hát: ' + ${playlist.musics.size()}"></p>
+            <div th:if="${playlist.musics == null or playlist.musics.size() == 0}">
+                <p>Playlist này chưa có bài hát nào.</p>
+            </div>
     </div>
 </body>
 </html>

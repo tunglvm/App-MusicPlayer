@@ -1,10 +1,41 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Getting Started: Serving Web Content</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+    <title>Trang chính</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+        .btn-group a {
+            display: inline-block;
+            margin: 20px;
+            padding: 16px 32px;
+            background-color: #1db954;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+        }
+        .btn-group a:hover {
+            background-color: #1ed760;
+        }
+    </style>
 </head>
 <body>
-    <p th:text="|Hello, ${name}!|" />
+    <h1>Chào mừng đến với ứng dụng nghe nhạc 🎵</h1>
+    <div class="btn-group">
+        <a href="/music">Xem bài hát</a>
+        <a href="/playlist">Xem Playlist</a>
+        <a href="/album">Xem Album</a>
+    </div>
 </body>
 </html>
