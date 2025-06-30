@@ -87,7 +87,6 @@ public class MusicPlayer extends PlaybackListener {
             }
         }
         catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
 
