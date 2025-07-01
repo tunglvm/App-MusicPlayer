@@ -175,19 +175,27 @@ music-player-springboot/
 
 ![image](https://github.com/user-attachments/assets/6b64d6c4-c0c0-45f2-8d88-4679a12c4230)
 
-3. Sơ đồ khái quát chức năng của ứng dụng
+3. Sơ đồ thêm, sửa, xóa album
+
+![image](https://github.com/user-attachments/assets/8ae2b7dc-bb0c-4151-a26b-ae6a47606512)
+
+4. Sơ đồ thêm, sửa, xóa playlist
+
+![image](https://github.com/user-attachments/assets/72275d40-4a1d-4f92-8850-c4030c263734)
+
+5. Sơ đồ khái quát chức năng của ứng dụng
    
 ![image](https://github.com/user-attachments/assets/df8915c7-36c7-4432-af54-eeb50b9d6e57)
 
-4. Phát bài hát trong playlist
+6. Phát bài hát trong playlist
    
 ![image](https://github.com/user-attachments/assets/da3ff373-6b10-4907-bb55-05b6de626c15)
 
-5. Phát bài hát trong Album
+7. Phát bài hát trong Album
    
 ![image](https://github.com/user-attachments/assets/0b273ed0-316b-4a75-8e8f-32f2575ddfc3)
 
-6. Lưu đồ thuật toán
+8. Lưu đồ thuật toán
 
 ![Lưu đồ hoạt động của chức năng](https://github.com/user-attachments/assets/fd37f07f-0fbc-41b6-a718-de14e5077e92)
 
