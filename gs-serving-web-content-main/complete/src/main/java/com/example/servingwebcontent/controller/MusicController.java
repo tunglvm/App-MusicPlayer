@@ -1,6 +1,5 @@
 package com.example.servingwebcontent.controller;
 
-import com.example.servingwebcontent.model.Album;
 import com.example.servingwebcontent.model.Music;
 import com.example.servingwebcontent.model.Playlist;
 import com.example.servingwebcontent.repository.AlbumRepository;
