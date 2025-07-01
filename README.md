@@ -10,9 +10,9 @@
 
 | Họ và tên       | MSSV      | GitHub ID     | Nhiệm vụ chính                                           |
 |------------------|-----------|---------------|-----------------------------------------------------------|
-| Đỗ Tùng Lâm       | 23010874  | tunglvm        | Hiển thị danh sách Playlist & bài hát                    |
-| Trần Quốc Huy     | 23010184  | Huybip         | Điều khiển phát nhạc từ Playlist                         |
-| Đỗ Quỳnh Chi      | 23010618  | quynchi16      | Tạo, sửa, xóa Album và Playlist                          |
+| Đỗ Tùng Lâm       | 23010874  | tunglvm        | Hiển thị danh sách Playlist & bài hát & Album            |
+| Trần Quốc Huy     | 23010184  | Huybip         | Điều khiển phát nhạc từ Playlist, Album và phát nhạc trực tiếp|
+| Đỗ Quỳnh Chi      | 23010618  | quynchi16      | Tạo, sửa, xóa Album và Playlist và bài hát(Music)        |
 
 ---
 
