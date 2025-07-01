@@ -161,6 +161,12 @@ public class MusicController {
 
     @GetMapping("/play/test/{id}")
     public String playMusic2(@PathVariable Long id, Model model) {
+        Optional<Music> music = musicRepository.findById(id);
+        if (music.isPresent()) {
+            model.addAttribute("music", music.get());
+        } else {
+            model.addAttribute("error", "Bài hát không tồn tại!");
+        }
         return "music_play2";
     }
 
@@ -205,4 +211,6 @@ public class MusicController {
         }
         return "music";
     }
+
+    
 }

@@ -1,14 +1,18 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head> 
-    <title>Getting Started: Serving Web Content</title> 
+    <title>Phát nhạc</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p>Get your greeting <a href="/greeting">TESTINg</a></p>
-    <audio controls>
-      <source src="assets/music/HIEUTHUHAI - TRÌNH (prod. by Kewtiie).mp3" type="audio/mpeg">
+    <h2 th:text="${music.title}">Tên bài hát</h2>
+    <p th:text="${music.artist}">Nghệ sĩ</p>
+    <audio controls th:if="${music != null}">
+      <source th:src="/assets/music/SƠN TÙNG M-TP  ĐỪNG LÀM TRÁI TIM ANH ĐAU  OFFICIAL MUSIC VIDEO.mp3" type="audio/mpeg">
       Trình duyệt của bạn không hỗ trợ phát nhạc.
     </audio>
+    <div th:if="${error != null}" style="color:red;">
+        <p th:text="${error}"></p>
+    </div>
 </body>
 </html>
