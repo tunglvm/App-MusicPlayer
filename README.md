@@ -70,40 +70,65 @@ music-player-springboot/
 ├── build/
 ├── gradle/
 ├── src/
-│ └── main/
-│ ├── java/com/example/servingwebcontent/
-│ │ ├── controller/
-│ │ │ ├── AlbumController.java
-│ │ │ ├── PlaylistController.java
-│ │ │ └── MusicController.java
-│ │ ├── model/
-│ │ │ ├── Album.java
-│ │ │ ├── Playlist.java
-│ │ │ └── Music.java
-│ │ ├── repository/
-│ │ │ ├── AlbumRepository.java
-│ │ │ ├── PlaylistRepository.java
-│ │ │ └── MusicRepository.java
-│ │ ├── database/
-│ │ │ └── AivenDatabaseConfig.java
-│ │ └── ServingWebContentApplication.java
-│ └── resources/
-│ ├── static/assets/music/file.mp3
-│ ├── index.html
-│ ├── templates/
-│ │ ├── playlist.html
-│ │ ├── album.html
-│ │ ├── music.html
-│ │ ├── music_form.html
-│ │ ├── music_play.html
-│ │ ├── music_play2.html
-│ │ ├── playlist_form.html
-│ │ ├── playlist_musics.html
-│ │ ├── album_form.html
-│ │ ├── album_musics.html
-└── README.md
-
-
+│   └── main/
+│       ├── java/
+│       │   └── com/
+│       │       └── example/
+│       │           └── servingwebcontent/
+│       │               ├── controller/
+│       │               │   ├── AlbumController.java
+│       │               │   ├── PlaylistController.java
+│       │               │   └── MusicController.java
+│       │               ├── model/
+│       │               │   ├── Album.java
+│       │               │   ├── Playlist.java
+│       │               │   └── Music.java
+│       │               ├── repository/
+│       │               │   ├── AlbumRepository.java
+│       │               │   ├── PlaylistRepository.java
+│       │               │   └── MusicRepository.java
+│       │               ├── database/
+│       │               │   └── AivenDatabaseConfig.java
+│       │               └── ServingWebContentApplication.java
+│       └── resources/
+│           ├── static/
+│           │   └── assets/
+│           │       └── music/
+│           │           └── file.mp3
+│           ├── index.html
+│           └── templates/
+│               ├── playlist.html
+│               ├── album.html
+│               ├── music.html
+│               ├── music_form.html
+│               ├── music_play.html
+│               ├── music_play2.html
+│               ├── playlist_form.html
+│               ├── playlist_musics.html
+│               ├── album_form.html
+│               └── album_musics.html
+├── musicPlayer/
+│   ├── bin/
+│   └── src/
+│       ├── musicPlayer/
+│       │   ├── Album.java
+│       │   ├── AlbumList.java
+│       │   ├── App.java
+│       │   ├── Artist.java
+│       │   ├── ArtistList.java
+│       │   ├── Playlist.java
+│       │   ├── PlaylistList.java
+│       │   ├── Song.java
+│       │   ├── SongList.java
+│       │   ├── User.java
+│       │   ├── UserList.java
+│       │   └── Operation/
+│       │       ├── Copyright.java
+│       │       ├── DisplaySongByArtist.java
+│       │       ├── MusicLibrary.java
+│       │       └── PlayingSong.java
+│       └── Test/
+├── README.md
 ---
 
 ## III. Hệ thống chức năng chính

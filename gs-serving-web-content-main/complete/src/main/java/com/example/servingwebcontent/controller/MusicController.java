@@ -28,10 +28,21 @@ public class MusicController {
     @Autowired
     private PlaylistRepository playlistRepository;
 
-    // Hỗ trợ cả /music và /music/
+    // ... các field @Autowired ...
+
     @GetMapping({"", "/"})
-    public String listMusic(Model model) {
-        model.addAttribute("musics", musicRepository.findAll());
+    public String listMusic(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
+        List<Music> musics;
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            musics = musicRepository.findAll().stream()
+                .filter(song -> song.getTitle().toLowerCase().contains(keyword.toLowerCase())
+                    || song.getArtist().toLowerCase().contains(keyword.toLowerCase()))
+                .collect(Collectors.toList());
+        } else {
+            musics = musicRepository.findAll();
+        }
+        model.addAttribute("musics", musics);
+        model.addAttribute("keyword", keyword);
         return "music";
     }
 
@@ -52,20 +63,16 @@ public class MusicController {
             if (albumId != null) {
                 albumRepository.findById(albumId).ifPresent(music::setAlbum);
             }
-
             if (playlistIds != null && !playlistIds.isEmpty()) {
                 List<Playlist> playlists = playlistRepository.findAllById(playlistIds);
                 music.setPlaylists(playlists);
             } else {
                 music.setPlaylists(new ArrayList<>());
             }
-
             musicRepository.save(music);
             return "redirect:/music";
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(">>> ERROR khi thêm bài hát: " + e.getMessage());
-
             model.addAttribute("error", "Lỗi khi thêm bài hát: " + e.getMessage());
             model.addAttribute("music", music);
             model.addAttribute("albums", albumRepository.findAll());
@@ -83,7 +90,7 @@ public class MusicController {
             model.addAttribute("playlists", playlistRepository.findAll());
             return "music_form";
         }
-        return "redirect:/music/";
+        return "redirect:/music";
     }
 
     @PostMapping("/edit/{id}")
@@ -115,15 +122,13 @@ public class MusicController {
                 }
 
                 musicRepository.save(existing);
-                return "redirect:/music/";
+                return "redirect:/music";
             } else {
                 model.addAttribute("error", "Không tìm thấy bài hát để sửa!");
                 return "music_form";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(">>> ERROR khi sửa bài hát: " + e.getMessage());
-
             model.addAttribute("error", "Lỗi khi sửa bài hát: " + e.getMessage());
             model.addAttribute("music", music);
             model.addAttribute("albums", albumRepository.findAll());
@@ -138,10 +143,11 @@ public class MusicController {
             musicRepository.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(">>> ERROR khi xóa bài hát: " + e.getMessage());
         }
-        return "redirect:/music/";
+        return "redirect:/music";
     }
+
+
 
     @GetMapping("/play/{id}")
     public String playMusic(@PathVariable Long id, Model model) {
@@ -184,32 +190,6 @@ public class MusicController {
             model.addAttribute("error", "Lỗi khi phát bài hát đầu tiên: " + e.getMessage());
         }
         return "music_play";
-    }
-
-    @GetMapping("/music")
-    public String music(
-        @RequestParam(name = "keyword", required = false) String keyword,
-        Model model
-    ) {
-        try {
-            List<Music> allSongs = musicRepository.findAll();
-            List<Music> filteredSongs;
-            if (keyword != null && !keyword.trim().isEmpty()) {
-                filteredSongs = allSongs.stream()
-                    .filter(song -> song.getTitle().toLowerCase().contains(keyword.toLowerCase())
-                        || song.getArtist().toLowerCase().contains(keyword.toLowerCase()))
-                    .collect(Collectors.toList());
-            } else {
-                filteredSongs = allSongs;
-            }
-            model.addAttribute("musics", filteredSongs);
-            model.addAttribute("keyword", keyword);
-        } catch (Exception e) {
-            model.addAttribute("musics", List.of());
-            model.addAttribute("keyword", keyword);
-            model.addAttribute("error", "Đã xảy ra lỗi khi tải danh sách bài hát.");
-        }
-        return "music";
     }
 
     
