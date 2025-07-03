@@ -57,7 +57,7 @@
     </style>
 </head>
 <body>
-    <form th:action="@{${music.id} == null ? '/music/add' : '/music/edit/' + ${music.id}}" th:object="${music}" method="post">
+    <form th:if="${music.id == null}" th:action="@{/music/add}" th:object="${music}" method="post">
         <label>Tên bài hát</label>
         <input type="text" th:field="*{title}" required />
 
@@ -73,15 +73,56 @@
         <label>Album</label>
         <select name="albumId">
             <option value="">-- Không chọn --</option>
-            <option th:each="album : ${albums}" th:value="${album.id}" th:text="${album.name}" 
-                th:selected="${music.album != null} ? ${album.id} == ${music.album.id} : false"></option>
+            <option th:each="album : ${albums}" 
+                    th:value="${album.id}" 
+                    th:text="${album.name}" 
+                    th:selected="${music.album != null} ? ${album.id} == ${music.album.id} : false">
+            </option>
         </select>
 
         <label>Playlists</label>
         <div class="checkbox-group">
             <label th:each="playlist : ${playlists}">
-                <input type="checkbox" name="playlistIds" th:value="${playlist.id}"
-                    th:checked="${music.playlists != null} ? ${music.playlists.contains(playlist)} : false" />
+                <input type="checkbox" name="playlistIds"
+                       th:value="${playlist.id}"
+                       th:checked="${music.playlists.contains(playlist)}">
+                <span th:text="${playlist.name}"></span>
+            </label>
+        </div>
+
+        <button type="submit">Lưu bài hát</button>
+        <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+        <p th:if="${success}" th:text="${success}" style="color: green;"></p>
+    </form>
+    <form th:if="${music.id != null}" th:action="@{'/music/edit/' + ${music.id}}" th:object="${music}" method="post">
+        <label>Tên bài hát</label>
+        <input type="text" th:field="*{title}" required />
+
+        <label>Ca sĩ</label>
+        <input type="text" th:field="*{artist}" required />
+
+        <label>URL file nhạc</label>
+        <input type="text" th:field="*{url}" />
+
+        <label>Link ảnh bìa</label>
+        <input type="text" th:field="*{cover}" />
+
+        <label>Album</label>
+        <select name="albumId">
+            <option value="">-- Không chọn --</option>
+            <option th:each="album : ${albums}" 
+                    th:value="${album.id}" 
+                    th:text="${album.name}" 
+                    th:selected="${music.album != null} ? ${album.id} == ${music.album.id} : false">
+            </option>
+        </select>
+
+        <label>Playlists</label>
+        <div class="checkbox-group">
+            <label th:each="playlist : ${playlists}">
+                <input type="checkbox" name="playlistIds"
+                       th:value="${playlist.id}"
+                       th:checked="${music.playlists.contains(playlist)}">
                 <span th:text="${playlist.name}"></span>
             </label>
         </div>

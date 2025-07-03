@@ -28,8 +28,6 @@ public class MusicController {
     @Autowired
     private PlaylistRepository playlistRepository;
 
-    // ... các field @Autowired ...
-
     @GetMapping({"", "/"})
     public String listMusic(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
         List<Music> musics;
@@ -56,20 +54,32 @@ public class MusicController {
 
     @PostMapping("/add")
     public String addMusic(@ModelAttribute Music music,
-                           @RequestParam(value = "albumId", required = false) Long albumId,
-                           @RequestParam(value = "playlistIds", required = false) List<Long> playlistIds,
-                           Model model) {
+                       @RequestParam(value = "albumId", required = false) Long albumId,
+                       @RequestParam(value = "playlistIds", required = false) List<Long> playlistIds,
+                       Model model) {
         try {
             if (albumId != null) {
                 albumRepository.findById(albumId).ifPresent(music::setAlbum);
             }
+            // Lưu trước để có ID
+            musicRepository.save(music);
+
             if (playlistIds != null && !playlistIds.isEmpty()) {
                 List<Playlist> playlists = playlistRepository.findAllById(playlistIds);
                 music.setPlaylists(playlists);
+                for (Playlist playlist : playlists) {
+                    if (!playlist.getMusics().contains(music)) {
+                        playlist.getMusics().add(music);
+                    }
+                }
+                // Lưu lại playlist để cập nhật bảng liên kết
+                playlistRepository.saveAll(playlists);
+                // Lưu lại music để cập nhật bảng liên kết
+                musicRepository.save(music);
             } else {
                 music.setPlaylists(new ArrayList<>());
+                musicRepository.save(music);
             }
-            musicRepository.save(music);
             return "redirect:/music";
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,15 +100,15 @@ public class MusicController {
             model.addAttribute("playlists", playlistRepository.findAll());
             return "music_form";
         }
-        return "redirect:/music";
+        return "redirect:/music"; // Sửa lại ở đây
     }
 
     @PostMapping("/edit/{id}")
     public String editMusic(@PathVariable Long id,
-                            @ModelAttribute Music music,
-                            @RequestParam(value = "albumId", required = false) Long albumId,
-                            @RequestParam(value = "playlistIds", required = false) List<Long> playlistIds,
-                            Model model) {
+                        @ModelAttribute Music music,
+                        @RequestParam(value = "albumId", required = false) Long albumId,
+                        @RequestParam(value = "playlistIds", required = false) List<Long> playlistIds,
+                        Model model) {
         try {
             Optional<Music> musicOpt = musicRepository.findById(id);
             if (musicOpt.isPresent()) {
@@ -122,7 +132,7 @@ public class MusicController {
                 }
 
                 musicRepository.save(existing);
-                return "redirect:/music";
+                return "redirect:/music"; // Sửa lại ở đây
             } else {
                 model.addAttribute("error", "Không tìm thấy bài hát để sửa!");
                 return "music_form";
@@ -144,7 +154,7 @@ public class MusicController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/music";
+        return "redirect:/music"; // Sửa lại ở đây
     }
 
 
