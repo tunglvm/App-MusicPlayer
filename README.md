@@ -194,7 +194,8 @@ music-player-springboot/
 ## Sơ đồ chức năng
 1. Class Diagram
    
-![image](https://github.com/user-attachments/assets/ca265c95-a565-4c2d-ac55-063a47344aa7)
+![image](https://github.com/user-attachments/assets/012b5636-36c9-4a92-b0b0-3ac5922c1358)
+
 
 2. Sơ đồ chức năng phát nhạc và crud liên quan
 
