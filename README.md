@@ -232,7 +232,25 @@ Giao diện truy cập vào phần chức năng:
 ![image](https://github.com/user-attachments/assets/7166d245-7348-472f-b08e-59a10a3e8b09)
 
 
+# Chức năng nổi bật
+Phát nhạc trực tiếp từ danh sách nhạc
+có thể tự tạo ra một Playlist cho riêng mình để nghe nhạc
+cũng như là các Album có thể được tạo trực tiếp.
+Tìm kiếm thông minh và nhanh chóng.
 
+💡 Công nghệ sử dụng
+Ngôn ngữ lập trình: Java
+Mô hình hướng đối tượng (OOP)
+Framework: Spring Boot
+Quản lý luồng xử lý, cấu trúc theo mô hình MVC
+Giao diện: Thymeleaf- HTML
+Lưu trữ: File nhị phân
+Cấu trúc dữ liệu: ArrayList, LinkedList, Map,…
+
+📚 Tài liệu tham khảo
+Slide bài giảng môn Lập trình Hướng Đối Tượng – GVHD: Nguyễn Lệ Thu
+Java Docs – Oracle
+Stack Overflow – Community
 
 
 
