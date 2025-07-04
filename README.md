@@ -11,7 +11,7 @@
 | Họ và tên       | MSSV      | GitHub ID     | Nhiệm vụ chính                                           |
 |------------------|-----------|---------------|-----------------------------------------------------------|
 | Đỗ Tùng Lâm       | 23010874  | tunglvm        | Hiển thị danh sách Playlist & bài hát & Album            |
-| Trần Quốc Huy     | 23010184  | Huybip         | Điều khiển phát nhạc từ Playlist, Album và phát nhạc trực tiếp|
+| Trần Quốc Huy     | 23010184  | Huybip/WokHuy         | Điều khiển phát nhạc từ Playlist, Album và phát nhạc trực tiếp|
 | Đỗ Quỳnh Chi      | 23010618  | quynchi16      | Tạo, sửa, xóa Album và Playlist và bài hát(Music)        |
 
 ---
@@ -227,39 +227,10 @@ music-player-springboot/
 
 ## Màn hình giao diện
 
-1. Giao diện truy cập vào phần chức năng: 
+Giao diện truy cập vào phần chức năng: 
 
 ![image](https://github.com/user-attachments/assets/7166d245-7348-472f-b08e-59a10a3e8b09)
 
-2. Giao diện bài hát
-
-![image](https://github.com/user-attachments/assets/7617aab2-f137-41de-8428-d25d8c2210b4)
-
-3. Giao diện playlist
-
-![image](https://github.com/user-attachments/assets/68a152aa-de54-4b03-aedb-8d0b472e631b)
-
-4. Giao diện album
-
-![image](https://github.com/user-attachments/assets/5f88ab09-4fc6-45a2-9e8a-5cad5c560db6)
-
-5. Giao diện phát nhạc
-
-![image](https://github.com/user-attachments/assets/4fb98b19-e2e4-4deb-acff-d67108e02798)
-
-6. Giao diện danh sách bài hát playlist, album
-
-![image](https://github.com/user-attachments/assets/c4fb357a-d221-4f32-ac05-51e3853baad8)
-
-![image](https://github.com/user-attachments/assets/b8698021-a671-42a3-bd4b-97d59979ed0e)
-
-7. Giao diện thêm, sửa bài hát, playlist, album
-
-![image](https://github.com/user-attachments/assets/b7e3dd06-7b93-46ff-8707-27a3cb588b53)
-
-![image](https://github.com/user-attachments/assets/a448fe4c-a96c-4562-9e6a-1c246e806c74)
-
-![image](https://github.com/user-attachments/assets/53ca7540-a512-4ed9-8eb2-601f9e0bc4db)
 
 
 
