@@ -66,7 +66,7 @@ public class MusicPlaylistDialog extends JDialog { //inherit form JDialog
                 JFileChooser jFileChooser = new JFileChooser();
                 jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3", "mp3")); //Only allow selecting files with mp3 extension.
                 //The starting directory is "test song" (user need to make sure that directory exists)
-                jFileChooser.setCurrentDirectory(new File("test song"));
+                jFileChooser.setCurrentDirectory(new File("musicPlayer\\src\\assets\\test song"));
 
                 //This is an integer variable (int) used to store the result of the user's action when the file selection dialog (JFileChooser) appears
                 int result = jFileChooser.showOpenDialog(MusicPlaylistDialog.this);
@@ -108,7 +108,7 @@ public class MusicPlaylistDialog extends JDialog { //inherit form JDialog
                 try{
                     JFileChooser jFileChooser = new JFileChooser();
                     //The starting directory is "test song" (user need to make sure that directory exists)
-                    jFileChooser.setCurrentDirectory(new File("test song"));
+                    jFileChooser.setCurrentDirectory(new File("musicPlayer\\src\\assets\\test song"));
 
                     //This is an integer variable (int) used to store the result of the user's action when the file selection dialog (JFileChooser) appears
                     int result = jFileChooser.showSaveDialog(MusicPlaylistDialog.this);

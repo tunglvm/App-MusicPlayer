@@ -68,7 +68,7 @@ public class MusicPlayerGUI extends JFrame{
 
         jFileChooser = new JFileChooser();
         //set a default PATH for filr explorer
-        jFileChooser.setCurrentDirectory(new File("test song"));
+        jFileChooser.setCurrentDirectory(new File("musicPlayer\\src\\assets\\test song"));
         //fiter file chooser to only show .mp3 file
         jFileChooser.setFileFilter(new FileNameExtensionFilter("MP3", "mp3"));
 
@@ -212,7 +212,7 @@ public class MusicPlayerGUI extends JFrame{
             public void actionPerformed(ActionEvent e){
                 JFileChooser jFileChooser = new JFileChooser();
                 jFileChooser.setFileFilter(new FileNameExtensionFilter("Playlist", "txt"));
-                jFileChooser.setCurrentDirectory(new File("test song"));
+                jFileChooser.setCurrentDirectory(new File("musicPlayer\\src\\assets\\test song"));
 
                 int result = jFileChooser.showOpenDialog(MusicPlayerGUI.this);
                 File selectedFile = jFileChooser.getSelectedFile();
