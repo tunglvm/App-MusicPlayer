@@ -12,21 +12,11 @@ Link to install libraries: https://drive.google.com/drive/folders/1SNC5ffblskdWR
 
 ### Members
 
-Đỗ Tùng Lâm 
+Đỗ Tùng Lâm, Github id: tunglvm
 
-Github id: tunglvm
+Trần Quốc Huy, Github id: Huybip
 
-Trần Quốc Huy 
-
-Github id: Huybip
-
-Đỗ Quỳnh Chi 
-
-Github id: 
-
-### Chạy chương trình:
-
-![image](https://github.com/user-attachments/assets/705eec8f-94af-4ed1-aee7-a7f7538126aa)
+Đỗ Quỳnh Chi, Github id: quyhchi
 
 ### Main interface
 
