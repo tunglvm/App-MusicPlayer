@@ -12,7 +12,7 @@ Link to install libraries: https://drive.google.com/drive/folders/1SNC5ffblskdWR
 
 ### Members
 
-Đỗ Tùng Lâm, Github id: tunglvm
+Đỗ Tùng Lâm (leader), Github id: tunglvm
 
 Trần Quốc Huy, Github id: Huybip
 
