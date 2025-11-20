@@ -1,0 +1,3 @@
+D:\OOP\Group6_OOP_N02_term3_2025\musicPlayer\src\assets\test song\01. For You (Feat. Crush).mp3
+D:\OOP\Group6_OOP_N02_term3_2025\musicPlayer\src\assets\test song\02. HONEY.mp3
+D:\OOP\Group6_OOP_N02_term3_2025\musicPlayer\src\assets\test song\NewJeans - OMG (Retro Dance Pop ver.).mp3
